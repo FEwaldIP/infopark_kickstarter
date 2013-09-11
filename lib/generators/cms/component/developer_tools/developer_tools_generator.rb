@@ -7,15 +7,23 @@ module Cms
         def install_gems
           gem_group(:test, :development) do
             gem('pry-rails')
-            gem('better_errors')
-            gem('binding_of_caller')
             gem('rails-footnotes')
             gem('thin')
+            gem('infopark_dashboard')
+          end
+
+          gem_group(:development) do
+            gem('better_errors')
+            gem('binding_of_caller')
           end
 
           Bundler.with_clean_env do
             run('bundle --quiet')
           end
+        end
+
+        def add_dashboard_route
+          route('mount InfoparkDashboard::Engine => "/cms/dashboard" if Rails.env.development?')
         end
 
         def copy_app_directory

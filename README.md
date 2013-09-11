@@ -4,8 +4,8 @@
 [![Code Climate](https://codeclimate.com/github/infopark/infopark_kickstarter.png)](https://codeclimate.com/github/infopark/infopark_kickstarter)
 [![Dependency Status](https://gemnasium.com/infopark/infopark_kickstarter.png)](https://gemnasium.com/infopark/infopark_kickstarter)
 
-Infopark Kickstarter provides generators and rake tasks to quickly setup or enhance an [Infopark
-Platform](http://infopark.de) Ruby on Rails project. All generated code
+Infopark Kickstarter provides generators and rake tasks to quickly setup or enhance an
+[Infopark](http://infopark.de) Ruby on Rails project. All generated code
 represents a working example, but can be fully customized within the application.
 
 
@@ -18,8 +18,7 @@ Please visit our Dev Center to get the
 ## Testing
 
 There are two types of tests. First there are rspec tests of the Infopark Kickstarter
-engine. Those include tests for the dashboard and for all generators. You can run these tests by
-simply calling:
+engine. You can run these tests by simply calling:
 
     $ rake spec
 
@@ -46,7 +45,7 @@ We would be very happy and thankful if you open new issues in order to further i
 Kickstarter. If you want to go a step further and extend the functionality or fix a problem, you can
 do so any time by following the steps below.
 
-1. Signup for a [free Infopark Platform account](http://www.infopark.de/) and setup a test CRM
+1. Signup for a [free Infopark account](http://www.infopark.de/) and setup a test CRM
    and CMS component in the Infopark console.
 
 2. Fork and clone the Infopark Kickstarter GitHub repository.
@@ -59,28 +58,25 @@ do so any time by following the steps below.
 
         ruby --version
 
-3. Download the application archive from the Infopark console and unzip all files into your project
-   directory. When you are done, copy the configuration files from your `config/` directory to the
-   following locations:
+3. Download the configuration files for your Ruby on Rails application from the Infopark console and copy them to your project's `config` folder.
 
-        spec/dummy/config/rails_connector.yml
-        spec/dummy/config/custom_cloud.yml
+        config/rails_connector.yml
+        config/custom_cloud.yml
 
-4. Set up and edit the local configuration file and provide the same credentials you just copied
-   into your dummy application template.
 
-        cp config/local.yml.template config/local.yml
-
-5. Create the bundle and run all test to make sure everything is working before you add your own
+4. Create the bundle and run all test to make sure everything is working before you add your own
    changes. You find some more details about testing above in the __Testing__ section.
 
         bundle
         rake spec
         rake test:integration
 
-6. Create your feature branch and create a pull request for the `develop` branch. Please take a
+5. Create your feature branch and create a pull request for the `develop` branch. Please take a
    look at the already existing generators and rake tasks to get an impression of our coding style
    and the general architecture.
+
+6. We are using the [GitHub Styleguides](https://github.com/styleguide) and would prefer if you
+   could stick to it.
 
 
 ## License

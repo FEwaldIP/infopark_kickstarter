@@ -1,3 +1,46 @@
+# v3.1.0
+  * Updated to Infopark SDK (infopark_rails_connector and infopark_cloud_connector) version 6.9.4.
+  * We changed the general way to create examples for certain generators. Before you could pass in
+    the option `--example` and then add some other options like `--cms_path` to further configure
+    the examples. We have moved all examples into their own generator, which means you can now call
+    them independent from the associated generator. The example generators are called by adding
+    `:example` to the generator. For example, `rails generate cms:widget:slideshare:example`.
+    (Thanks @cedrics)
+  * Turned fixed navbar into a normal navbar, which seems to be a more sensible default.
+    (Thanks @thomasritz)
+  * Added an editing icon font that is independend from the Infopark RailsConnector. This allows the
+    project developer to add arbitrary project specific icons that should be used for editing views.
+  * Extracted dashboard into its own gem
+    [infopark_dashboard](https://github.com/infopark/infopark_dashboard).
+  * Bugfix: The editmarker overlapped the save and cancel button of the redactor inplace editor.
+    (Thanks @mremolt)
+  * Removed deployment and code hosting rake tasks to allow free choice for these platforms.
+  * Integrated the html editor "redactor" into the generated code, as it was removed from the core
+    Infopark API. This allows you to more easily choose your html editor of choice. In the course
+    of integrating the editor, we moved all inplace editing files into their own generator. We hope
+    that this makes it easier to update this part in the future. Get more details running
+    `rails generate cms:component:editing --help`.
+  * Added inplace editing for CMS date attributes. (Thanks @cedrics)
+  * Bugfix: Made slideshare widget more robust against invalid slideshare API responses.
+  * Removed `.widget` and `.editing` CSS classes in the `show.html.haml` and `edit.html.haml` of
+    widgets. They were not needed and we switched to use the public API provided by the
+    RailsConnector.
+  * Added a column widget generator that allows to create structure widgets that hold a certain
+    number of columns, which are widget attributes again. This means you can create nested widgets
+    and the editor can define the layout of a single row. The edit view of this widget allows to
+    adapt the column grid width. Run `rails generate cms:widget:column --help` for more information.
+  * Bugfix: The `better_errors` gem lead to segmentation faults in the test application, because it
+    was loaded in `test` mode. We only load the gem in development mode now to prevent the failures.
+    (Thanks @spiderpug)
+  * The Kickstarter and the dashboard currently depend on Twitter Bootstrap version 2. We are
+    working hard to support Twitter Bootstrap 3 in the near future.
+  * The integration test application is now checked in for more convenient development of
+    Kickstarter features. (Thanks @marcelgo)
+  * The `add_widget` method inside of example migrations was changed, to only use the public
+    RailsConnector API, instead of an API that might change in the future.
+  * Remove the need for the `local.yml` configuration and instead use the `rails_connector.yml`
+    and `custom_cloud.yml` provided by the console.
+
 # v3.0.0
   * All generated widgets now have an edit view. You can access the edit view via the widget edit
     menu `Edit widget`. The edit view uses simple Ruby on Rails helper to ease the creation of
@@ -46,6 +89,7 @@
   * Added `headline` string attribute to `SearchPage`.
   * Added notice to restart the server when generating the developer tools. (Thanks @rouvenbehnke)
   * Removed `Gemfile.lock` from version control and updated gems. (Thanks @spiderpug)
+
 # v2.2.0
   * Updated most of the gems to the current version, eventhough we don't support Rails 4 yet.
   * Bugfix: Error page now uses a correct grid layout and displays the content correctly.

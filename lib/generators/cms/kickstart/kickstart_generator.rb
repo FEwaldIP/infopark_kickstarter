@@ -1,5 +1,4 @@
 require 'uri'
-require 'infopark_kickstarter/configuration'
 
 module Cms
   module Generators
@@ -73,9 +72,10 @@ module Cms
         gem('haml-rails')
         gem('cells')
         gem('utf8-cleaner')
+        gem('infopark_crm_connector')
 
         gem_group(:assets) do
-          gem('less-rails-bootstrap')
+          gem('less-rails-bootstrap', '~> 2.3')
         end
 
         Bundler.with_clean_env do
@@ -109,147 +109,125 @@ module Cms
         log(:info, 'enable widget locales')
       end
 
-      def create_structure_migration_file
-        begin
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = 'Image'
-            model.type = :generic
-            model.title = 'Resource: Image'
-            model.thumbnail = false
-          end
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = 'Video'
-            model.type = :generic
-            model.title = 'Resource: Video'
-            model.thumbnail = false
-            model.attributes = [
-              title_attribute,
-            ]
-          end
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          class_name = 'Homepage'
-
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = class_name
-            model.title = 'Page: Homepage'
-            model.thumbnail = false
-            model.attributes = [
-              title_attribute,
-              main_content_attribute,
-              show_in_navigation_attribute,
-              sort_key_attribute,
-              {
-                name: 'error_not_found_page_link',
-                type: :linklist,
-                title: 'Error Not Found Page',
-                max_size: 1,
-              },
-              {
-                name: 'locale',
-                type: :string,
-                title: 'Locale',
-              },
-            ]
-          end
-
-          Rails::Generators.invoke('cms:controller', [class_name])
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = 'Root'
-            model.title = 'Root'
-            model.thumbnail = false
-          end
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = 'Website'
-            model.title = 'Website'
-            model.thumbnail = false
-          end
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = 'Container'
-            model.title = 'Container'
-            model.thumbnail = false
-            model.attributes = [
-              title_attribute,
-              show_in_navigation_attribute,
-            ]
-          end
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          class_name = 'ContentPage'
-
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = class_name
-            model.title = 'Page: Content'
-            model.page = true
-            model.attributes = [
-              title_attribute,
-              show_in_navigation_attribute,
-              sort_key_attribute,
-              main_content_attribute,
-              sidebar_content_attribute
-            ]
-          end
-
-          Rails::Generators.invoke('cms:controller', [class_name])
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        begin
-          class_name = 'ErrorPage'
-
-          Model::ApiGenerator.new(behavior: behavior) do |model|
-            model.name = class_name
-            model.title = 'Page: Error'
-            model.thumbnail = false
-            model.page = true
-            model.attributes = [
-              title_attribute,
-              content_attribute,
-              show_in_navigation_attribute,
-            ]
-          end
-
-          Rails::Generators.invoke('cms:controller', [class_name])
-        rescue Cms::Generators::DuplicateResourceError
-        end
-
-        migration_template('create_structure.rb', 'cms/migrate/create_structure.rb')
-      end
-
-      def copy_app_directory
-        directory('app', force: true)
+      def update_application_configuration
         directory('lib')
         directory('config', force: true)
-        directory('deploy')
       end
 
       def extend_gitignore
-        append_file('.gitignore', "config/deploy.yml\n")
         append_file('.gitignore', "config/rails_connector.yml\n")
         append_file('.gitignore', "config/custom_cloud.yml\n")
       end
 
+      def create_structure_migration_file
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = 'Image'
+          model.type = :generic
+          model.title = 'Resource: Image'
+          model.thumbnail = false
+        end
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = 'Video'
+          model.type = :generic
+          model.title = 'Resource: Video'
+          model.thumbnail = false
+          model.attributes = [
+            title_attribute,
+          ]
+        end
+
+        class_name = 'Homepage'
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = class_name
+          model.title = 'Page: Homepage'
+          model.thumbnail = false
+          model.attributes = [
+            title_attribute,
+            main_content_attribute,
+            show_in_navigation_attribute,
+            sort_key_attribute,
+            {
+              name: 'error_not_found_page_link',
+              type: :linklist,
+              title: 'Error Not Found Page',
+              max_size: 1,
+            },
+            {
+              name: 'locale',
+              type: :string,
+              title: 'Locale',
+            },
+          ]
+        end
+
+        Rails::Generators.invoke('cms:controller', [class_name])
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = 'Root'
+          model.title = 'Root'
+          model.thumbnail = false
+        end
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = 'Website'
+          model.title = 'Website'
+          model.thumbnail = false
+        end
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = 'Container'
+          model.title = 'Container'
+          model.thumbnail = false
+          model.attributes = [
+            title_attribute,
+            show_in_navigation_attribute,
+          ]
+        end
+
+        class_name = 'ContentPage'
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = class_name
+          model.title = 'Page: Content'
+          model.page = true
+          model.attributes = [
+            title_attribute,
+            show_in_navigation_attribute,
+            sort_key_attribute,
+            main_content_attribute,
+            sidebar_content_attribute
+          ]
+        end
+
+        Rails::Generators.invoke('cms:controller', [class_name])
+
+        class_name = 'ErrorPage'
+
+        Model::ApiGenerator.new(behavior: behavior) do |model|
+          model.name = class_name
+          model.title = 'Page: Error'
+          model.thumbnail = false
+          model.page = true
+          model.attributes = [
+            title_attribute,
+            content_attribute,
+            show_in_navigation_attribute,
+          ]
+        end
+
+        Rails::Generators.invoke('cms:controller', [class_name])
+
+        migration_template('create_structure.rb', 'cms/migrate/create_structure.rb')
+      end
+
+      def override_application
+        directory('app', force: true)
+      end
+
       def add_initial_content
+        Rails::Generators.invoke('cms:component:editing', ['--editor=redactor'])
         Rails::Generators.invoke('cms:component:developer_tools')
         Rails::Generators.invoke('cms:component:search')
         Rails::Generators.invoke('cms:component:login_page')
@@ -264,15 +242,7 @@ module Cms
 
       def create_example_content
         if examples?
-          Rails::Generators.invoke('cms:widget:teaser', ['--example'])
-          Rails::Generators.invoke('cms:widget:image', ['--example'])
-          Rails::Generators.invoke('cms:widget:headline', ['--example'])
-          Rails::Generators.invoke('cms:widget:maps', ['--example'])
-          Rails::Generators.invoke('cms:widget:text', ['--example'])
-
-          Rails::Generators.invoke('cms:component:profile_page', ['--cms_path=/website/en'])
-          Rails::Generators.invoke('cms:component:contact_page', ['--cms_path=/website/en'])
-          Rails::Generators.invoke('cms:component:blog', ['--cms_path=/website/en'])
+          Rails::Generators.invoke('cms:kickstart:example')
         end
       end
 
