@@ -1,0 +1,6 @@
+---
+en:
+  widgets:
+    accordion_panel_widget:
+      title: 'Accordion panel widget'
+      description: ''
