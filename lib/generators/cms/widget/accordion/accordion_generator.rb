@@ -23,6 +23,7 @@ module Cms
           end
 
           directory('app', force: true)
+          directory('spec')
         end
 
         def add_widget_classes_callback

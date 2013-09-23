@@ -1,5 +1,7 @@
+---
 en:
   widgets:
     accordion_widget:
-      title: 'Accordion widget'
-      description: ''
+      title: Accordion widget
+      description: Displays collapsible content panels for presenting information
+        in a limited amount of space.
