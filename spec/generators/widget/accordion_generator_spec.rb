@@ -21,9 +21,12 @@ describe Cms::Generators::Widget::AccordionGenerator do
         directory 'widgets' do
           directory 'accordion_widget' do
             directory 'views' do
-              file 'show.html.haml'
               file 'thumbnail.html.haml'
               no_file 'edit.html.haml'
+
+              file 'show.html.haml' do
+                contains "class: 'accordion'"
+              end
             end
 
             directory 'locales' do

@@ -21,6 +21,8 @@ module Cms
               },
             ]
           end
+
+          directory('app', force: true)
         end
 
         def add_widget_classes_callback
