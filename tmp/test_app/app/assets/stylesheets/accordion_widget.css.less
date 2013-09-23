@@ -1,5 +1,14 @@
-body.ip_editing_active.ip_editable_workspace [data-ip-widget-obj-class="AccordionWidget"] {
-  [data-ip-widget-obj-class="AccordionPanelWidget"]:first-child {
-    padding-top: 30px;
+body.ip_editing_active.ip_editable_workspace .accordion {
+  > .ip_editing_marker:first-child {
+    margin-left: 45px;
+    margin-top: -3px;
+  }
+
+  [data-ip-widget-obj-class="AccordionPanelWidget"]:first-of-type {
+    margin-top: 28px;
+  }
+
+  .accordion-group {
+    min-height: 26px;
   }
 }
