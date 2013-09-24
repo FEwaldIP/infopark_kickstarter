@@ -33,11 +33,7 @@ module Cms
           data = []
           data << ''
           data << '  def valid_widget_classes_for(field_name)'
-          data << '    if field_name == \'panels\''
-          data << '      %w(AccordionPanelWidget)'
-          data << '    else'
-          data << '      super(field_name)'
-          data << '    end'
+          data << '    %w(AccordionPanelWidget)'
           data << '  end'
           data << ''
 

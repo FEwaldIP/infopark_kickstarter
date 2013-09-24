@@ -7,10 +7,6 @@ class AccordionWidget < Obj
   include Widget
 
   def valid_widget_classes_for(field_name)
-    if field_name == 'panels'
-      %w(AccordionPanelWidget)
-    else
-      super(field_name)
-    end
+    %w(AccordionPanelWidget)
   end
 end
