@@ -26,6 +26,10 @@ module Cms
           directory('spec')
         end
 
+        def call_accordion_panel_generator
+          Rails::Generators.invoke('cms:widget:accordion_panel', args, behavior: behavior)
+        end
+
         def add_widget_classes_callback
           file = 'app/models/accordion_widget.rb'
           insert_point = /^end[\n]*$/
@@ -39,7 +43,9 @@ module Cms
 
           data = data.join("\n")
 
-          insert_into_file(file, data, before: insert_point)
+          if File.exist?(file)
+            insert_into_file(file, data, before: insert_point)
+          end
         end
 
         private

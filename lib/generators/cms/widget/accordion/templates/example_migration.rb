@@ -6,12 +6,8 @@ class CreateAccordionWidgetExample < ::RailsConnector::Migration
       _obj_class: "<%= obj_class_name %>"
     })
 
-    if panel_migrated?
-      add_widget_panel(widget, headline: 'Panel 1')
-      add_widget_panel(widget, headline: 'Panel 2')
-    else
-      puts "Skipping panel examples: AccordionPanelWidget model is not migrated."
-    end
+    add_widget_panel(widget, headline: 'Panel 1')
+    add_widget_panel(widget, headline: 'Panel 2')
   end
 
   private
@@ -33,12 +29,6 @@ class CreateAccordionWidgetExample < ::RailsConnector::Migration
     update_obj(definition['id'], attribute => widgets)
 
     Obj.find(widget['id'])
-  end
-
-  def panel_migrated?
-    get_obj_class('AccordionPanelWidget').present?
-  rescue RailsConnector::ClientError
-    false
   end
 
   def add_widget_panel(obj, attributes={})

@@ -2,6 +2,8 @@ module Cms
   module Generators
     module Widget
       class AccordionPanelGenerator < ::Rails::Generators::Base
+        Rails::Generators.hide_namespace(self.namespace)
+
         include BasePaths
         include Actions
 
