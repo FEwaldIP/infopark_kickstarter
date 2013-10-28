@@ -43,23 +43,22 @@ module Cms
           end
 
           def update_local_custom_cloud_file
-            append_file('config/custom_cloud.yml') do
-              File.read(find_in_source_paths('custom_cloud.yml'))
+            path = File.join(destination_root, 'config/custom_cloud.yml')
+
+            if File.exist?(path)
+              append_file(path) do
+                File.read(find_in_source_paths('custom_cloud.yml'))
+              end
             end
           end
 
           def display_notice
-            notice = if behavior == :invoke
-              'Please run "rake cms:cloud_config:edit" to add
-                "newrelic": { "api_key": "<your api key>", "deploy_key": "<your deploy api key>" }
-                to the platform configuration.'
-            else
-              'Please run "rake cms:cloud_config:edit" to remove
-                "newrelic": { "api_key": "<your api key>", "deploy_key": "<your deploy api key>" } from the platform
-                configuration.'
+            if behavior == :invoke
+              log(:config,
+                'Please add your NewRelic API keys to the section ' +
+                '"newrelic" in "config/custom_cloud.yml".'
+              )
             end
-
-            log(:config, notice)
           end
 
           private

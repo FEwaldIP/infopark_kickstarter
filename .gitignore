@@ -1,6 +1,11 @@
+# OS related files
+.DS_Store
+
 # Kickstarter gem related files
 .bundle/
 .yardoc
+.rspec
+.ruby-version
 /Gemfile.lock
 pkg/
 doc/

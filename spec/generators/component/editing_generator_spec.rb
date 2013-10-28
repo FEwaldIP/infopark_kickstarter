@@ -23,13 +23,20 @@ describe Cms::Generators::Component::EditingGenerator do
   def prepare_environments
     javascripts_path = "#{destination_root}/app/assets/javascripts"
     stylesheets_path = "#{destination_root}/app/assets/stylesheets"
+    environments_path = "#{destination_root}/config/environments"
+    layouts_path = "#{destination_root}/app/views/layouts"
+    config_path = "#{destination_root}/config"
 
     mkdir_p(javascripts_path)
     mkdir_p(stylesheets_path)
+    mkdir_p(environments_path)
+    mkdir_p(layouts_path)
+    mkdir_p(config_path)
 
     File.open("#{destination_root}/Gemfile", 'w')
-    File.open("#{javascripts_path}/application.js", 'w') { |file| file.write("//= require infopark_rails_connector\n") }
-    File.open("#{stylesheets_path}/application.css", 'w') { |file| file.write("*= require infopark_rails_connector\n") }
+    File.open("#{environments_path}/production.rb", 'a') { |f| f.write('Test::Application.configure do') }
+    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("%body{body_attributes(@obj)}") }
+    File.open("#{config_path}/routes.rb", 'w') { |file| file.write('Dummy::Application.routes.draw do') }
   end
 
   it 'creates files' do
@@ -43,29 +50,84 @@ describe Cms::Generators::Component::EditingGenerator do
           end
 
           directory 'stylesheets' do
-            file 'editing.css.less'
-            file 'editing_icons.css.less'
-            file 'application.css' do
-              contains '*= require editing'
+            directory 'editing' do
+              file 'mixins.less'
+              file 'icons.css.less'
+              file 'buttons.css.less'
+              file 'base.css.less'
+
+              directory 'editors' do
+                file 'string_editor.css.less'
+                file 'linklist_editor.css.less'
+                file 'reference_editor.css.less'
+                file 'referencelist_editor.css.less'
+              end
+            end
+
+            file 'editing.css' do
               contains '*= require bootstrap-datepicker'
             end
           end
 
           directory 'javascripts' do
-            file 'editing.js.coffee'
-            file 'application.js' do
-              contains '//= require editing'
+            directory 'editing' do
+              file 'base.js.coffee'
+
+              directory 'editors' do
+                file 'string_editor.js.coffee'
+                file 'linklist_editor.js.coffee'
+                file 'reference_editor.js.coffee'
+                file 'referencelist_editor.js.coffee'
+              end
+            end
+
+            file 'editing.js' do
+              contains '//= require bootstrap-datepicker'
+              contains '//= require jquery.ui.sortable'
             end
           end
+        end
+
+        directory 'cells' do
+          directory 'menu_bar' do
+            file 'edit_toggle.html.haml'
+            file 'show.html.haml'
+            file 'user.html.haml'
+            file 'workspaces.html.haml'
+          end
+          file 'menu_bar_cell.rb'
         end
 
         directory 'helpers' do
           file 'editing_helper.rb'
         end
+
+        directory 'views' do
+          directory 'layouts' do
+            file 'application.html.haml' do
+              contains '    = render_cell(:menu_bar, :show)'
+            end
+          end
+        end
+      end
+
+      directory 'config' do
+        directory 'environments' do
+          file 'production.rb' do
+            contains 'config.assets.precompile += %w(editing.css editing.js)'
+          end
+        end
+
+        file 'routes.rb' do
+          contains "get 'mediabrowser', to: 'mediabrowser#index'"
+          contains "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
+          contains "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
+        end
       end
 
       file 'Gemfile' do
         contains 'gem "bootstrap-datepicker-rails"'
+        contains 'gem "jquery-ui-rails"'
       end
     }
   end

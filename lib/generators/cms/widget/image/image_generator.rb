@@ -5,16 +5,15 @@ module Cms
         source_root File.expand_path('../templates', __FILE__)
 
         def create_widget
-          Widget::ApiGenerator.new(behavior: behavior) do |widget|
+          Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
             widget.name = obj_class_name
             widget.icon = 'image'
             widget.description = 'Widget that holds an image.'
             widget.attributes = [
               {
                 name: 'source',
-                type: :linklist,
+                type: :reference,
                 title: 'Source',
-                max_size: 1,
               },
             ]
           end

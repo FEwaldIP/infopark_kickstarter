@@ -34,9 +34,9 @@ module Cms
         def create_migration
           class_name = 'SearchPage'
 
-          Model::ApiGenerator.new(behavior: behavior) do |model|
+          Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
             model.name = class_name
-            model.title = 'Page: Search'
+            model.title = 'Search'
             model.thumbnail = false
             model.page = true
             model.attributes = [
@@ -53,7 +53,7 @@ module Cms
             ]
           end
 
-          Rails::Generators.invoke('cms:controller', [class_name])
+          Rails::Generators.invoke('cms:controller', [class_name], behavior: behavior)
 
           migration_template('example_migration.rb', 'cms/migrate/create_search_page_example.rb')
         end
@@ -87,10 +87,9 @@ module Cms
 
         def search_page_attribute
           {
-            name: 'search_page_link',
-            type: :linklist,
+            name: 'search_page',
+            type: :reference,
             title: 'Search Page',
-            max_size: 1,
           }
         end
 

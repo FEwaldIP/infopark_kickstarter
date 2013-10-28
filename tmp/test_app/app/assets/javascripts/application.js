@@ -13,12 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require infopark_rails_connector
 //= require projekktor
-//= require projekktor.config
-//= require redactor
-//= require redactor.config
-//= require editing
-//= require bootstrap-datepicker
-
-//= require_tree .
+//= require_self
+//= require_tree ./application

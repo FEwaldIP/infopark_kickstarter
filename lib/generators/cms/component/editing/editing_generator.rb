@@ -2,6 +2,8 @@ module Cms
   module Generators
     module Component
       class EditingGenerator < ::Rails::Generators::Base
+        include Actions
+
         source_root File.expand_path('../templates', __FILE__)
 
         SUPPORTED_EDITORS = %w(redactor)
@@ -10,6 +12,12 @@ module Cms
           type: :string,
           default: SUPPORTED_EDITORS.first,
           desc: "Select what html editor to use. (#{SUPPORTED_EDITORS.join(' | ')})"
+
+        def add_routes
+          route "get 'mediabrowser', to: 'mediabrowser#index'"
+          route "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
+          route "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
+        end
 
         def validate_editor
           unless SUPPORTED_EDITORS.include?(editor)
@@ -25,6 +33,7 @@ module Cms
         def install_gems
           gem_group(:assets) do
             gem('bootstrap-datepicker-rails')
+            gem('jquery-ui-rails')
           end
 
           Bundler.with_clean_env do
@@ -36,30 +45,48 @@ module Cms
           directory('app')
         end
 
-        def update_application_js
-          file = 'app/assets/javascripts/application.js'
-          insert_point = "//= require infopark_rails_connector"
-
+        def add_javascript_directives
           data = []
 
           data << ''
-          data << '//= require editing'
+          data << '//= require jquery.ui.sortable'
+          data << '//= require bootstrap-datepicker'
 
           data = data.join("\n")
 
-          insert_into_file(file, data, after: insert_point)
+          update_javascript_editing_manifest(data)
         end
 
-        def update_application_css
-          file = 'app/assets/stylesheets/application.css'
-          insert_point = '*= require infopark_rails_connector'
-
+        def add_stylesheet_manifest
           data = []
+
           data << ''
-          data << ' *= require editing'
           data << ' *= require bootstrap-datepicker'
 
           data = data.join("\n")
+
+          update_stylesheet_editing_manifest(data)
+        end
+
+        def update_production_environment
+          data = []
+
+          data << '# Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)'
+          data << '  config.assets.precompile += %w(editing.css editing.js)'
+          data << ''
+
+          data = data.join("\n")
+
+          environment(data, env: :production)
+
+          log(:environment, 'production: config.assets.precompile += %w(editing.css editing.js)')
+        end
+
+        def add_menu_bar_to_layout
+          file = 'app/views/layouts/application.html.haml'
+          insert_point = '%body{body_attributes(@obj)}'
+
+          data = "\n    = render_cell(:menu_bar, :show)"
 
           insert_into_file(file, data, after: insert_point)
         end

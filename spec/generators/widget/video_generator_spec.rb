@@ -23,36 +23,22 @@ describe Cms::Generators::Widget::VideoGenerator do
     mkdir_p(javascripts_path)
     mkdir_p(stylesheets_path)
 
-    File.open("#{javascripts_path}/application.js", 'w') { |file| file.write("//= require infopark_rails_connector\n") }
-    File.open("#{stylesheets_path}/application.css", 'w') { |file| file.write("*= require infopark_rails_connector\n") }
+    File.open("#{javascripts_path}/application.js", 'w') { |file| file.write("\n//= require_self") }
+    File.open("#{stylesheets_path}/application.css", 'w') { |file| file.write("\n *= require_self") }
     File.open("#{destination_root}/Gemfile", 'w')
   end
 
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'cells' do
-          directory 'widget' do
-            file 'video_widget_cell.rb'
-
-            directory 'video_widget' do
-              file 'show.html.haml'
-              file 'projekktor.html.haml'
-              file 'youtube.html.haml'
-              file 'vimeo.html.haml'
-            end
-          end
-        end
-
         directory 'assets' do
           directory 'javascripts' do
             file 'application.js' do
               contains '//= require projekktor'
-              contains '//= require projekktor.config'
             end
 
-            file 'projekktor.config.js.coffee' do
-              contains 'controls: true'
+            directory 'application' do
+              file 'projekktor.config.js.coffee'
             end
           end
 
@@ -82,18 +68,17 @@ describe Cms::Generators::Widget::VideoGenerator do
 
         directory 'models' do
           file 'video_widget.rb' do
-            contains 'cms_attribute :source, type: :linklist, max_size: 1'
+            contains 'cms_attribute :source, type: :reference'
             contains 'cms_attribute :width, type: :integer'
             contains 'cms_attribute :height, type: :integer'
             contains 'cms_attribute :autoplay, type: :boolean'
-            contains 'cms_attribute :poster, type: :linklist, max_size: 1'
+            contains 'cms_attribute :poster, type: :reference'
             contains 'include Widget'
           end
         end
       end
 
       file 'Gemfile' do
-        contains 'gem "video_info"'
         contains 'gem "projekktor-rails"'
       end
     }

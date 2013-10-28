@@ -23,19 +23,6 @@ module Cms
         method
       end
 
-      def generate_edit_field(attribute)
-        name = attribute[:name]
-        type = attribute[:type]
-
-        "= cms_edit_#{type}(@widget, :#{name})"
-      end
-
-      def generate_label(attribute)
-        name = attribute[:name]
-
-        "= cms_edit_label(@widget, :#{name})"
-      end
-
       def add_model_attribute(model, attribute, model_path = 'app/models')
         file = "#{model_path}/#{model.underscore}.rb"
         insert_point = "class #{model} < Obj\n"
@@ -47,7 +34,35 @@ module Cms
 
         data = data.join("\n")
 
-        insert_into_file(file, data, :after => insert_point)
+        insert_into_file(file, data, after: insert_point)
+      end
+
+      def update_javascript_manifest(data)
+        file = 'app/assets/javascripts/application.js'
+        insert_point = "\n//= require_self"
+
+        insert_into_file(file, data, before: insert_point)
+      end
+
+      def update_javascript_editing_manifest(data)
+        file = 'app/assets/javascripts/editing.js'
+        insert_point = "\n//= require_self"
+
+        insert_into_file(file, data, before: insert_point)
+      end
+
+      def update_stylesheet_manifest(data)
+        file = 'app/assets/stylesheets/application.css'
+        insert_point = "\n *= require_self"
+
+        insert_into_file(file, data, before: insert_point)
+      end
+
+      def update_stylesheet_editing_manifest(data)
+        file = 'app/assets/stylesheets/editing.css'
+        insert_point = "\n *= require_self"
+
+        insert_into_file(file, data, before: insert_point)
       end
     end
   end

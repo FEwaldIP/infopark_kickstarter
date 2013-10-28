@@ -51,14 +51,13 @@ module InfoparkKickstarter
         output << 'System Component Versions'
         output << '-------------------------'
 
-        %w(ruby gem rvm rbenv).each do |name|
+        %w(ruby gem rvm rbenv git).each do |name|
           output << "#{name}: #{command_version_for(name)}"
         end
 
         %w(
           rails
           infopark_kickstarter
-          infopark_rails_connector
           infopark_cloud_connector
           infopark_crm_connector
         ).each do |name|
@@ -83,16 +82,14 @@ module InfoparkKickstarter
 
       def command_version_for(name)
         unless %x{which #{name}}.empty?
-          %x{#{name} -v}.strip
+          %x{#{name} --version}.strip
         end
       end
 
       def gem_version_for(name)
-        gemspec = Gem.latest_spec_for(name)
-
-        if gemspec
-          gemspec.version.to_s
-        end
+        Gem::Specification.find_by_name(name).version.to_s
+      rescue Gem::LoadError
+        'not found'
       end
 
       def obj_class_information(workspace)

@@ -21,8 +21,7 @@ describe Cms::Generators::Component::Editing::RedactorGenerator do
     mkdir_p(javascripts_path)
     mkdir_p(stylesheets_path)
 
-    File.open("#{javascripts_path}/application.js", 'w') { |file| file.write("//= require infopark_rails_connector\n") }
-    File.open("#{stylesheets_path}/application.css", 'w') { |file| file.write("*= require infopark_rails_connector\n") }
+    File.open("#{javascripts_path}/editing.js", 'w') { |file| file.write("\n//= require_self") }
   end
 
   it 'creates files' do
@@ -36,18 +35,22 @@ describe Cms::Generators::Component::Editing::RedactorGenerator do
           end
 
           directory 'stylesheets' do
-            file 'redactor.css.less'
-            file 'application.css' do
-              contains '*= require redactor'
+            directory 'editing' do
+              directory 'editors' do
+                file 'redactor.css.less'
+              end
             end
           end
 
           directory 'javascripts' do
-            file 'redactor.config.js.coffee'
+            directory 'editing' do
+              directory 'editors' do
+                file 'redactor.config.js.coffee'
+              end
+            end
 
-            file 'application.js' do
+            file 'editing.js' do
               contains '//= require redactor'
-              contains '//= require redactor.config'
             end
           end
         end

@@ -39,14 +39,14 @@ describe Cms::Generators::Component::SearchGenerator do
           end
 
           file 'homepage.rb' do
-            contains 'cms_attribute :search_page_link, type: :linklist, max_size: 1'
+            contains 'cms_attribute :search_page, type: :reference'
           end
         end
 
         directory 'views' do
           directory 'search_page' do
             file 'index.html.haml' do
-              contains 'render_cell(:search, :results, @query, @hits)'
+              contains 'render_cell(:search, :results, @query, @hits, @total)'
             end
           end
         end

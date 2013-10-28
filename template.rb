@@ -1,4 +1,3 @@
-gem('infopark_rails_connector')
 gem('infopark_cloud_connector')
 
 gem_group(:assets) do
@@ -6,5 +5,5 @@ gem_group(:assets) do
 end
 
 gem_group(:test, :development) do
-  gem('infopark_kickstarter', path: '../../../')
+  gem('infopark_kickstarter', path: '../../')
 end
