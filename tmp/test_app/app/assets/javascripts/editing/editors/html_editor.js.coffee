@@ -75,6 +75,7 @@ $ ->
       # This callback is triggered when a key is released.
       # http://imperavi.com/redactor/docs/callbacks/#callback-keyupCallback
       keyupCallback: (event) ->
+        event.stopPropagation()
         key = event.keyCode || event.which
 
         if key == 27
