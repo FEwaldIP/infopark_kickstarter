@@ -1,3 +1,13 @@
+# v4.1.0
+  * Bugfix: ESC events handled by the html and string editor and the mediabrowser are now propagated
+    correctly and do not close an underlying properties view anymore.
+  * Bugfix: After deleting an selected object in the mediabrowser the spinner now disappears after
+    the operation is finished.
+  * Bugfix: The mediabrowser inspector did not appear when an object was selected, because of a
+    wrong API call.
+  * Bugfix: The main yield statement in `app/views/layouts/application.html.haml` was not indented
+    correctly.
+
 # v4.0.0
   * The Kickstarter now supports the new widgets, which are no longer separate CMS object instances,
     but are embedded into their CMS pages. See the
