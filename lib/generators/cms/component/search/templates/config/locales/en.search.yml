@@ -1,7 +1,6 @@
 en:
   search:
-    no_hits_html: 'No results found for <strong>%{query}</strong>.'
-    hits_found_html: '%{count} results found for <strong>%{query}</strong>.'
-    no_index: "Your current working copy is not searchable."
+    no_hits: 'No Search Results'
+    hits_found: 'Search Results'
     button: 'Search'
     placeholder: 'Search...'

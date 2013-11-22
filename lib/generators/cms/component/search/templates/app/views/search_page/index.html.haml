@@ -1,2 +1,28 @@
 .col-md-12
-  = render_cell(:search, :results, @query, @hits, @total)
+  - if @query.present? && @hits.length > 0
+    %h2
+      = t('search.hits_found')
+
+    %ul.list-group
+      - @hits.each do |hit|
+        %li.list-group-item
+          %h4
+            = link_to(cms_path(hit)) do
+              = hit.menu_title
+
+          %p
+            - text = strip_tags(cms_tag(:span, hit, :content) + cms_tag(:span, hit, :main_content))
+            - snippet = excerpt(text, @query, 200) || truncate(text, length: 400)
+            = highlight(snippet, @query)
+
+          - breadcrumbs = hit.breadcrumbs[1..-1]
+          - if breadcrumbs.present?
+            %ol.breadcrumb
+              - breadcrumbs.each do |item|
+                %li
+                  = link_to(cms_path(item)) do
+                    = item.menu_title
+
+  - else
+    %h2
+      = t('search.no_hits')
