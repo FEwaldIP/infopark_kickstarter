@@ -1,4 +1,5 @@
 # v4.1.0
+  * Bugfix: The ResourceContainer model did not define its class correctly.
   * Bugfix: The slideshare widget generator tried to copy a directory `spec` that no longer exists.
   * Bugfix: ESC events handled by the html and string editor and the mediabrowser are now propagated
     correctly and do not close an underlying properties view anymore.
