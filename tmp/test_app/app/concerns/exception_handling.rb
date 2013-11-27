@@ -15,7 +15,7 @@ module ExceptionHandling
 
     respond_to do |type|
       type.html do
-        @obj = homepage.try(:error_not_found_page)
+        @obj = homepage.error_not_found_page
 
         if @obj.present?
           options[:template] = "#{@obj.class.to_s.underscore}/index"
