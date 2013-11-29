@@ -19,6 +19,25 @@ class BlogPost < Obj
     true
   end
 
+  def next_post
+    BlogPost.all
+      .order(:_valid_from)
+      .and(:_valid_from, :is_greater_than, valid_from.utc.to_iso)
+      .take(1)
+      .first
+  end
+
+  def previous_post
+    BlogPost.all
+      .order(:_valid_from)
+      .and(:_valid_from, :is_less_than, valid_from.utc.to_iso)
+      .reverse_order
+      .take(1)
+      .first
+  end
+
+  private
+
   # Override auto-generated method +author+ from +CmsAttribute+.
   def author
     author = self[:author] || 'root'

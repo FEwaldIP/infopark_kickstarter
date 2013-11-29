@@ -20,6 +20,8 @@
       - if @obj.enable_comments? && @obj.disqus_shortname.present?
         = render('comments', post: @obj)
 
+  = render('pagination', post: @obj)
+
 .col-md-3
   = render('blog/latest_blog_posts', blog: @obj.blog)
 
