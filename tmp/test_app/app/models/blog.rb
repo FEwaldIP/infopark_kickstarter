@@ -12,10 +12,11 @@ class Blog < Obj
     self
   end
 
-  def latest_posts(count = 10)
+  def latest_posts(count, page = 0)
     BlogPost.all
       .and(:_path, :starts_with, path + '/')
-      .batch_size(100)
+      .offset(page * count)
+      .batch_size(count)
       .order(:_valid_from)
       .reverse_order
       .take(count)
