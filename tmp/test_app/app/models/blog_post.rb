@@ -36,8 +36,6 @@ class BlogPost < Obj
       .first
   end
 
-  private
-
   # Override auto-generated method +author+ from +CmsAttribute+.
   def author
     author = self[:author] || 'root'
