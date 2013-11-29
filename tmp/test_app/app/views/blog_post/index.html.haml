@@ -1,2 +1,26 @@
-.col-md-12
-  = render_cell(:blog, :post_details, @obj)
+.col-md-9
+  .panel.panel-default
+    .panel-heading
+      .media
+        - if @obj.author.present?
+          = render('gravatar', email: @obj.author.email)
+
+        .media-body
+          = cms_tag(:h2, @obj, :headline, class: 'media-heading')
+
+          = render('published_at', date: @obj.valid_from.to_date)
+
+          - if @obj.author.present?
+            = render('published_by', author: @obj.author)
+
+    .panel-body
+      = render('main_content', post: @obj)
+
+    .panel-footer
+      - if @obj.enable_comments? && @obj.disqus_shortname.present?
+        = render('comments', post: @obj)
+
+.col-md-3
+  = render('blog/latest_blog_posts', blog: @obj.blog)
+
+  = render('blog/useful_links', page: @obj)

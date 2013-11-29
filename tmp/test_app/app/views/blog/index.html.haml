@@ -1,4 +1,5 @@
-.col-md-12
-  = cms_tag(:h2, @obj, :headline)
+.col-md-9
+  = render(partial: 'post', collection: @posts)
 
-  = render_cell(:blog, :posts, @obj, @posts)
+.col-md-3
+  = render('blog/useful_links', page: @obj)

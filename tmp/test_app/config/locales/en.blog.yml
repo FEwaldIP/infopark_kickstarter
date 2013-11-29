@@ -1,3 +1,5 @@
 en:
   blog:
-    read_more: 'Read more'
+    latest_blog_posts: 'Latest Blog Posts'
+    useful_links: 'Useful Links'
+    rss_feed: 'RSS Feed'

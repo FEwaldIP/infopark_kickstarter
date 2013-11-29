@@ -61,11 +61,6 @@ module Cms
                 type: :widget,
                 title: 'Main content',
               },
-              {
-                name: blog_post_abstract_attribute_name,
-                type: :html,
-                title: 'Abstract',
-              },
             ]
           end
 

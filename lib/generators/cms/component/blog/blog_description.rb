@@ -22,10 +22,6 @@ module Cms
           'author'
         end
 
-        def blog_post_abstract_attribute_name
-          'abstract'
-        end
-
         def blog_disqus_shortname_attribute_name
           'disqus_shortname'
         end

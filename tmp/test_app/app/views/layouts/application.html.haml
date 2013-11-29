@@ -21,7 +21,7 @@
 
     %link{href: '/favicon.ico', rel: 'shortcut icon'}
 
-    = render_cell(:blog, :discovery, @obj)
+    = render('blog/discovery', page: @obj)
 
   %body{body_attributes(@obj)}
     = render_cell(:menu_bar, :show)

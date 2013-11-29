@@ -11,7 +11,8 @@ class CreateBlogExample < ::RailsConnector::Migration
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      '<%= blog_disqus_shortname_attribute_name %>' => 'your-disqus-shortname'
     )
 
     post_path = "#{blog_path}/post-example"
@@ -20,12 +21,7 @@ class CreateBlogExample < ::RailsConnector::Migration
       _path: post_path,
       _obj_class: '<%= blog_post_class_name %>',
       headline: 'Nulla viverra metus vitae nunc iaculis dignissim',
-      '<%= blog_post_author_attribute_name %>' => '',
-      '<%= blog_post_abstract_attribute_name %>' => '<p>Quisque eget sem sit amet risus gravida
-        commodo et sed neque. Morbi pellentesque urna ut sapien auctor mattis. Donec quis cursus
-        enim. Pellentesque sodales, elit nec accumsan congue, orci velit commodo orci, vel luctus
-        nisi mi vitae erat. Cras lacus urna, sagittis tristique placerat vel, consectetur id leo.
-        </p>'
+      '<%= blog_post_author_attribute_name %>' => 'root'
     )
 
     add_widget(Obj.find(post['id']), '<%= widget_attribute_name %>',
