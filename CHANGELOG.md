@@ -1,4 +1,6 @@
 # v4.1.0
+  * Bugfix: Twitter Bootstrap 3 changed the name of the red alert CSS class from "error" to
+    "danger".
   * Bugfix: The public/404 error page is now displayed in case no homepage could be found matching
     the current request host.
   * Updated the search result page to give it a more meaningful output for each search result and a
