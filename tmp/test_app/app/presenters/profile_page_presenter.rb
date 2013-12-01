@@ -17,14 +17,14 @@ class ProfilePagePresenter
 
   def initialize(user, attributes)
     @user = user
-    attributes ||= user.fetch.attributes
+    attributes ||= user.contact.attributes
 
     super(attributes)
   end
 
   def save
     if valid?
-      user.fetch.update_attributes(attributes)
+      user.contact.update_attributes(attributes)
     end
   end
 

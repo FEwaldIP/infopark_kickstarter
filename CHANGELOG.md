@@ -1,4 +1,7 @@
 # v4.1.0
+  * Simplified the user model by only storing the ID in the session and fetching all other
+    attributes from the user source. Editors are cached in a file system cache for faster access and
+    the profile and login page are updated to reflect these changes.
   * Bugfix: Twitter Bootstrap 3 changed the name of the red alert CSS class from "error" to
     "danger".
   * Bugfix: The public/404 error page is now displayed in case no homepage could be found matching
