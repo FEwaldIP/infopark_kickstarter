@@ -28,7 +28,7 @@ $ ->
         .create_obj
           _obj_class: 'BlogPost'
           _path: "#{prefixPath}/#{isoDate}"
-          _valid_from: isoDate
+          published_at: isoDate
           headline: 'New Blog Post'
           author: current_user.email
         .done (data) ->

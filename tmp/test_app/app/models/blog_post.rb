@@ -21,16 +21,16 @@ class BlogPost < Obj
 
   def next_post
     BlogPost.all
-      .order(:_valid_from)
-      .and(:_valid_from, :is_greater_than, valid_from.utc.to_iso)
+      .order(:published_at)
+      .and(:published_at, :is_greater_than, published_at.utc.to_iso)
       .take(1)
       .first
   end
 
   def previous_post
     BlogPost.all
-      .order(:_valid_from)
-      .and(:_valid_from, :is_less_than, valid_from.utc.to_iso)
+      .order(:published_at)
+      .and(:published_at, :is_less_than, published_at.utc.to_iso)
       .reverse_order
       .take(1)
       .first

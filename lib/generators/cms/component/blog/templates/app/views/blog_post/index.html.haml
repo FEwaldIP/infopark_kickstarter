@@ -8,7 +8,7 @@
         .media-body
           = cms_tag(:h2, @obj, :headline, class: 'media-heading')
 
-          = render('published_at', date: @obj.valid_from.to_date)
+          = render('published_at', date: @obj.published_at.to_date)
 
           - if @obj.author.present?
             = render('published_by', author: @obj.author)

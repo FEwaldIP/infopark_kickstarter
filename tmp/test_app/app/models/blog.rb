@@ -17,7 +17,7 @@ class Blog < Obj
       .and(:_path, :starts_with, path + '/')
       .offset(page * count)
       .batch_size(count)
-      .order(:_valid_from)
+      .order(:published_at)
       .reverse_order
       .take(count)
   end

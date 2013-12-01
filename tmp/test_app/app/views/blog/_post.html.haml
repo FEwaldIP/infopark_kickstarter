@@ -9,7 +9,7 @@
           = link_to(cms_path(post)) do
             = cms_tag(:span, post, :headline)
 
-        = render('blog_post/published_at', date: post.valid_from.to_date)
+        = render('blog_post/published_at', date: post.published_at.to_date)
 
         - if post.author.present?
           = render('blog_post/published_by', author: post.author)
