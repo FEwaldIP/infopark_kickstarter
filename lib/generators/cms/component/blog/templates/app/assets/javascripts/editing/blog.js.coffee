@@ -17,6 +17,8 @@ $ ->
     # created in the Infopark CMS. The current date and user are prefilled. When
     # it is created successfully, the editor is redirected to its details page.
     button.on 'click', ->
+      $(this).attr('disabled', true)
+
       prefixPath = $('body').attr('data-current-obj-path')
       now = moment().utc()
       year = now.year()
