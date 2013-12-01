@@ -28,6 +28,6 @@ $ ->
           _path: "#{prefixPath}/#{isoDate}"
           _valid_from: isoDate
           headline: 'New Blog Post'
-          author: 'root'
+          author: current_user.email
         .done (data) ->
           window.location.href = "/#{data.id}"
