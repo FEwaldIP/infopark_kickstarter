@@ -1,4 +1,5 @@
 # v4.1.0
+  * Provide a simple javascript user model in editing mode based on the current logged in user.
   * Simplified the user model by only storing the ID in the session and fetching all other
     attributes from the user source. Editors are cached in a file system cache for faster access and
     the profile and login page are updated to reflect these changes.

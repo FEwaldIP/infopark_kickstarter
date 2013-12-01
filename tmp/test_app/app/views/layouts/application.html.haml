@@ -45,7 +45,10 @@
       = render_cell(:footer, :show, @obj)
 
     = javascript_include_tag('application')
-    = javascript_include_tag('editing') if inplace_editing_allowed?
+
+    - if inplace_editing_allowed?
+      = javascript_include_tag('editing')
+      = render('layouts/user_javascript', current_user: current_user)
 
     = render_cell(:google_analytics, :javascript, 'UA-xxxxxx-x', true)
 
