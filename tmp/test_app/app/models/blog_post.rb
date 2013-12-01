@@ -3,8 +3,8 @@ class BlogPost < Obj
 
   cms_attribute :headline, type: :string
   cms_attribute :main_content, type: :widget
-  cms_attribute :abstract, type: :html
   cms_attribute :author, type: :string
+  cms_attribute :published_at, type: :date
 
   # Defines a reference to a blog associated with this page.
   def blog

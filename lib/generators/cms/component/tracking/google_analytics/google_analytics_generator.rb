@@ -11,7 +11,7 @@ module Cms
 
           def insert_google_analytics
             file = 'app/views/layouts/application.html.haml'
-            insert_point = "    = javascript_include_tag('editing') if inplace_editing_allowed?"
+            insert_point = "      = render('layouts/user_javascript', current_user: current_user)"
 
             data = []
 

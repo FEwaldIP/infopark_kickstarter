@@ -25,6 +25,10 @@ module Cms
         def blog_disqus_shortname_attribute_name
           'disqus_shortname'
         end
+
+        def published_at_attribute_name
+          'published_at'
+        end
       end
     end
   end

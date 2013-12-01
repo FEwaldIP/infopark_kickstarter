@@ -15,13 +15,14 @@ class CreateBlogExample < ::RailsConnector::Migration
       '<%= blog_disqus_shortname_attribute_name %>' => 'your-disqus-shortname'
     )
 
-    post_path = "#{blog_path}/post-example"
+    post_path = "#{blog_path}/post-example-1"
 
     post = create_obj(
       _path: post_path,
       _obj_class: '<%= blog_post_class_name %>',
       headline: 'Nulla viverra metus vitae nunc iaculis dignissim',
-      '<%= blog_post_author_attribute_name %>' => 'root'
+      '<%= blog_post_author_attribute_name %>' => 'root',
+      '<%= published_at_attribute_name %>' => (Time.zone.now - 1.days).utc.to_iso
     )
 
     add_widget(Obj.find(post['id']), '<%= widget_attribute_name %>',
@@ -34,6 +35,26 @@ class CreateBlogExample < ::RailsConnector::Migration
         netus et malesuada fames ac turpis egestas. Aliquam in felis quis neque aliquet rutrum.
         Morbi interdum aliquet sollicitudin. Curabitur eget erat vitae risus aliquam ultricies ac
         ut leo. Praesent eget lectus lorem, eu luctus velit. Proin rhoncus consequat consectetur.<p>',
+    )
+
+    post_path = "#{blog_path}/post-example-2"
+
+    post = create_obj(
+      _path: post_path,
+      _obj_class: '<%= blog_post_class_name %>',
+      headline: 'Excepteur sint occaecat cupidatat',
+      '<%= blog_post_author_attribute_name %>' => 'root',
+      '<%= published_at_attribute_name %>' => (Time.zone.now - 3.days).utc.to_iso
+    )
+
+    add_widget(Obj.find(post['id']), '<%= widget_attribute_name %>',
+      _obj_class: 'TextWidget',
+      content: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<p>',
     )
   end
 

@@ -5,7 +5,7 @@ class Blog < Obj
   cms_attribute :show_in_navigation, type: :boolean
   cms_attribute :sort_key, type: :string
   cms_attribute :disqus_shortname, type: :string
-  cms_attribute :description, type: :text
+  cms_attribute :description, type: :string
 
   # Defines a reference to a blog associated with this page.
   def blog

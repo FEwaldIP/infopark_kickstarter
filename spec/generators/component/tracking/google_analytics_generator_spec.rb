@@ -20,7 +20,7 @@ describe Cms::Generators::Component::Tracking::GoogleAnalyticsGenerator do
 
     mkdir_p(layouts_path)
 
-    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("    = javascript_include_tag('editing') if inplace_editing_allowed?") }
+    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("      = render('layouts/user_javascript', current_user: current_user)") }
   end
 
   it 'creates files' do
