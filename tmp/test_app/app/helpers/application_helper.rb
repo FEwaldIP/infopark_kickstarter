@@ -4,7 +4,11 @@ module ApplicationHelper
 
     if obj
       attributes[:data] = {
-        current_obj_path: obj.path,
+        current_obj: {
+          id: obj.id,
+          path: obj.path,
+          class: obj.obj_class,
+        },
       }
     end
 
