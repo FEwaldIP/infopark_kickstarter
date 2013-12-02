@@ -73,14 +73,9 @@
       .addClass('editing-mediabrowser-progress-file')
       .append(fileName)
       .append(progress)
-      .appendTo $('.editing-mediabrowser-progress-wrapper')
+      .prependTo $('.editing-mediabrowser-progress-wrapper')
 
     file['progressBar'] = progressBar
-
-    # $("<div class='editing-mediabrowser-progress-file'></div>")
-    #   .html('<p>' + file.name + '</p>
-    #     <div class="editing-mediabrowser-progress">' + progressBar + '</div>')
-    #   .appendTo(div)
 
   _updateProgress: (file, percent) ->
     file.progressBar.css('width', percent)
