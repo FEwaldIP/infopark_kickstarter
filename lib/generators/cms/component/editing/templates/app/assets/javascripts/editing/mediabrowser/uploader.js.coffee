@@ -37,6 +37,7 @@
 
     if file?
       @_createResource(file).then (obj) =>
+        @_updateProgress(file, '100%')
         createdObjs.push(obj)
       .always =>
         @_processQueue(queue, createdObjs, promise)
@@ -44,6 +45,40 @@
       return promise
     else
       return promise.resolve(createdObjs)
+
+  _addProgressWrapper: () ->
+    itemsElement = $('.editing-mediabrowser-items').empty()
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-loading')
+      .appendTo itemsElement
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-progress-wrapper')
+      .appendTo itemsElement
+
+  _addProgress: (file) ->
+    progressBar = $('<div></div>')
+      .addClass('editing-mediabrowser-progress-bar')
+      .css('width', '10%')
+
+    progress = $('<div></div>')
+      .addClass('editing-mediabrowser-progress')
+      .html(progressBar)
+
+    fileName = $('<p></p>')
+      .html(file.name)
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-progress-file')
+      .append(fileName)
+      .append(progress)
+      .prependTo $('.editing-mediabrowser-progress-wrapper')
+
+    file['progressBar'] = progressBar
+
+  _updateProgress: (file, percent) ->
+    file.progressBar.css('width', percent)
 
   _onDrop: (event) ->
     dataTransfer = event.originalEvent.dataTransfer
@@ -56,12 +91,15 @@
     if files.length == 0
       return
 
+    @onUploadStart(queue)
+    @_addProgressWrapper()
+
     promise = $.Deferred()
 
     queue = for file in files
+      @_addProgress(file)
       file
 
-    @onUploadStart(queue)
     @_processQueue(queue, [], promise)
 
     promise
