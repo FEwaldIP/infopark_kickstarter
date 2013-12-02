@@ -46,17 +46,44 @@
     else
       return promise.resolve(createdObjs)
 
-  _addProgress: (file) ->
-    div = $("<div class='progress'></div>")
-      .appendTo $('.editing-mediabrowser-filter')
+  _addProgressWrapper: () ->
+    itemsElement = $('.editing-mediabrowser-items').empty()
 
-    file['progressBar'] = $("<div class='progress-bar'></div>")
+    $('<div></div>')
+      .addClass('editing-mediabrowser-loading')
+      .appendTo itemsElement
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-progress-wrapper')
+      .appendTo itemsElement
+
+  _addProgress: (file) ->
+    progressBar = $('<div></div>')
+      .addClass('editing-mediabrowser-progress-bar')
+      .css('width', '10%')
+
+    progress = $('<div></div>')
+      .addClass('editing-mediabrowser-progress')
+      .html(progressBar)
+
+    fileName = $('<p></p>')
       .html(file.name)
-      .css(width: '0%')
-      .appendTo(div)
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-progress-file')
+      .append(fileName)
+      .append(progress)
+      .appendTo $('.editing-mediabrowser-progress-wrapper')
+
+    file['progressBar'] = progressBar
+
+    # $("<div class='editing-mediabrowser-progress-file'></div>")
+    #   .html('<p>' + file.name + '</p>
+    #     <div class="editing-mediabrowser-progress">' + progressBar + '</div>')
+    #   .appendTo(div)
 
   _updateProgress: (file, percent) ->
-    file.progressBar.css(width: percent)
+    file.progressBar.css('width', percent)
 
   _onDrop: (event) ->
     dataTransfer = event.originalEvent.dataTransfer
@@ -69,13 +96,15 @@
     if files.length == 0
       return
 
+    @onUploadStart(queue)
+    @_addProgressWrapper()
+
     promise = $.Deferred()
 
     queue = for file in files
       @_addProgress(file)
       file
 
-    @onUploadStart(queue)
     @_processQueue(queue, [], promise)
 
     promise

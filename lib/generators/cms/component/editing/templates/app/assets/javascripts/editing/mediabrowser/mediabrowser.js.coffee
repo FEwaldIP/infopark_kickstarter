@@ -254,9 +254,6 @@
   _initializeUploader: ->
     MediabrowserUploader.init(@modal)
 
-    MediabrowserUploader.onUploadStart = (obj) =>
-      @_renderLoading()
-
     MediabrowserUploader.onUploadFailure = (error) =>
       console.log('Mediabrowser Uploader Error:', error)
 
@@ -285,10 +282,12 @@
     @_getItems().html('')
 
   _renderLoading: ->
-    @_getItems().html('
-      <div class="editing-mediabrowser-loading">
+    itemsElement = @_getItems()
+    itemsElement.empty()
+
+    $('<div class="editing-mediabrowser-loading">
         <i class="editing-icon editing-icon-refresh"></i>
-      </div>')
+      </div>').appendTo itemsElement
 
   _changeThumbnailSize: (size) ->
     @thumbnailSize = size
