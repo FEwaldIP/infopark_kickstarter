@@ -1,4 +1,6 @@
 # v4.1.0
+  * Added progress bars for file uploads in the mediabrowser. This better indicates the overall
+    upload progress when multiple files are uploaded.
   * Major update of the blog component. It now features widget latest blog posts, custom
     published_at date attribute, no more direct CRM dependency, a create blog post button for
     editors, pagination on both the blog and blog post pages, explicit link to the RSS feed and an
