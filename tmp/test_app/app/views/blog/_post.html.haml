@@ -1,8 +1,8 @@
 .panel.panel-default
   .panel-heading
     .media
-      - if post.author.present?
-        = render('blog_post/gravatar', email: post.author.email)
+      - if post.author_id.present?
+        = render('blog_post/gravatar', email: post.author_id)
 
       .media-body
         %h2.media-heading
@@ -11,8 +11,8 @@
 
         = render('blog_post/published_at', date: post.published_at.to_date)
 
-        - if post.author.present?
-          = render('blog_post/published_by', author: post.author)
+        - if post.author_name.present?
+          = render('blog_post/published_by', author: post.author_name)
 
   .panel-body
     = render('blog_post/main_content', post: post)

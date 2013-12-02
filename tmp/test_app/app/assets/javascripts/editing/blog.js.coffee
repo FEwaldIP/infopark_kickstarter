@@ -30,6 +30,7 @@ $ ->
           _path: "#{prefixPath}/#{isoDate}"
           published_at: isoDate
           headline: 'New Blog Post'
-          author: current_user.email
+          author_id: current_user.email
+          author_name: current_user.first_name
         .done (data) ->
           window.location.href = "/#{data.id}"

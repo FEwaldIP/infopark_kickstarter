@@ -65,9 +65,14 @@ module Cms
                 title: 'Headline',
               },
               {
-                name: blog_post_author_attribute_name,
+                name: blog_post_author_id_attribute_name,
                 type: :string,
-                title: 'Author',
+                title: 'Author ID',
+              },
+              {
+                name: blog_post_author_name_attribute_name,
+                type: :string,
+                title: 'Author Name',
               },
               {
                 name: widget_attribute_name,

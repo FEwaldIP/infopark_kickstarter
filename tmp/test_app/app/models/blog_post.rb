@@ -3,7 +3,8 @@ class BlogPost < Obj
 
   cms_attribute :headline, type: :string
   cms_attribute :main_content, type: :widget
-  cms_attribute :author, type: :string
+  cms_attribute :author_id, type: :string
+  cms_attribute :author_name, type: :string
   cms_attribute :published_at, type: :date
 
   # Defines a reference to a blog associated with this page.
@@ -34,15 +35,5 @@ class BlogPost < Obj
       .reverse_order
       .take(1)
       .first
-  end
-
-  # Override auto-generated method +author+ from +CmsAttribute+.
-  def author
-    author = self[:author] || 'root'
-
-    if author.present?
-      @author ||= Infopark::Crm::Contact.search(params: { login: author }).first
-      @author ||= Infopark::Crm::Contact.search(params: { email: author }).first
-    end
   end
 end

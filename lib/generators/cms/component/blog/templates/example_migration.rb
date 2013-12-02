@@ -21,7 +21,8 @@ class CreateBlogExample < ::RailsConnector::Migration
       _path: post_path,
       _obj_class: '<%= blog_post_class_name %>',
       headline: 'Nulla viverra metus vitae nunc iaculis dignissim',
-      '<%= blog_post_author_attribute_name %>' => 'root',
+      '<%= blog_post_author_id_attribute_name %>' => 'admin@example.com',
+      '<%= blog_post_author_name_attribute_name %>' => 'Administrator',
       '<%= published_at_attribute_name %>' => (Time.zone.now - 1.days).utc.to_iso
     )
 
@@ -43,7 +44,8 @@ class CreateBlogExample < ::RailsConnector::Migration
       _path: post_path,
       _obj_class: '<%= blog_post_class_name %>',
       headline: 'Excepteur sint occaecat cupidatat',
-      '<%= blog_post_author_attribute_name %>' => 'root',
+      '<%= blog_post_author_id_attribute_name %>' => 'admin@example.com',
+      '<%= blog_post_author_name_attribute_name %>' => 'Administrator',
       '<%= published_at_attribute_name %>' => (Time.zone.now - 3.days).utc.to_iso
     )
 

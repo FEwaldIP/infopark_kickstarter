@@ -2,16 +2,16 @@
   .panel.panel-default
     .panel-heading
       .media
-        - if @obj.author.present?
-          = render('gravatar', email: @obj.author.email)
+        - if @obj.author_id.present?
+          = render('gravatar', email: @obj.author_id)
 
         .media-body
           = cms_tag(:h2, @obj, :headline, class: 'media-heading')
 
           = render('published_at', date: @obj.published_at.to_date)
 
-          - if @obj.author.present?
-            = render('published_by', author: @obj.author)
+          - if @obj.author_name.present?
+            = render('published_by', author: @obj.author_name)
 
     .panel-body
       = render('main_content', post: @obj)

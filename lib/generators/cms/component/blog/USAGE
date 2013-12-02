@@ -8,18 +8,25 @@ Description:
 
 Example:
     `rails generate cms:component:blog`
-    `rails generate cms:component:blog --cms_path=/website/en`
+    `rails generate cms:component:blog:example --cms_path=/website/en`
 
     CMS: obj_class Blog
            attribute headline (string)
            attribute show_in_navigation (enum)
            attribute sort_key (string)
            attribute disqus_shortname (string)
-           attribute description (text)
+           attribute description (string)
 
     CMS: obj_class BlogPost
-           attribute author (string)
+           attribute headline (string)
+           attribute author_id (string)
+           attribute author_name (string)
+           attribute published_at (date)
+           attribute main_content (widget)
 
-    Gems: gravatar_image_tag
+    Gems:
+      gravatar_image_tag
+      momentjs-rails
+
     Locale: adds config/locale/en.blog.yml
     Misc: updates app/views/layouts/application.html.haml

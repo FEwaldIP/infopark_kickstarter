@@ -44,7 +44,8 @@ describe Cms::Generators::Component::BlogGenerator do
           file 'blog_post.rb' do
             contains 'cms_attribute :headline, type: :string'
             contains 'cms_attribute :main_content, type: :widget'
-            contains 'cms_attribute :author, type: :string'
+            contains 'cms_attribute :author_id, type: :string'
+            contains 'cms_attribute :author_name, type: :string'
             contains 'cms_attribute :published_at, type: :date'
           end
         end
