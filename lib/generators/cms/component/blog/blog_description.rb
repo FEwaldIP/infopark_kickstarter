@@ -18,16 +18,20 @@ module Cms
           'description'
         end
 
-        def blog_post_author_attribute_name
-          'author'
+        def blog_post_author_id_attribute_name
+          'author_id'
         end
 
-        def blog_post_abstract_attribute_name
-          'abstract'
+        def blog_post_author_name_attribute_name
+          'author_name'
         end
 
         def blog_disqus_shortname_attribute_name
           'disqus_shortname'
+        end
+
+        def published_at_attribute_name
+          'published_at'
         end
       end
     end

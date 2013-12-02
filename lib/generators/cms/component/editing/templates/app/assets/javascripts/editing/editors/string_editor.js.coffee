@@ -23,6 +23,7 @@ $ ->
       box.remove()
 
     keyUp = (event) ->
+      event.stopPropagation()
       key = event.keyCode || event.which
 
       if timeout

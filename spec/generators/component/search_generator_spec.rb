@@ -25,7 +25,7 @@ describe Cms::Generators::Component::SearchGenerator do
     end
 
     File.open("#{paths[:models]}/homepage.rb", 'w') { |f| f.write("class Homepage < Obj\n") }
-    File.open("#{paths[:main_navigation]}/show.html.haml", 'w') { |f| f.write("    .container\n") }
+    File.open("#{paths[:main_navigation]}/show.html.haml", 'w') { |f| f.write("    .navbar-collapse.collapse\n") }
   end
 
   it 'creates files' do
@@ -45,9 +45,7 @@ describe Cms::Generators::Component::SearchGenerator do
 
         directory 'views' do
           directory 'search_page' do
-            file 'index.html.haml' do
-              contains 'render_cell(:search, :results, @query, @hits, @total)'
-            end
+            file 'index.html.haml'
           end
         end
 
@@ -56,18 +54,10 @@ describe Cms::Generators::Component::SearchGenerator do
         end
 
         directory 'cells' do
-          file 'search_cell.rb'
-
-          directory 'search' do
-            file 'form.html.haml'
-            file 'hit.html.haml'
-            file 'hits.html.haml'
-            file 'no_hits.html.haml'
-          end
-
           directory 'main_navigation' do
+            file '_search.html.haml'
             file 'show.html.haml' do
-              contains 'render_cell(:search, :form, @page, params[:q])'
+              contains "      = render 'search', search_page: @page.homepage.search_page, query: params[:q]"
             end
           end
         end
@@ -83,16 +73,6 @@ describe Cms::Generators::Component::SearchGenerator do
         directory 'migrate' do
           migration 'create_search_page'
           migration 'create_search_page_example'
-        end
-      end
-
-      directory 'spec' do
-        directory 'models' do
-          file 'search_page_spec.rb'
-        end
-
-        directory 'controllers' do
-          file 'search_page_controller_spec.rb'
         end
       end
     }

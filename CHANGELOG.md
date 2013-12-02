@@ -1,3 +1,31 @@
+# v4.1.0
+  * Major update of the blog component. It now features widget latest blog posts, custom
+    published_at date attribute, no more direct CRM dependency, a create blog post button for
+    editors, pagination on both the blog and blog post pages, explicit link to the RSS feed and an
+    updated Twitter Bootstrap 3 design.
+  * Extends the body DOM element, that already holds the current object path, with information about
+    the current object id and object class to use them via JavaScript.
+  * Provide a simple javascript user model in editing mode based on the current logged in user.
+  * Simplified the user model by only storing the ID in the session and fetching all other
+    attributes from the user source. Editors are cached in a file system cache for faster access and
+    the profile and login page are updated to reflect these changes.
+  * Bugfix: Twitter Bootstrap 3 changed the name of the red alert CSS class from "error" to
+    "danger".
+  * Bugfix: The public/404 error page is now displayed in case no homepage could be found matching
+    the current request host.
+  * Updated the search result page to give it a more meaningful output for each search result and a
+    nicer overall look and feel.
+  * Bugfix: The ResourceContainer model did not define its class correctly.
+  * Bugfix: The slideshare widget generator tried to copy a directory `spec` that no longer exists.
+  * Bugfix: ESC events handled by the html and string editor and the mediabrowser are now propagated
+    correctly and do not close an underlying properties view anymore.
+  * Bugfix: After deleting an selected object in the mediabrowser the spinner now disappears after
+    the operation is finished.
+  * Bugfix: The mediabrowser inspector did not appear when an object was selected, because of a
+    wrong API call.
+  * Bugfix: The main yield statement in `app/views/layouts/application.html.haml` was not indented
+    correctly.
+
 # v4.0.0
   * The Kickstarter now supports the new widgets, which are no longer separate CMS object instances,
     but are embedded into their CMS pages. See the

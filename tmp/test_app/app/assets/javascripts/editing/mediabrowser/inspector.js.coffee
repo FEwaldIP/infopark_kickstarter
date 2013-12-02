@@ -33,7 +33,7 @@
   _onDelete: ->
     @_renderLoading()
     infopark.delete_obj(@objectId).done =>
-      @close
+      @close()
       @modal.trigger('mediabrowser.refresh')
 
   _renderLoading: ->

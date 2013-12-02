@@ -13,7 +13,7 @@
         = @root.menu_title
 
     .navbar-collapse.collapse
-      = render_cell(:search, :form, @page, params[:q])
+      = render 'search', search_page: @page.homepage.search_page, query: params[:q]
 
       = cms_tag_list(:ul, @root, :toclist, class: 'nav navbar-nav', id: 'main_nav') do |list, obj|
         - list.tag(:li, id: "main_nav_page_#{obj.id}", data: { path: obj.path }) do

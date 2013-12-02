@@ -1,0 +1,9 @@
+%h4
+  = t('blog.useful_links')
+
+%ul.nav.nav-pills.nav-stacked
+  %li
+    = link_to(cms_path(page.blog, format: :rss)) do
+      = image_tag('feed-icon.svg', style: 'height:16px')
+
+      = t('blog.rss_feed')

@@ -192,8 +192,15 @@
     $(window).resize ->
       $('#editing-mediabrowser.show').center()
 
-    $(document).on 'keyup', (event) =>
+    $(document).on 'keyup.mediabrowser', (event) =>
+      event.stopImmediatePropagation()
+
       if event.keyCode == 27
+        # Make sure to remove the event handler after
+        # +stopImmediatePropagation()+, otherwise all ESC keys are caught and
+        # not propagated.
+        $(document).off 'keyup.mediabrowser'
+
         @close()
 
     @modal.on 'keyup', 'input.search-field', (event) =>

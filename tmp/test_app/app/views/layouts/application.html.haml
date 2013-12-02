@@ -21,7 +21,7 @@
 
     %link{href: '/favicon.ico', rel: 'shortcut icon'}
 
-    = render_cell(:blog, :discovery, @obj)
+    = render('blog/discovery', page: @obj)
 
   %body{body_attributes(@obj)}
     = render_cell(:menu_bar, :show)
@@ -38,14 +38,17 @@
           .col-md-12
             = render_cell(:flash, :messages, flash)
 
-          = yield
+            = yield
 
       = render_cell(:social_sharing, :show, cms_url(@obj))
 
       = render_cell(:footer, :show, @obj)
 
     = javascript_include_tag('application')
-    = javascript_include_tag('editing') if inplace_editing_allowed?
+
+    - if inplace_editing_allowed?
+      = javascript_include_tag('editing')
+      = render('layouts/user_javascript', current_user: current_user)
 
     = render_cell(:google_analytics, :javascript, 'UA-xxxxxx-x', true)
 
