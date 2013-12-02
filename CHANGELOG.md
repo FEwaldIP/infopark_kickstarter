@@ -1,4 +1,6 @@
 # v4.1.0
+  * Changed "save" to "select" in the media browser bottom button bar to better indicate the actual
+    action.
   * Added progress bars for file uploads in the mediabrowser. This better indicates the overall
     upload progress when multiple files are uploaded.
   * Major update of the blog component. It now features widget latest blog posts, custom
