@@ -9,7 +9,7 @@ class Widget::LoginWidgetCell < WidgetCell
     @current_user = current_user
 
     if @current_user.logged_in?
-      @login = @current_user.fetch.login
+      @login = @current_user.contact.login
 
       render
     else

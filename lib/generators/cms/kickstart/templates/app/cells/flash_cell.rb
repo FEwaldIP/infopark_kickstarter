@@ -25,7 +25,7 @@ class FlashCell < Cell::Rails
   # Defines mapping between flash type and its HTML class name.
   def types
     {
-      alert: 'alert-error',
+      alert: 'alert-danger',
       notice: 'alert-success',
       warning: 'alert-warning',
       info: 'alert-info',

@@ -9,7 +9,6 @@ module Cms
 
           source_root File.expand_path('../../templates', __FILE__)
 
-
           argument :cms_path,
             type: :string,
             default: nil,

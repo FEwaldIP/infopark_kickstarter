@@ -5,15 +5,28 @@ module Cms
     module Component
       class BlogGenerator < ::Rails::Generators::Base
         include Migration
+        include Actions
 
         source_root File.expand_path('../templates', __FILE__)
 
         def add_gems
           gem('gravatar_image_tag')
+          gem('momentjs-rails')
 
           Bundler.with_clean_env do
             run('bundle --quiet')
           end
+        end
+
+        def add_javascript_directives
+          data = []
+
+          data << ''
+          data << '//= require moment'
+
+          data = data.join("\n")
+
+          update_javascript_editing_manifest(data)
         end
 
         def create_migration
@@ -34,7 +47,7 @@ module Cms
               },
               {
                 name: blog_description_attribute_name,
-                type: :text,
+                type: :string,
                 title: 'Description',
               },
             ]
@@ -52,9 +65,14 @@ module Cms
                 title: 'Headline',
               },
               {
-                name: blog_post_author_attribute_name,
+                name: blog_post_author_id_attribute_name,
                 type: :string,
-                title: 'Author',
+                title: 'Author ID',
+              },
+              {
+                name: blog_post_author_name_attribute_name,
+                type: :string,
+                title: 'Author Name',
               },
               {
                 name: widget_attribute_name,
@@ -62,9 +80,9 @@ module Cms
                 title: 'Main content',
               },
               {
-                name: blog_post_abstract_attribute_name,
-                type: :html,
-                title: 'Abstract',
+                name: published_at_attribute_name,
+                type: :date,
+                title: 'Published at',
               },
             ]
           end
@@ -79,7 +97,7 @@ module Cms
           data = []
 
           data << ''
-          data << '    = render_cell(:blog, :discovery, @obj)'
+          data << "    = render('blog/discovery', page: @obj)"
           data << ''
 
           data = data.join("\n")

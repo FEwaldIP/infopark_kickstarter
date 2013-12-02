@@ -1,4 +1,12 @@
 # v4.1.0
+  * Extends the body DOM element, that already holds the current object path, with information about
+    the current object id and object class to use them via JavaScript.
+  * Provide a simple javascript user model in editing mode based on the current logged in user.
+  * Simplified the user model by only storing the ID in the session and fetching all other
+    attributes from the user source. Editors are cached in a file system cache for faster access and
+    the profile and login page are updated to reflect these changes.
+  * Bugfix: Twitter Bootstrap 3 changed the name of the red alert CSS class from "error" to
+    "danger".
   * Bugfix: The public/404 error page is now displayed in case no homepage could be found matching
     the current request host.
   * Updated the search result page to give it a more meaningful output for each search result and a
