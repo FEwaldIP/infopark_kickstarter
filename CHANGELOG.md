@@ -1,4 +1,8 @@
 # v4.1.0
+  * Major update of the blog component. It now features widget latest blog posts, custom
+    published_at date attribute, no more direct CRM dependency, a create blog post button for
+    editors, pagination on both the blog and blog post pages, explicit link to the RSS feed and an
+    updated Twitter Bootstrap 3 design.
   * Extends the body DOM element, that already holds the current object path, with information about
     the current object id and object class to use them via JavaScript.
   * Provide a simple javascript user model in editing mode based on the current logged in user.
