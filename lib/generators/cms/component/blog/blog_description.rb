@@ -14,10 +14,6 @@ module Cms
           'main_content'
         end
 
-        def blog_description_attribute_name
-          'description'
-        end
-
         def blog_post_author_id_attribute_name
           'author_id'
         end

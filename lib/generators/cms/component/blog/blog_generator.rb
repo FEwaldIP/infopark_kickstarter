@@ -45,11 +45,6 @@ module Cms
                 type: :string,
                 title: 'Disqus Shortname',
               },
-              {
-                name: blog_description_attribute_name,
-                type: :string,
-                title: 'Description',
-              },
             ]
           end
 

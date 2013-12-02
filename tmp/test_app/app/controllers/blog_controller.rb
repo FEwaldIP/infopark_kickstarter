@@ -4,8 +4,8 @@ class BlogController < CmsController
     @posts = @obj.latest_posts(10, @page_index)
 
     respond_to do |format|
-      format.html { @posts }
-      format.rss { @posts }
+      format.html
+      format.atom
     end
   end
 end

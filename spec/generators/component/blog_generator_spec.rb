@@ -38,7 +38,6 @@ describe Cms::Generators::Component::BlogGenerator do
             contains 'cms_attribute :show_in_navigation, type: :boolean'
             contains 'cms_attribute :sort_key, type: :string'
             contains 'cms_attribute :disqus_shortname, type: :string'
-            contains 'cms_attribute :description, type: :string'
           end
 
           file 'blog_post.rb' do
@@ -53,13 +52,12 @@ describe Cms::Generators::Component::BlogGenerator do
         directory 'views' do
           directory 'blog' do
             file 'index.html.haml'
-            file 'index.rss.builder'
+            file 'index.atom.builder'
             file '_comment_count.html.haml'
             file '_discovery.html.haml'
             file '_latest_blog_posts.html.haml'
             file '_pagination.html.haml'
             file '_post.html.haml'
-            file '_post.rss.builder'
             file '_short_post.html.haml'
             file '_useful_links.html.haml'
           end
