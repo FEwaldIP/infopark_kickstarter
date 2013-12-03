@@ -14,6 +14,8 @@ describe Cms::Generators::Component::EditingGenerator do
     # the test. This is not done globally, as this is the only test, were the sub generator is called.
     require 'generators/cms/component/editing/redactor/redactor_generator'
     Cms::Generators::Component::Editing::RedactorGenerator.send(:include, TestDestinationRoot)
+    require 'generators/cms/component/editing/mediabrowser/mediabrowser_generator'
+    Cms::Generators::Component::Editing::MediabrowserGenerator.send(:include, TestDestinationRoot)
 
     prepare_destination
     prepare_environments
@@ -116,12 +118,6 @@ describe Cms::Generators::Component::EditingGenerator do
           file 'production.rb' do
             contains 'config.assets.precompile += %w(editing.css editing.js)'
           end
-        end
-
-        file 'routes.rb' do
-          contains "get 'mediabrowser', to: 'mediabrowser#index'"
-          contains "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
-          contains "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
         end
       end
 

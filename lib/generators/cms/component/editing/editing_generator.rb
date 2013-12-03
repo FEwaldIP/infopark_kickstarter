@@ -13,12 +13,6 @@ module Cms
           default: SUPPORTED_EDITORS.first,
           desc: "Select what html editor to use. (#{SUPPORTED_EDITORS.join(' | ')})"
 
-        def add_routes
-          route "get 'mediabrowser', to: 'mediabrowser#index'"
-          route "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
-          route "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
-        end
-
         def validate_editor
           unless SUPPORTED_EDITORS.include?(editor)
             puts 'Please choose a supported editor. See options for more details.'
@@ -93,6 +87,7 @@ module Cms
 
         def run_generator_for_selected_editor
           Rails::Generators.invoke("cms:component:editing:#{editor}", [], behavior: behavior)
+          Rails::Generators.invoke('cms:component:editing:mediabrowser', [], behavior: behavior)
         end
 
         private
