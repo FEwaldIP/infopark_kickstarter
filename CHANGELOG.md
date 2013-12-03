@@ -1,4 +1,10 @@
 # v4.1.0
+  * Created separate editor JavaScript files for handling date, enum and multienum attributes. Those
+    were in the base editing JavaScript file before.
+  * Extracted the mediabrowser into its own generator. Running
+    `rails g cms:component:editing:mediabrowser` will generate all mediabrowser related files. The
+    main editing generator still generates the mediabrowser. This separation should ease the update
+    process for already existing applications.
   * Anchors can now be defined for headline widgets on their properties view. Anchors are not set by
     default. (Thanks @aviebke)
   * Changed "save" to "select" in the media browser bottom button bar to better indicate the actual

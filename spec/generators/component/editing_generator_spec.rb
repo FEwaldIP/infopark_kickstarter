@@ -80,6 +80,9 @@ describe Cms::Generators::Component::EditingGenerator do
                 file 'linklist_editor.js.coffee'
                 file 'reference_editor.js.coffee'
                 file 'referencelist_editor.js.coffee'
+                file 'enum_editor.js.coffee'
+                file 'multienum_editor.js.coffee'
+                file 'date_editor.js.coffee'
               end
             end
 
