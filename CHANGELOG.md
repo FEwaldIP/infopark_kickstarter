@@ -1,4 +1,6 @@
 # v4.1.0
+  * Anchors can now be defined for headline widgets on their properties view. Anchors are not set by
+    default. (Thanks @aviebke)
   * Changed "save" to "select" in the media browser bottom button bar to better indicate the actual
     action.
   * Added progress bars for file uploads in the mediabrowser. This better indicates the overall

@@ -29,6 +29,7 @@ describe Cms::Generators::Widget::HeadlineGenerator do
 
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
             end
           end
@@ -38,6 +39,7 @@ describe Cms::Generators::Widget::HeadlineGenerator do
           file 'headline_widget.rb' do
             contains 'class HeadlineWidget < Widget'
             contains 'cms_attribute :headline, type: :string'
+            contains 'cms_attribute :anchor, type: :string'
           end
         end
       end

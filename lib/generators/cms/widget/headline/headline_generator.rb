@@ -8,12 +8,17 @@ module Cms
           Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
             widget.name = obj_class_name
             widget.icon = 'headline'
-            widget.description = 'The headline widget displays a title on the page.'
+            widget.description = 'The headline widget displays a page heading and allows to set an anchor.'
             widget.attributes = [
               {
                 name: 'headline',
                 type: :string,
                 title: 'Headline',
+              },
+              {
+                name: 'anchor',
+                type: :string,
+                title: 'Anchor',
               },
             ]
           end
