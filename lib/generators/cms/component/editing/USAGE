@@ -7,10 +7,24 @@ Example:
     `rails generate cms:component:editing --editor=redactor`
 
     Assets:
-      app/assets/javascripts/editing_toggle.js.coffee
-      app/assets/javascripts/editing.js.coffee
+      app/assets/javascripts/editing.js
+      app/assets/javascripts/editing/base.js.coffee
+      app/assets/javascripts/editing/editors/linklist_editor.js.coffee
+      app/assets/javascripts/editing/editors/reference_editor.js.coffee
+      app/assets/javascripts/editing/editors/referencelist.js.coffee
+      app/assets/javascripts/editing/editors/string_editor.js.coffee
 
-      app/assets/stylesheets/editing.css.less
+      app/assets/stylesheets/editing.css
+      app/assets/stylesheets/editing/base.css.less
+      app/assets/stylesheets/editing/buttons.css.less
+      app/assets/stylesheets/editing/fixed_menubar.css.less
+      app/assets/stylesheets/editing/icons.css.less
+      app/assets/stylesheets/editing/mixins.css.less
+      app/assets/stylesheets/editing/editors/linklist_editor.css.less
+      app/assets/stylesheets/editing/editors/reference_editor.css.less
+      app/assets/stylesheets/editing/editors/referencelist_editor.css.less
+      app/assets/stylesheets/editing/editors/string_editor.css.less
 
-    Misc: Executes editor dependent generator:
-          `rails generate cms:component:editing:redactor`
+    Misc:
+      Executes editor dependent generator: `rails generate cms:component:editing:redactor`
+      Executes mediabrowser generator: `rails generate cms:component:mediabrowser`
