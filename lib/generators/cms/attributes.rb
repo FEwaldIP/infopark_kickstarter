@@ -18,6 +18,8 @@ module Cms
             when 'integer'
               definition[:type] = :string
           end
+
+          definition[:title] = definition[:name].humanize
         end
       end
     end

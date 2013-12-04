@@ -60,8 +60,8 @@ describe Cms::Generators::WidgetGenerator do
                 contains "name: 'NewsWidget'"
                 contains "title: 'Test News Title'"
                 contains "type: 'publication'"
-                contains '{:name=>"foo", :type=>"html"}'
-                contains '{:name=>"bar", :type=>"enum"}'
+                contains '{:name=>"foo", :type=>"html", :title=>"Foo"}'
+                contains '{:name=>"bar", :type=>"enum", :title=>"Bar"}'
                 contains 'mandatory_attributes: ["foo", "bar"]'
                 contains 'preset_attributes: {"foo"=>"f", "bar"=>"b"}'
               end
