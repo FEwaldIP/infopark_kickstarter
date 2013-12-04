@@ -7,17 +7,8 @@
 // Infopark Kickstarter and is active when inline editing is not activated. The menu bar is fixed
 // at the top of the page and all content is moved below accordingly.
 
-@infoparkEditingBarHeight: 47px;
-
 body {
-  padding-top: @infoparkEditingBarHeight;
-}
-
-.editing-menu-bar,
-.editing-menu-bar * {
-  .box-sizing(border-box)
-
-  height: @infoparkEditingBarHeight;
+  padding-top: 47px;
 }
 
 .editing-menu-bar {
@@ -33,6 +24,10 @@ body {
   top: 0;
   width: 100%;
   z-index: 1031;
+
+  &, * {
+    .box-sizing(border-box);
+  }
 
   #edit-toggle {
     cursor: pointer;
