@@ -1,4 +1,6 @@
 # v4.1.0
+  * Bugfix: Twitter Bootstrap 3 changed the default behavior of images to not being responsive
+    anymore. Image widgets now deliver responsive image again.
   * Bugfix: The mediabrowser can now be closed with ESC, even if opened a second time.
   * You can now delete any number of selected resources in the mediabrowser by means of a button in
     the bottom bar. This removes the trash icon from the inspector view. The change also introduced
