@@ -1,4 +1,6 @@
 # v4.1.0
+  * Bugfix: The Kickstarter menu bar did not use the correct CSS box model in Firefox. As part of
+    the fix, we extracted the menu bar styles into their own CSS file to better separate concerns.
   * Bugfix: Twitter Bootstrap 3 changed the default behavior of images to not being responsive
     anymore. Image widgets now deliver responsive image again.
   * Bugfix: The mediabrowser can now be closed with ESC, even if opened a second time.

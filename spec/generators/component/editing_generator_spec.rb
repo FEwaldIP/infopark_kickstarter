@@ -53,10 +53,12 @@ describe Cms::Generators::Component::EditingGenerator do
 
           directory 'stylesheets' do
             directory 'editing' do
+              file 'base.css.less'
               file 'mixins.less'
               file 'icons.css.less'
               file 'buttons.css.less'
               file 'base.css.less'
+              file 'menubar.css.less'
 
               directory 'editors' do
                 file 'string_editor.css.less'

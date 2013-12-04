@@ -1,5 +1,4 @@
 @import "editing/mixins";
-@import "editing/fixed_menubar";
 
 // Inplace editing styles when editing is active and an editable working copy
 // is selected.
@@ -54,61 +53,5 @@ body.ip_editing_active.ip_editable_workspace {
       outline: 2px dotted @editableFieldColor;
       text-shadow: none;
     }
-  }
-}
-
-// Preview bar styles
-
-.editing-menu-bar,
-.editing-menu-bar * {
-  box-sizing: border-box;
-}
-
-.editing-menu-bar {
-  .box-shadow(0 0 5px 0 #666);
-  #gradient.vertical-three-colors(#8094bb, #7889ab, 54%, #456f9a);
-
-  border-top: 1px solid #b6c0d3;
-  border-bottom: 1px solid #2c5580;
-  color: #fff;
-  font-size: 14px;
-  position: fixed;
-  text-shadow: 0 1px 1px #333;
-  top: 0;
-  width: 100%;
-  z-index: 1031;
-
-  #edit-toggle {
-    cursor: pointer;
-    color: #fff;
-    float: right;
-
-    &:hover {
-      .box-shadow(0 -3px 3px #3e5b87 inset);
-      #gradient.vertical-three-colors(#8094bb, #60769b, 55%, #365077);
-    }
-  }
-
-  .bar-element {
-    float: left;
-    font-size: 11px;
-    font-weight: bold;
-    height: 100%;
-    padding: 13px 10px 17px;
-    text-shadow: 0 1px 1px #333;
-
-    i + span {
-      padding: 0 0 0 7px;
-    }
-  }
-
-  .menu-bar-panel-user {
-    float: right;
-  }
-}
-
-.ip_editing_active {
-  .editing-menu-bar {
-    display: none;
   }
 }
