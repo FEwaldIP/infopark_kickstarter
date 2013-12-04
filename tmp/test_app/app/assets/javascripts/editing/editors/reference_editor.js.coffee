@@ -6,11 +6,10 @@ $ ->
       event.preventDefault()
 
       cmsField = $(event.currentTarget)
-      selected = [cmsField.infopark('content')]
+      selected = [cmsField.infopark('content')].filter (element) -> element
 
       # Open mediabrowser with current reference selected and restrict selection to one reference.
       Mediabrowser.open
-        allowedLength: 1
         selection: selected
 
         onSave: (selection) =>

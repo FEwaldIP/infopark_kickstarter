@@ -13,7 +13,7 @@ $ ->
       element.closest('.string-editor')
 
     editMarker = (cmsField) ->
-      cmsField.closest('[data-ip-widget-obj-class]').find('.ip_editing_marker')
+      cmsField.closest('[data-ip-private-widget-obj-class]').find('.ip_editing_marker')
 
     disableEditMode = (box) ->
       cmsField = box.data('cmsField')
@@ -38,7 +38,6 @@ $ ->
           timeout = setTimeout ( ->
             save(event)
           ), 3000
-
 
     save = (event, closeInput = false) ->
       inputField = $(event.currentTarget)

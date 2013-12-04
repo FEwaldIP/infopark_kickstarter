@@ -9,6 +9,7 @@ en:
     button_bar:
       select: 'Select'
       close: 'Cancel'
+      delete: 'Delete'
 
     filter:
       results: 'All results'

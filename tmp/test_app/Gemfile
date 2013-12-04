@@ -51,11 +51,8 @@ group :assets do
   gem "less-rails-bootstrap", "~> 3.0"
 end
 
-group :assets do
-  gem "bootstrap-datepicker-rails"
-  gem "jquery-ui-rails"
-end
-
+gem "bootstrap-datepicker-rails"
+gem "jquery-ui-rails"
 group :test, :development do
   gem "pry-rails"
   gem "rails-footnotes"

@@ -11,9 +11,6 @@
     modalBody.on 'click', 'li.mediabrowser-item', (event) =>
       @_onInspect(event)
 
-    modalBody.on 'click', '.delete-button', =>
-      @_onDelete()
-
     modalBody.on 'click', 'a.inspector-close', (event) =>
       event.preventDefault()
       @close()
@@ -30,18 +27,16 @@
         @open(id)
         @_highlightItem(currentTarget)
 
-  _onDelete: ->
-    @_renderLoading()
-    infopark.delete_obj(@objectId).done =>
-      @close()
-      @modal.trigger('mediabrowser.refresh')
-
   _renderLoading: ->
-    @inspector.html('
-      <div class="editing-mediabrowser-loading">
-        <i class="editing-icon editing-icon-refresh"></i>
-      </div>
-    ')
+    @inspector.html(@_loadingTemplate())
+
+  _loadingTemplate: ->
+    icon = $('<i></i>')
+      .addClass('editing-icon editing-icon-refresh')
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-loading')
+      .html(icon)
 
   _highlightItem: (element) ->
     @modal.find('li.mediabrowser-item.active').removeClass('active')
@@ -69,9 +64,9 @@
         infopark.trigger('new_content', @inspector)
 
       error: =>
-        @inspector.html('')
+        @inspector.empty()
 
   # Closes the inspector section of the mediabrowser.
   close: ->
-    @inspector.html('')
+    @inspector.empty()
     @inspector.hide()

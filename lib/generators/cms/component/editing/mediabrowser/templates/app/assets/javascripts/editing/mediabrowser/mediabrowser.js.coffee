@@ -2,13 +2,14 @@
   modalSelector: '#editing-mediabrowser'
   overlayBackgroundSelector: '.editing-overlay'
   loadingSelector: '.editing-mediabrowser-loading'
+  thumbnailViewButtonSelector: '.editing-button-view'
   options: {}
 
   _setDefaults: ->
     @query = ''
     @objClass = undefined
     @thumbnailSize = 'normal'
-    @selected = @options.selection || []
+    @_setSelected(@options.selection || [])
 
   _highlightFilter: (filterItem) ->
     filterItems = @modal.find('li.filter')
@@ -32,8 +33,24 @@
 
     @close()
 
+  _delete: ->
+    (@options.onDelete || $.noop)(@selected)
+
+    $.each @selected, (index, selected_id) =>
+      item = @_getItemContainer(selected_id)
+      @_itemLoading(item)
+
+      infopark.delete_obj(selected_id).then =>
+        item.remove()
+
+    @_deselectAllItems()
+
   _getItemId: (item) ->
     $(item).closest('li.mediabrowser-item').data('id')
+
+  _getItemContainer: (id) ->
+    $('li.mediabrowser-item').filter ->
+      id == $(this).data('id')
 
   _addItem: (item) ->
     @_activateItem(item)
@@ -41,17 +58,15 @@
     id = @_getItemId(item)
 
     @selected.push(id)
-    @selected = $.unique(@selected)
-
-    @_changeSelectedTotal()
+    @_setSelected($.unique(@selected))
 
   _removeItem: (item) ->
     @_deactivateItem(item)
 
-    @selected = @selected.filter (id) =>
+    selected = @selected.filter (id) =>
       id != @_getItemId(item)
 
-    @_changeSelectedTotal()
+    @_setSelected(selected)
 
   _activateItem: (item) ->
     $(item).addClass('active')
@@ -62,8 +77,12 @@
   _changeSelectedTotal: ->
     @modal.find('.selected-total').html(@selected.length)
 
+  _setSelected: (value) ->
+    @selected = value
+    @_changeSelectedTotal()
+
   _deselectAllItems: ->
-    @selected = []
+    @_setSelected([])
     @modal.find('li.mediabrowser-item .select-item.active').removeClass('active')
 
   _getItems: ->
@@ -98,16 +117,27 @@
 
     [viewIndex, viewLimit]
 
-  _renderContainerForItems: (containerTotal) ->
+  _itemsPlaceholder: (containerTotal) ->
+    list = $('<ul></ul>')
+      .addClass('items editing-mediabrowser-thumbnails')
+      .addClass(@thumbnailSize)
+
     content = for index in [0...containerTotal] by 1
-      "<li class='mediabrowser-item' data-index='#{index}'>
-        <div class='editing-mediabrowser-loading'>
-          <i class='editing-icon editing-icon-refresh'></i>
-        </div>
-      </li>"
-    content = ("<ul class='items editing-mediabrowser-thumbnails #{@thumbnailSize}'>#{content.join('')}</ul>")
+      itemTemplate = @_itemPlaceholderTemplate(index)
+      list.append(itemTemplate)
 
     @_getItems().html(content)
+
+  _itemPlaceholderTemplate: (index) ->
+    item = $('<li></li>')
+      .addClass('mediabrowser-item')
+      .attr('data-index', index)
+
+    @_itemLoading(item)
+
+  _itemLoading: (item) ->
+    loading = @_loadingTemplate()
+    $(item).html(loading)
 
   _updateViewport: ->
     return unless @_getContainer().length
@@ -149,7 +179,7 @@
         total = json.meta.total
 
         if total > 0
-          @_renderContainerForItems(total)
+          @_itemsPlaceholder(total)
           @_updateViewport()
         else
           @_renderNoResults()
@@ -192,17 +222,6 @@
     $(window).resize ->
       $('#editing-mediabrowser.show').center()
 
-    $(document).on 'keyup.mediabrowser', (event) =>
-      event.stopImmediatePropagation()
-
-      if event.keyCode == 27
-        # Make sure to remove the event handler after
-        # +stopImmediatePropagation()+, otherwise all ESC keys are caught and
-        # not propagated.
-        $(document).off 'keyup.mediabrowser'
-
-        @close()
-
     @modal.on 'keyup', 'input.search-field', (event) =>
       if event.keyCode == 13
         @_triggerSearch()
@@ -215,9 +234,6 @@
     @modal.on 'click', 'li.mediabrowser-item .select-item:not(.active)', (event) =>
       event.stopImmediatePropagation()
 
-      if @options.allowedLength == 1
-        @_deselectAllItems()
-
       @_addItem(event.currentTarget)
 
     @modal.on 'click', 'li.mediabrowser-item .select-item.active', (event) =>
@@ -229,6 +245,11 @@
 
       @_save()
 
+    @modal.on 'click', '.mediabrowser-delete', (event) =>
+      event.preventDefault()
+
+      @_delete()
+
     @modal.on 'click', '.mediabrowser-close', (event) =>
       event.preventDefault()
 
@@ -237,7 +258,7 @@
     @modal.on 'click', 'li.filter', (event) =>
       @_onFilter(event)
 
-    @modal.on 'click', '.editing-button-view', (event) =>
+    @modal.on 'click', @thumbnailViewButtonSelector, (event) =>
       size = $(event.currentTarget).data('size')
       @_changeThumbnailSize(size)
 
@@ -251,6 +272,18 @@
 
       @_changeThumbnailSize(@thumbnailSize)
 
+  _initializeCloseBinding: ->
+    $(document).on 'keyup.mediabrowser', (event) =>
+      event.stopImmediatePropagation()
+
+      if event.keyCode == 27
+        # Make sure to remove the event handler after
+        # +stopImmediatePropagation()+, otherwise all ESC keys are caught and
+        # not propagated.
+        $(document).off 'keyup.mediabrowser'
+
+        @close()
+
   _initializeUploader: ->
     MediabrowserUploader.init(@modal)
 
@@ -261,7 +294,7 @@
       @_renderPlaceholder()
 
   _loadModalMarkup: ->
-    @modal.html('')
+    @modal.empty()
 
     $.ajax
       url: '/mediabrowser/modal'
@@ -269,9 +302,9 @@
       success: (json) =>
         @modal.html(json.content)
 
+        @_setDefaults()
         @_highlightFilter()
         @_renderPlaceholder()
-        @_changeSelectedTotal()
 
         MediabrowserInspector.init(@modal)
         @_initializeUploader()
@@ -279,15 +312,20 @@
         @modal.trigger('mediabrowser.markupLoaded')
 
   _renderNoResults: ->
-    @_getItems().html('')
+    @_getItems().empty()
 
   _renderLoading: ->
-    itemsElement = @_getItems()
-    itemsElement.empty()
+    @_getItems()
+      .empty()
+      .html(@_loadingTemplate())
 
-    $('<div class="editing-mediabrowser-loading">
-        <i class="editing-icon editing-icon-refresh"></i>
-      </div>').appendTo itemsElement
+  _loadingTemplate: ->
+    icon = $('<i></i>')
+      .addClass('editing-icon editing-icon-refresh')
+
+    $('<div></div>')
+      .addClass('editing-mediabrowser-loading')
+      .html(icon)
 
   _changeThumbnailSize: (size) ->
     @thumbnailSize = size
@@ -303,19 +341,30 @@
 
     @_activateThumbnailView(size)
 
+  _getThumbnailViews: ->
+    @modal.find(@thumbnailViewButtonSelector)
+
   _activateThumbnailView: (size) ->
-    button = @modal.find('.editing-button-view')
-    button.removeClass('active')
-    button.filter("[data-size='#{size}']").addClass('active')
+    @_deactivateThumbnailViews()
+
+    @_getThumbnailViews().filter("[data-size='#{size}']")
+      .addClass('active')
+
+  _deactivateThumbnailViews: ->
+    @_getThumbnailViews()
+      .removeClass('active')
 
   init: ->
     unless $(@overlayBackgroundSelector).length
-      @overlay = $('<div class="editing-overlay hide"></div>')
-      $('body').append @overlay
+      @overlay = $('<div></div>')
+        .addClass('editing-overlay hide')
+        .appendTo($('body'))
 
     unless $(@modalSelector).length
-      @modal = $('<div id="editing-mediabrowser" class="editing-mediabrowser hide"></div>')
-      $('body').append @modal
+      @modal = $('<div></div>')
+        .addClass('editing-mediabrowser hide')
+        .attr('id', 'editing-mediabrowser')
+        .appendTo($('body'))
 
     @_initializeBindings()
 
@@ -330,9 +379,8 @@
 
   open: (options) ->
     @options = options
-    @_setDefaults()
-
     @_loadModalMarkup()
+    @_initializeCloseBinding()
 
     @toggle(true)
     @modal.center()

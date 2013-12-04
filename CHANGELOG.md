@@ -1,4 +1,10 @@
 # v4.1.0
+  * Bugfix: The mediabrowser can now be closed with ESC, even if opened a second time.
+  * You can now delete any number of selected resources in the mediabrowser by means of a button in
+    the bottom bar. This removes the trash icon from the inspector view. The change also introduced
+    a different behavior for reference and linklist attributes. Before, it was not possible to
+    select more than one item, this is no longer true, as you can always select as many items as you
+    want, but in these two cases only the first selected item will be used.
   * Created separate editor JavaScript files for handling date, enum and multienum attributes. Those
     were in the base editing JavaScript file before.
   * Extracted the mediabrowser into its own generator. Running
