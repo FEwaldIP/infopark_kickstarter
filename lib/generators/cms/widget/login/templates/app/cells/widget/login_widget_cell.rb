@@ -7,14 +7,13 @@ class Widget::LoginWidgetCell < WidgetCell
     @page = page
     @widget = widget
     @current_user = current_user
+    @login_page = login_page(@page)
 
     if @current_user.logged_in?
       @login = @current_user.contact.login
 
       render
     else
-      @login_page = login_page(@page)
-
       if @login_page
         render(view: 'form')
       end
@@ -22,16 +21,6 @@ class Widget::LoginWidgetCell < WidgetCell
   end
 
   # Cell states:
-  # The following states assume @page to be given.
-
-  def logout
-    @login_page = login_page(@page)
-
-    if @login_page
-      render
-    end
-  end
-
   # The following states assume @login_page to be given.
 
   def reset_password

@@ -1,4 +1,5 @@
 class Homepage < Obj
+  cms_attribute :reset_password_page, type: :reference
   cms_attribute :login_page, type: :reference
   cms_attribute :search_page, type: :reference
   cms_attribute :headline, type: :string

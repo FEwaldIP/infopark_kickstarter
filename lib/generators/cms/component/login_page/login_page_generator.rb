@@ -21,21 +21,6 @@ module Cms
                 type: :string,
                 title: 'Headline',
               },
-              {
-                name: 'content',
-                type: :html,
-                title: 'Content',
-              },
-              {
-                name: 'show_in_navigation',
-                type: :boolean,
-                title: 'Show in Navigation',
-              },
-              {
-                name: 'sort_key',
-                type: :string,
-                title: 'Sort key',
-              },
             ]
           end
 
@@ -50,28 +35,12 @@ module Cms
                 type: :string,
                 title: 'Headline',
               },
-              {
-                name: 'content',
-                type: :html,
-                title: 'Content',
-              },
-              {
-                name: 'show_in_navigation',
-                type: :boolean,
-                title: 'Show in Navigation',
-              },
-              {
-                name: 'sort_key',
-                type: :string,
-                title: 'Sort key',
-              },
             ]
           end
         end
 
         def copy_app_directory
           directory('app', force: true)
-          directory('config', force: true)
         end
 
         def update_homepage
@@ -81,7 +50,12 @@ module Cms
         def update_homepage_model
           add_model_attribute('Homepage', {
             name: login_page_attribute_name,
-            type: 'reference',
+            type: :reference,
+          })
+
+          add_model_attribute('Homepage', {
+            name: reset_password_page_attribute_name,
+            type: :reference,
           })
         end
 
@@ -89,7 +63,7 @@ module Cms
           append_file 'app/cells/footer/show.html.haml' do
             [
               '          |',
-              '          = render_cell(:login, :show, @page)',
+              "          = render('login', current_user: current_user)",
             ].join("\n")
           end
         end
@@ -104,6 +78,10 @@ module Cms
 
         def login_page_attribute_name
           'login_page'
+        end
+
+        def reset_password_page_attribute_name
+          'reset_password_page'
         end
 
         def login_obj_class_name

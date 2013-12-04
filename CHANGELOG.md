@@ -1,4 +1,6 @@
 # v4.1.0
+  * Major rework on the login and reset password page together with the login widget. We simplified
+    the controller logic, threw out I18n support and gave all forms a fresh look.
   * Bugfix: The Kickstarter menu bar did not use the correct CSS box model in Firefox. As part of
     the fix, we extracted the menu bar styles into their own CSS file to better separate concerns.
   * Bugfix: Twitter Bootstrap 3 changed the default behavior of images to not being responsive

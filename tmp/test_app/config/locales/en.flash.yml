@@ -1,0 +1,3 @@
+en:
+  flash:
+    authorization_failed: "This page is protected. You either don't have neccessary access rights or you are not logged in."
