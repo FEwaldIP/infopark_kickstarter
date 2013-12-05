@@ -3,17 +3,17 @@
     .navbar-header
       %button.navbar-toggle{type: 'button', data: { toggle: 'collapse', target: '.navbar-collapse' }}
         %span.sr-only
-          = t('navigation.toggle')
+          Toggle navigation
 
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
 
-      = link_to(cms_path(@root), class: 'navbar-brand') do
-        = @root.menu_title
+      = link_to(cms_path(homepage), class: 'navbar-brand') do
+        = homepage.menu_title
 
     .navbar-collapse.collapse
-      = cms_tag_list(:ul, @root, :toclist, class: 'nav navbar-nav', id: 'main_nav') do |list, obj|
+      = cms_tag_list(:ul, homepage, :toclist, class: 'nav navbar-nav', id: 'main_nav') do |list, obj|
         - list.tag(:li, id: "main_nav_page_#{obj.id}", data: { path: obj.path }) do
           = link_to(cms_path(obj)) do
             = obj.menu_title

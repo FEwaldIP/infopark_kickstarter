@@ -27,7 +27,7 @@
     = render_cell(:menu_bar, :show)
 
     .container
-      = render_cell(:main_navigation, :show, @obj)
+      = render('layouts/main_navigation', homepage: @obj.homepage)
 
       .content
         .row

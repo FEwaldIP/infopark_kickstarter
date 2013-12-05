@@ -18,12 +18,12 @@ module Cms
         end
 
         def extend_view
-          file = 'app/cells/main_navigation/show.html.haml'
+          file = 'app/views/layouts/_main_navigation.html.haml'
           insert_point = "    .navbar-collapse.collapse\n"
 
           data = []
 
-          data << "      = render 'search', search_page: @page.homepage.search_page, query: params[:q]\n"
+          data << "      = render('layouts/search', search_page: homepage.search_page, query: params[:q])\n"
           data << ''
 
           data = data.join("\n")
@@ -60,7 +60,6 @@ module Cms
 
         def copy_app_directory
           directory('app', force: true)
-          directory('config', force: true)
         end
 
         def notice

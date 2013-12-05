@@ -1,6 +1,0 @@
-en:
-  search:
-    no_hits: 'No Search Results'
-    hits_found: 'Search Results'
-    button: 'Search'
-    placeholder: 'Search...'

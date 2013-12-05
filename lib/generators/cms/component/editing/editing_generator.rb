@@ -76,9 +76,14 @@ module Cms
 
         def add_menu_bar_to_layout
           file = 'app/views/layouts/application.html.haml'
-          insert_point = '%body{body_attributes(@obj)}'
+          insert_point = "  %body{body_attributes(@obj)}\n"
 
-          data = "\n    = render_cell(:menu_bar, :show)"
+          data = []
+
+          data << '    = render_cell(:menu_bar, :show)'
+          data << ''
+
+          data = data.join("\n")
 
           insert_into_file(file, data, after: insert_point)
         end

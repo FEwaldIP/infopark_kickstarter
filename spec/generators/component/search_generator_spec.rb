@@ -17,7 +17,7 @@ describe Cms::Generators::Component::SearchGenerator do
   def prepare_environments
     paths = {
       models: "#{destination_root}/app/models",
-      main_navigation: "#{destination_root}/app/cells/main_navigation",
+      layouts: "#{destination_root}/app/views/layouts",
     }
 
     paths.each do |_, path|
@@ -25,7 +25,7 @@ describe Cms::Generators::Component::SearchGenerator do
     end
 
     File.open("#{paths[:models]}/homepage.rb", 'w') { |f| f.write("class Homepage < Obj\n") }
-    File.open("#{paths[:main_navigation]}/show.html.haml", 'w') { |f| f.write("    .navbar-collapse.collapse\n") }
+    File.open("#{paths[:layouts]}/_main_navigation.html.haml", 'w') { |f| f.write("    .navbar-collapse.collapse\n") }
   end
 
   it 'creates files' do
@@ -47,25 +47,17 @@ describe Cms::Generators::Component::SearchGenerator do
           directory 'search_page' do
             file 'index.html.haml'
           end
+
+          directory 'layouts' do
+            file '_search.html.haml'
+            file '_main_navigation.html.haml' do
+              contains "      = render('layouts/search', search_page: homepage.search_page, query: params[:q])"
+            end
+          end
         end
 
         directory 'controllers' do
           file 'search_page_controller.rb'
-        end
-
-        directory 'cells' do
-          directory 'main_navigation' do
-            file '_search.html.haml'
-            file 'show.html.haml' do
-              contains "      = render 'search', search_page: @page.homepage.search_page, query: params[:q]"
-            end
-          end
-        end
-      end
-
-      directory 'config' do
-        directory 'locales' do
-          file 'en.search.yml'
         end
       end
 

@@ -11,4 +11,4 @@ Example:
     CMS: attribute headline (string)
     CMS: attribute search_page_link (reference)
     Misc: extends app/models/homepage.rb
-    Misc: extends app/cells/main_navigation/show.html.haml
+    Misc: extends app/views/layouts/_main_navigation.html.haml

@@ -22,9 +22,8 @@
     %link{href: '/favicon.ico', rel: 'shortcut icon'}
 
   %body{body_attributes(@obj)}
-
     .container
-      = render_cell(:main_navigation, :show, @obj)
+      = render('layouts/main_navigation', homepage: @obj.homepage)
 
       .content
         .row

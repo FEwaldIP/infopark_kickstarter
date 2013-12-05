@@ -37,7 +37,7 @@ describe Cms::Generators::Component::EditingGenerator do
 
     File.open("#{destination_root}/Gemfile", 'w')
     File.open("#{environments_path}/production.rb", 'a') { |f| f.write('Test::Application.configure do') }
-    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("%body{body_attributes(@obj)}") }
+    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("  %body{body_attributes(@obj)}\n") }
     File.open("#{config_path}/routes.rb", 'w') { |file| file.write('Dummy::Application.routes.draw do') }
   end
 
