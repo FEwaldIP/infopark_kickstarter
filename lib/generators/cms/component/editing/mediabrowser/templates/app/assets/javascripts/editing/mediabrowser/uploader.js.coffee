@@ -3,9 +3,7 @@
   dropOverCssClass: 'uploader-drag-over'
   mimeTypeMapping:
     'image/*': 'Image'
-    'audio/*': 'Audio'
     'video/*': 'Video'
-    'application/pdf': 'Pdf'
 
   _initializeBindings: ->
     dropZone = @modal.find(@dropZoneSelector)
