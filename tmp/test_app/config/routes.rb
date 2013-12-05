@@ -3,11 +3,9 @@ TestApp::Application.routes.draw do
 
   mount InfoparkDashboard::Engine => "/cms/dashboard" if Rails.env.development?
 
-  get 'mediabrowser/modal', to: 'mediabrowser#modal'
-
-  get 'mediabrowser/inspector', to: 'mediabrowser#inspector'
-
   get 'mediabrowser', to: 'mediabrowser#index'
+  get 'mediabrowser/inspector', to: 'mediabrowser#inspector'
+  get 'mediabrowser/modal', to: 'mediabrowser#modal'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

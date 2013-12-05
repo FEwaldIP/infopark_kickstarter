@@ -8,9 +8,13 @@ module Cms
           source_root File.expand_path('../templates', __FILE__)
 
           def add_routes
-            route "get 'mediabrowser', to: 'mediabrowser#index'"
-            route "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
-            route "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
+            routes = [
+              "get 'mediabrowser', to: 'mediabrowser#index'",
+              "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'",
+              "get 'mediabrowser/modal', to: 'mediabrowser#modal'",
+            ]
+
+            route routes.join("\n  ")
           end
 
           def create_common_files
