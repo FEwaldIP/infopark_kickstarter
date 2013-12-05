@@ -4,8 +4,8 @@ Description:
 Example:
     `rails generate cms:component:developer_tools`
 
+    Gem: pry-rails
     Gem: thin
+    Gem: infopark_dashboard
     Gem: better_errors
     Gem: binding_of_caller
-    Gem: rails-footnotes
-    Gem: pry-rails

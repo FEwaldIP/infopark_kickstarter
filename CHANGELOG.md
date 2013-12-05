@@ -1,4 +1,7 @@
 # v4.1.0
+  * Removed the `rails-footnotes` from the developer tools generator, because it added one more
+    network request to every page request in development mode and was not very popular among
+    developers.
   * Major rework on the login and reset password page together with the login widget. We simplified
     the controller logic, threw out I18n support and gave all forms a fresh look.
   * Bugfix: The Kickstarter menu bar did not use the correct CSS box model in Firefox. As part of
