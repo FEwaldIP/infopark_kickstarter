@@ -1,7 +1,7 @@
 .col-md-12
   - if @query.present? && @hits.length > 0
     %h2
-      = t('search.hits_found')
+      Search Results
 
     %ul.list-group
       - @hits.each do |hit|
@@ -25,4 +25,4 @@
 
   - else
     %h2
-      = t('search.no_hits')
+      No Search Results
