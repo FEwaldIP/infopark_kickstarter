@@ -23,6 +23,13 @@ class Widget::SliderWidgetCell < WidgetCell
     render
   end
 
+  def indicator(index)
+    @index = index
+    @class = index == 0 ? 'active' : nil
+
+    render
+  end
+
   def images
     render
   end

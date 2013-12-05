@@ -1,4 +1,5 @@
 # v4.1.0
+  * Updated the slider widget to use the new Twitter Bootstrap 3 markup.
   * The "ResourceContainer" class got removed. Object classes for "Image" and "Video" still exist,
     but the folder "/resources", "/resources/images", "/resources/audio", "/resources/videos" and
     "/resources/pdfs" are no longer created by default, because they were not used.

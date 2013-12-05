@@ -2,4 +2,5 @@
   = cms_image_tag(@image)
 
   %div.carousel-caption
-    = render(state: :title)
+    %h3
+      = @image.headline
