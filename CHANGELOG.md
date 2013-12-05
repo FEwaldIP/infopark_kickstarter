@@ -1,4 +1,6 @@
 # v4.1.0
+  * Updated the Google Analytics code to the new Universal Analytics snippet. We also further
+    simplified the entire integration by only relying on a single partial and no cell anymore.
   * Removed the `rails-footnotes` from the developer tools generator, because it added one more
     network request to every page request in development mode and was not very popular among
     developers.
