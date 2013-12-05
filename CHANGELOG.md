@@ -1,4 +1,7 @@
 # v4.1.0
+  * The "ResourceContainer" class got removed. Object classes for "Image" and "Video" still exist,
+    but the folder "/resources", "/resources/images", "/resources/audio", "/resources/videos" and
+    "/resources/pdfs" are no longer created by default, because they were not used.
   * Updated the Google Analytics code to the new Universal Analytics snippet. We also further
     simplified the entire integration by only relying on a single partial and no cell anymore.
   * Removed the `rails-footnotes` from the developer tools generator, because it added one more
@@ -44,7 +47,6 @@
     the current request host.
   * Updated the search result page to give it a more meaningful output for each search result and a
     nicer overall look and feel.
-  * Bugfix: The ResourceContainer model did not define its class correctly.
   * Bugfix: The slideshare widget generator tried to copy a directory `spec` that no longer exists.
   * Bugfix: ESC events handled by the html and string editor and the mediabrowser are now propagated
     correctly and do not close an underlying properties view anymore.

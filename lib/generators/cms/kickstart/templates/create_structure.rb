@@ -22,12 +22,6 @@ class CreateStructure < ::RailsConnector::Migration
       Obj.find_by_path("<%= homepage_path %>").id,
       error_not_found_page: error_not_found_page['id'],
     )
-
-    try_create_obj(_path: "<%= resources_path %>", _obj_class: 'ResourceContainer', headline: 'Resources')
-    try_create_obj(_path: "<%= resources_path %>/images", _obj_class: 'Container', headline: 'Images')
-    try_create_obj(_path: "<%= resources_path %>/audio", _obj_class: 'Container', headline: 'Audio')
-    try_create_obj(_path: "<%= resources_path %>/videos", _obj_class: 'Container', headline: 'Videos')
-    try_create_obj(_path: "<%= resources_path %>/pdfs", _obj_class: 'Container', headline: 'Pdfs')
   end
 
   private
