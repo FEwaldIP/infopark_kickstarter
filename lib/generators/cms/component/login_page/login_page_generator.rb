@@ -60,10 +60,13 @@ module Cms
         end
 
         def update_footer_cell
-          append_file 'app/cells/footer/show.html.haml' do
+          append_file 'app/views/layouts/_footer.html.haml' do
             [
-              '          |',
-              "          = render('login', current_user: current_user)",
+              '',
+              '          - if page.homepage.present?',
+              '            |',
+              '',
+              "            = render('layouts/login', login_page: page.homepage.login_page, current_user: current_user)",
             ].join("\n")
           end
         end

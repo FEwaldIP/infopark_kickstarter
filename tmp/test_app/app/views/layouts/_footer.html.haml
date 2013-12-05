@@ -12,5 +12,8 @@
           Powered by
 
           = link_to('Infopark', 'http://www.infopark.com', title: 'Infopark powers great websites.')
-          |
-          = render('login', current_user: current_user)
+
+          - if page.homepage.present?
+            |
+
+            = render('layouts/login', login_page: page.homepage.login_page, current_user: current_user)

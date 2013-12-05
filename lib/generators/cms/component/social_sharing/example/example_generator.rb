@@ -5,7 +5,7 @@ module Cms
         class ExampleGenerator < ::Rails::Generators::Base
           def insert_share_code
             file = 'app/views/layouts/application.html.haml'
-            insert_point = "      = render_cell(:footer, :show, @obj)"
+            insert_point = "      = render('layouts/footer', page: @obj)"
 
             data = []
 

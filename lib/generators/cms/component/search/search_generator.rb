@@ -23,7 +23,7 @@ module Cms
 
           data = []
 
-          data << "      = render('layouts/search', search_page: homepage.search_page, query: params[:q])\n"
+          data << "        = render('layouts/search', search_page: homepage.search_page, query: params[:q])\n"
           data << ''
 
           data = data.join("\n")

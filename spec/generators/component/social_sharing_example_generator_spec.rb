@@ -19,7 +19,7 @@ describe Cms::Generators::Component::SocialSharing::ExampleGenerator do
 
     mkdir_p(environments_path)
 
-    File.open("#{environments_path}/application.html.haml", 'w') { |file| file.write('      = render_cell(:footer, :show, @obj)') }
+    File.open("#{environments_path}/application.html.haml", 'w') { |file| file.write("      = render('layouts/footer', page: @obj)") }
   end
 
   it 'creates files' do

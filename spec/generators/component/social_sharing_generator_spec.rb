@@ -7,7 +7,6 @@ describe Cms::Generators::Component::SocialSharingGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['--example']
 
   before do
     prepare_destination
@@ -16,11 +15,6 @@ describe Cms::Generators::Component::SocialSharingGenerator do
   end
 
   def prepare_environments
-    environments_path = "#{destination_root}/app/views/layouts"
-
-    mkdir_p(environments_path)
-
-    File.open("#{environments_path}/application.html.haml", 'w') { |file| file.write('      = render_cell(:footer, :show, @obj)') }
   end
 
   it 'creates files' do
