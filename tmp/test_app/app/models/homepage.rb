@@ -34,4 +34,9 @@ class Homepage < Obj
   def title
     read_attribute('title').presence
   end
+
+  # Overriden method +show_breadcrumbs+ from +Page+.
+  def show_breadcrumbs?
+    false
+  end
 end
