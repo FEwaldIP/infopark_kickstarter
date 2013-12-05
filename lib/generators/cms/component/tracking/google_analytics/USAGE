@@ -5,4 +5,4 @@ Example:
     `rails generate cms:component:tracking:google_analytics`
 
     Misc: extends app/views/layouts/application.html.haml
-    Misc: adds app/cells/google_analytics_cell.rb
+    Misc: adds app/views/layouts/_google_analytics.html.haml

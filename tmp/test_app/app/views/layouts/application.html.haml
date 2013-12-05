@@ -50,6 +50,6 @@
       = javascript_include_tag('editing')
       = render('layouts/user_javascript', current_user: current_user)
 
-    = render_cell(:google_analytics, :javascript, 'UA-xxxxxx-x', true)
+    = render('layouts/google_analytics', tracking_id: 'UA-XXXX-Y', anonymize: true)
 
     = rails_connector_after_content_tags

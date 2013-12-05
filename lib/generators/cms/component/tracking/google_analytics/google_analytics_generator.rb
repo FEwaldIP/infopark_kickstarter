@@ -6,21 +6,21 @@ module Cms
           source_root File.expand_path('../templates', __FILE__)
 
           def copy_app_directory
-            directory('app', force: true)
+            directory('app')
           end
 
           def insert_google_analytics
             file = 'app/views/layouts/application.html.haml'
-            insert_point = "      = render('layouts/user_javascript', current_user: current_user)"
+            insert_point = "    = rails_connector_after_content_tags"
 
             data = []
 
+            data << "    = render('layouts/google_analytics', tracking_id: 'UA-XXXX-Y', anonymize: true)"
             data << "\n"
-            data << "    = render_cell(:google_analytics, :javascript, 'UA-xxxxxx-x', true)"
 
             data = data.join("\n")
 
-            insert_into_file(file, data, after: insert_point)
+            insert_into_file(file, data, before: insert_point)
           end
         end
       end
