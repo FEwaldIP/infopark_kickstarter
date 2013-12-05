@@ -83,6 +83,9 @@ module Cms
           model.title = 'Image'
           model.thumbnail = false
           model.migration = false
+          model.attributes = [
+            title_attribute,
+          ]
         end
 
         migration_template('create_image.rb', 'cms/migrate/create_image')
