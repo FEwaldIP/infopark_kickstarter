@@ -1,4 +1,6 @@
 # v4.1.0
+  * Bugfix: The language switch example generator could not generate its markup anymore, because of
+    markup and file changes.
   * Updated the slider widget to use the new Twitter Bootstrap 3 markup.
   * The "ResourceContainer" class got removed. Object classes for "Image" and "Video" still exist,
     but the folder "/resources", "/resources/images", "/resources/audio", "/resources/videos" and
@@ -7,13 +9,14 @@
     simplified the entire integration by only relying on a single partial and no cell anymore.
   * Removed the `rails-footnotes` from the developer tools generator, because it added one more
     network request to every page request in development mode and was not very popular among
-    developers.
+    developers. (Thanks @thomasritz)
   * Major rework on the login and reset password page together with the login widget. We simplified
     the controller logic, threw out I18n support and gave all forms a fresh look.
   * Bugfix: The Kickstarter menu bar did not use the correct CSS box model in Firefox. As part of
     the fix, we extracted the menu bar styles into their own CSS file to better separate concerns.
+    (Thanks @aviebke)
   * Bugfix: Twitter Bootstrap 3 changed the default behavior of images to not being responsive
-    anymore. Image widgets now deliver responsive image again.
+    anymore. Image widgets now deliver responsive image again. (Thanks @TimoRenz)
   * Bugfix: The mediabrowser can now be closed with ESC, even if opened a second time.
   * You can now delete any number of selected resources in the mediabrowser by means of a button in
     the bottom bar. This removes the trash icon from the inspector view. The change also introduced

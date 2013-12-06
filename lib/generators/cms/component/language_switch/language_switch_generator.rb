@@ -6,7 +6,6 @@ module Cms
 
         def copy_app_directory
           directory('app')
-          directory('config')
         end
       end
     end
