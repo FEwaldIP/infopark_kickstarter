@@ -1,4 +1,6 @@
 # v4.1.0
+  * The search now only finds objects for the current homepage not for the entire CMS content
+    anymore. (Thanks @thomasritz)
   * Bugfix: The language switch example generator could not generate its markup anymore, because of
     markup and file changes.
   * Updated the slider widget to use the new Twitter Bootstrap 3 markup.
