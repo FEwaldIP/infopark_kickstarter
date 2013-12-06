@@ -28,7 +28,7 @@
       .content
         .row
           .col-md-12
-            = render_cell(:flash, :messages, flash)
+            = render('layouts/flash', flash: flash)
 
             = yield
 
