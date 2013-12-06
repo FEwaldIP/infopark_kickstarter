@@ -40,7 +40,7 @@
 
             = yield
 
-      = render_cell(:social_sharing, :show, cms_url(@obj))
+      = render('layouts/social_sharing', url: cms_url(@obj))
 
       = render('layouts/footer', page: @obj)
 

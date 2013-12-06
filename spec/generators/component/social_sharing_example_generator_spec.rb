@@ -28,7 +28,7 @@ describe Cms::Generators::Component::SocialSharing::ExampleGenerator do
         directory 'views' do
           directory 'layouts' do
             file 'application.html.haml' do
-              contains '= render_cell(:social_sharing, :show, cms_url(@obj))'
+              contains "      = render('layouts/social_sharing', url: cms_url(@obj))"
             end
           end
         end

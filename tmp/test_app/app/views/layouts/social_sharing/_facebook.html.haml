@@ -1,4 +1,4 @@
-%div{id: 'fb-root'}
+#fb-root
 
 :javascript
   (function(d, s, id) {
@@ -8,8 +8,8 @@
 
     js = d.createElement(s);
     js.id = id;
-    js.src = '//connect.facebook.net/#{@locale}/all.js#xfbml=1';
+    js.src = '//connect.facebook.net/en_US/all.js#xfbml=1';
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-%div.fb-like{data: @data, style: 'font-size: 1px;'}
+%div.fb-like{style: 'font-size: 1px;', data: { href: url, send: 'false', layout: 'button_count', show: { faces: 'false' } }}

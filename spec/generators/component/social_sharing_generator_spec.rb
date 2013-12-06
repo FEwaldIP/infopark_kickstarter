@@ -20,15 +20,16 @@ describe Cms::Generators::Component::SocialSharingGenerator do
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'cells' do
-          file 'social_sharing_cell.rb'
+        directory 'views' do
+          directory 'layouts' do
+            file '_social_sharing.html.haml'
 
-          directory 'social_sharing' do
-            file 'show.html.haml'
-            file 'facebook.html.haml'
-            file 'google.html.haml'
-            file 'linkedin.html.haml'
-            file 'twitter.html.haml'
+            directory 'social_sharing' do
+              file '_facebook.html.haml'
+              file '_google.html.haml'
+              file '_linkedin.html.haml'
+              file '_twitter.html.haml'
+            end
           end
         end
       end

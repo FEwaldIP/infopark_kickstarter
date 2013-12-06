@@ -40,19 +40,11 @@ describe Cms::Generators::Component::BreadcrumbsGenerator do
 
         directory 'views' do
           directory 'layouts' do
+            file '_breadcrumbs.html.haml'
+
             file 'application.html.haml' do
-              contains '            = render_cell(:breadcrumbs, :show, @obj)'
+              contains "            = render('layouts/breadcrumbs', page: @obj)"
             end
-          end
-        end
-
-        directory 'cells' do
-          file 'breadcrumbs_cell.rb'
-
-          directory 'breadcrumbs' do
-            file 'show.html.haml'
-            file 'active.html.haml'
-            file 'ancestor.html.haml'
           end
         end
       end

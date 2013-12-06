@@ -9,8 +9,8 @@ module Cms
 
             data = []
 
-            data << "      = render_cell(:social_sharing, :show, cms_url(@obj))"
-            data << "\n"
+            data << "      = render('layouts/social_sharing', url: cms_url(@obj))\n"
+            data << ''
 
             data = data.join("\n")
 
