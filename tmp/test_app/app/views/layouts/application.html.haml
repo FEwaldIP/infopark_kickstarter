@@ -24,7 +24,8 @@
     = render('blog/discovery', page: @obj)
 
   %body{body_attributes(@obj)}
-    = render_cell(:menu_bar, :show)
+    = render('layouts/menubar', current_user: current_user)
+
     .container
       = render('layouts/main_navigation', homepage: @obj.homepage)
 

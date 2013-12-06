@@ -80,7 +80,7 @@ module Cms
 
           data = []
 
-          data << '    = render_cell(:menu_bar, :show)'
+          data << "    = render('layouts/menubar', current_user: current_user)\n"
           data << ''
 
           data = data.join("\n")

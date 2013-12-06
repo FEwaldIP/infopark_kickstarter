@@ -95,24 +95,16 @@ describe Cms::Generators::Component::EditingGenerator do
           end
         end
 
-        directory 'cells' do
-          directory 'menu_bar' do
-            file 'edit_toggle.html.haml'
-            file 'show.html.haml'
-            file 'user.html.haml'
-            file 'workspaces.html.haml'
-          end
-          file 'menu_bar_cell.rb'
-        end
-
         directory 'helpers' do
           file 'editing_helper.rb'
         end
 
         directory 'views' do
           directory 'layouts' do
+            file '_menubar.html.haml'
+
             file 'application.html.haml' do
-              contains '    = render_cell(:menu_bar, :show)'
+              contains "    = render('layouts/menubar', current_user: current_user)"
             end
           end
         end
