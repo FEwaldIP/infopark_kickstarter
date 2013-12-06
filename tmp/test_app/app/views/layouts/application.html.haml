@@ -32,7 +32,7 @@
       .content
         .row
           .col-md-12
-            = render_cell(:breadcrumbs, :show, @obj)
+            = render('layouts/breadcrumbs', page: @obj)
 
         .row
           .col-md-12

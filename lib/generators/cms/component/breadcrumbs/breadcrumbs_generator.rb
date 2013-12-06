@@ -19,7 +19,7 @@ module Cms
             '  # to allow to be displayed in the navigation. Both +Root+ and +Website+ are',
             '  # not pages, so only pages up to the homepage are displayed.',
             '  def breadcrumbs',
-            '    list = ancestors.select { |obj| obj.is_a?(Page) && obj.show_in_navigation? }',
+            '    list = ancestors.select { |obj| obj.respond_to?(:show_in_navigation?) && obj.show_in_navigation? }',
             '    list + [self]',
             '  end',
             "\n",
@@ -37,7 +37,7 @@ module Cms
           data = [
             '        .row',
             '          .col-md-12',
-            '            = render_cell(:breadcrumbs, :show, @obj)',
+            "            = render('layouts/breadcrumbs', page: @obj)",
             "\n",
           ].join("\n")
 
