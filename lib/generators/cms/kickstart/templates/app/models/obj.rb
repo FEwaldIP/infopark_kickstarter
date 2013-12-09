@@ -19,14 +19,6 @@ class Obj < ::RailsConnector::BasicObj
     "#{obj_class.underscore}/edit"
   end
 
-  def parent
-    @parent ||= super()
-  end
-
-  def ancestors
-    @ancestors ||= super()
-  end
-
   # Determines the homepage for the current object by traversing up the tree
   # until a homepage is found. In case of a ghost path (no parent) the default
   # homepage is returned.
@@ -43,7 +35,7 @@ class Obj < ::RailsConnector::BasicObj
   end
 
   def website
-    @website ||= homepage.website
+    homepage.website
   end
 
   # Overriden method +slug+ from +RailsConnector::BasicObj+.
@@ -63,35 +55,5 @@ class Obj < ::RailsConnector::BasicObj
 
   def locale
     (homepage && homepage.locale) || I18n.default_locale
-  end
-
-  def menu_title
-    self[:headline] || '[no headline]'
-  end
-
-  # By default, objects can be displayed in navigation sections. Either add a
-  # boolean cms attribute +show_in_navigation+ or override the method directly
-  # in your model.
-  def show_in_navigation?
-    true
-  end
-
-  # By default, objects have no sort_key set. Either add a string cms attribute
-  # +sort_key+ or override the method directly in your model.
-  def sort_key
-    ''
-  end
-
-  # Overrides RailsConnector::BasicObj#body_data_url
-  #
-  # Changes protocol http: to https: so that the URLs work fine with pages delivered over https.
-  def body_data_url
-    url = super
-
-    if url.to_s =~ /^http:(.*?s3\.amazonaws\.com.*)$/
-      "https:#{$1}"
-    else
-      url
-    end
   end
 end

@@ -21,7 +21,7 @@ class NullHomepage < Obj
   end
 
   def title
-    'Infopark Platform. Up and Running.'
+    'Infopark. Up and Running.'
   end
 
   def obj_class
@@ -37,5 +37,9 @@ class NullHomepage < Obj
 
   def homepages
     []
+  end
+
+  def menu_title
+    'Welcome to Infopark'
   end
 end

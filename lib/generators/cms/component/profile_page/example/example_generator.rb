@@ -25,14 +25,6 @@ module Cms
 
           private
 
-          def show_in_navigation_attribute_name
-            'show_in_navigation'
-          end
-
-          def sort_key_attribute_name
-            'sort_key'
-          end
-
           def obj_class_name
             'ProfilePage'
           end

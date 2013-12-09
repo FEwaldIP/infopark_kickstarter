@@ -1,6 +1,4 @@
-class BlogPost < Obj
-  include Page
-
+class BlogPost < Page
   cms_attribute :headline, type: :string
   cms_attribute :main_content, type: :widget
   cms_attribute :author_id, type: :string

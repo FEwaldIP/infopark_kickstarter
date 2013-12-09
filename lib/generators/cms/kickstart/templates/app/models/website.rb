@@ -10,8 +10,4 @@ class Website < Obj
   def website
     self
   end
-
-  def show_in_navigation?
-    false
-  end
 end

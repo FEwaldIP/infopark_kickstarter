@@ -1,4 +1,7 @@
 # v4.1.0
+  * The Infopark Kickstarter no longer provides a `Page` mixin but a `Page` class. Your CMS pages
+    should inherit from that class instead of including the `Page` mixin. This is more consistent to
+    the way you define widgets in your Ruby on Rails `model` directory.
   * Removed the dependency of the generated content to the `cells` gem. This provides a much more
     familiar way for Ruby on Rails developers on how to create views. You are still free to use
     `cells` in your own project. This effects almost all components.

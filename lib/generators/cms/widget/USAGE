@@ -7,13 +7,11 @@ Description:
     Run `rails generate cms:widget --help` to see all available options.
 
 Example:
-    `rails generate cms:widget NewsWidget --title="News Widget" --attributes=sort_key:string length:integer`
+    `rails generate cms:widget NewsWidget --title="News Widget" --attributes=headline:string`
 
     Migration: app/widgets/news_widget/migrate/123456_create_news.rb
     Views: app/widgets/news_widget/views/show.html.haml
+    Views: app/widgets/news_widget/views/edit.html.haml
            app/widgets/news_widget/views/thumbnail.html.haml
     Locales: app/widgets/news_widget/locales/en.news_widget.yml
-             app/widgets/news_widget/locales/de.news_widget.yml
     Model: app/models/news_widget.rb
-    Concerns: app/concerns/sort_key.rb
-              app/concerns/length.rb

@@ -24,7 +24,7 @@ describe Cms::Generators::Component::SearchGenerator do
       mkdir_p(path)
     end
 
-    File.open("#{paths[:models]}/homepage.rb", 'w') { |f| f.write("class Homepage < Obj\n") }
+    File.open("#{paths[:models]}/homepage.rb", 'w') { |f| f.write("class Homepage < Page\n") }
     File.open("#{paths[:layouts]}/_main_navigation.html.haml", 'w') { |f| f.write("    .navbar-collapse.collapse\n") }
   end
 
@@ -33,9 +33,8 @@ describe Cms::Generators::Component::SearchGenerator do
       directory 'app' do
         directory 'models' do
           file 'search_page.rb' do
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
+            contains 'class SearchPage < Page'
             contains 'cms_attribute :headline, type: :string'
-            contains '  include Page'
           end
 
           file 'homepage.rb' do

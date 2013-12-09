@@ -35,8 +35,6 @@ describe Cms::Generators::Component::BlogGenerator do
         directory 'models' do
           file 'blog.rb' do
             contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
-            contains 'cms_attribute :sort_key, type: :string'
             contains 'cms_attribute :disqus_shortname, type: :string'
           end
 

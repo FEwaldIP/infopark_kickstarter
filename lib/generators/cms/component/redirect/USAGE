@@ -13,5 +13,3 @@ Example:
 
     CMS: object class "Redirect"
     CMS: attribute redirect_link (linklist)
-    CMS: attribute show_in_navigation (enum)
-    CMS: attribute sort_key (string)

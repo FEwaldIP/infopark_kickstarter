@@ -28,8 +28,7 @@ describe Cms::Generators::ModelGenerator do
       directory 'app' do
         directory 'models' do
           file 'news.rb' do
-            contains 'class News < Obj'
-            contains 'include Page'
+            contains 'class News < Page'
             contains 'cms_attribute :foo, type: :html'
             contains 'cms_attribute :bar, type: :enum'
           end

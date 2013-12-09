@@ -5,4 +5,4 @@ Description:
     Run `rails generate cms:model --help` to see all available options.
 
 Example:
-    `rails generate cms:scaffold News --attributes=show_in_navigation:boolean max_results:string`
+    `rails generate cms:scaffold News --attributes=headline:string max_results:string`

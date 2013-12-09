@@ -12,8 +12,6 @@ Example:
 
     CMS: obj_class Blog
            attribute headline (string)
-           attribute show_in_navigation (enum)
-           attribute sort_key (string)
            attribute disqus_shortname (string)
            attribute description (string)
 

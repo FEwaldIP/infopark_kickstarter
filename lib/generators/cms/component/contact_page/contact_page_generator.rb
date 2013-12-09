@@ -20,24 +20,9 @@ module Cms
                 title: 'Headline',
               },
               {
-                name: 'content',
-                type: :html,
-                title: 'Content',
-              },
-              {
                 name: crm_activity_type_attribute_name,
                 type: :string,
                 title: 'CRM Activity Type',
-              },
-              {
-                name: show_in_navigation_attribute_name,
-                type: :boolean,
-                title: 'Show in navigation',
-              },
-              {
-                name: sort_key_attribute_name,
-                type: :string,
-                title: 'Sort key',
               },
             ]
           end

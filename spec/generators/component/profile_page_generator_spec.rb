@@ -22,10 +22,7 @@ describe Cms::Generators::Component::ProfilePageGenerator do
       directory 'app' do
         directory 'models' do
           file 'profile_page.rb' do
-            contains 'cms_attribute :sort_key, type: :string'
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
             contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :content, type: :html'
           end
         end
 

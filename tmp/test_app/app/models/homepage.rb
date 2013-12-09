@@ -1,15 +1,11 @@
-class Homepage < Obj
+class Homepage < Page
   cms_attribute :reset_password_page, type: :reference
   cms_attribute :login_page, type: :reference
   cms_attribute :search_page, type: :reference
   cms_attribute :headline, type: :string
   cms_attribute :main_content, type: :widget
-  cms_attribute :show_in_navigation, type: :boolean
-  cms_attribute :sort_key, type: :string
   cms_attribute :error_not_found_page, type: :reference
   cms_attribute :locale, type: :string
-
-  include Page
 
   # TODO edit mapping from hostnames to homepages
   def self.for_hostname(hostname)

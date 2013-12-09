@@ -25,7 +25,7 @@ module Cms
 
       def add_model_attribute(model, attribute, model_path = 'app/models')
         file = "#{model_path}/#{model.underscore}.rb"
-        insert_point = "class #{model} < Obj\n"
+        insert_point = "class #{model} < Page\n"
 
         data = []
 

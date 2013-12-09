@@ -26,15 +26,6 @@ module Cms
           template('model.rb', path)
         end
 
-        def turn_model_into_page
-          if page?
-            insert_point = "\nend\n"
-            data = "\n\n  include Page"
-
-            insert_into_file(path, data, before: insert_point)
-          end
-        end
-
         private
 
         def page?
@@ -66,7 +57,13 @@ module Cms
         end
 
         def object_class
-          widget? ? 'Widget' : 'Obj'
+          if widget?
+            'Widget'
+          elsif page?
+            'Page'
+          else
+            'Obj'
+          end
         end
       end
     end

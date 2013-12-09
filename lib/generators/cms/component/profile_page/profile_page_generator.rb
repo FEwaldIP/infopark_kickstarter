@@ -18,21 +18,6 @@ module Cms
                 type: :string,
                 title: 'Headline',
               },
-              {
-                name: 'content',
-                type: :html,
-                title: 'Content',
-              },
-              {
-                name: show_in_navigation_attribute_name,
-                type: :boolean,
-                title: 'Show in navigation',
-              },
-              {
-                name: sort_key_attribute_name,
-                type: :string,
-                title: 'Sort key',
-              },
             ]
           end
         end
@@ -49,14 +34,6 @@ module Cms
         end
 
         private
-
-        def show_in_navigation_attribute_name
-          'show_in_navigation'
-        end
-
-        def sort_key_attribute_name
-          'sort_key'
-        end
 
         def obj_class_name
           'ProfilePage'

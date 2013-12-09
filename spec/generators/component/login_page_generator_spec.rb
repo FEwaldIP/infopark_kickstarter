@@ -23,7 +23,7 @@ describe Cms::Generators::Component::LoginPageGenerator do
     mkdir_p(models_path)
     mkdir_p(layouts_path)
 
-    File.open("#{models_path}/homepage.rb", 'w') { |file| file.write("class Homepage < Obj\n  include Page") }
+    File.open("#{models_path}/homepage.rb", 'w') { |file| file.write("class Homepage < Page\n") }
     File.open("#{layouts_path}/_footer.html.haml", 'w') { |file| file.write('') }
   end
 
@@ -37,10 +37,12 @@ describe Cms::Generators::Component::LoginPageGenerator do
 
         directory 'models' do
           file 'login_page.rb' do
+            contains 'class LoginPage < Page'
             contains 'cms_attribute :headline, type: :string'
           end
 
           file 'reset_password_page.rb' do
+            contains 'class ResetPasswordPage < Page'
             contains 'cms_attribute :headline, type: :string'
           end
 

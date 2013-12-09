@@ -41,11 +41,6 @@ module Cms
             model.page = true
             model.attributes = [
               {
-                name: show_in_navigation_attribute_name,
-                type: :boolean,
-                title: 'Show in navigation',
-              },
-              {
                 name: headline_attribute_name,
                 type: :string,
                 title: 'Headline',
@@ -73,10 +68,6 @@ module Cms
         alias_method :original_homepage_path, :homepage_path
         def homepage_path
           options[:homepage_path] || original_homepage_path
-        end
-
-        def show_in_navigation_attribute_name
-          'show_in_navigation'
         end
 
         def headline_attribute_name

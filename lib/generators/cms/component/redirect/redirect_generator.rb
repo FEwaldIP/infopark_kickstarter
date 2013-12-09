@@ -13,16 +13,6 @@ module Cms
             model.page = true
             model.attributes = [
               {
-                name: 'show_in_navigation',
-                type: :boolean,
-                title: 'Show in Navigation',
-              },
-              {
-                name: 'sort_key',
-                type: :string,
-                title: 'Sort key',
-              },
-              {
                 name: 'redirect_link',
                 type: :linklist,
                 title: 'Redirect link',

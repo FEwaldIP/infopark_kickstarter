@@ -7,7 +7,6 @@ Example:
     `rails generate cms:component:search --homepage_path=/website/en`
 
     CMS: obj_class SearchPage
-    CMS: attribute show_in_navigation (enum)
     CMS: attribute headline (string)
     CMS: attribute search_page_link (reference)
     Misc: extends app/models/homepage.rb

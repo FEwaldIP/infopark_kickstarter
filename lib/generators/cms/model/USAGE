@@ -5,7 +5,7 @@ Description:
     Run `rails generate cms:model --help` to see all available options.
 
 Example:
-    `rails generate cms:model News --attributes=show_in_navigation:boolean max_results:string`
+    `rails generate cms:model News --attributes=headline:string max_results:string`
     `rails generate cms:model Pdf --type=generic`
 
     Migration: cms/migrate/123456_create_news.rb

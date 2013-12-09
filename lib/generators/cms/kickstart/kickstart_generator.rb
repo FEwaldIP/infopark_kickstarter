@@ -110,8 +110,6 @@ module Cms
           model.attributes = [
             title_attribute,
             main_content_attribute,
-            show_in_navigation_attribute,
-            sort_key_attribute,
             {
               name: 'error_not_found_page',
               type: :reference,
@@ -145,7 +143,6 @@ module Cms
           model.thumbnail = false
           model.attributes = [
             title_attribute,
-            show_in_navigation_attribute,
           ]
         end
 
@@ -157,8 +154,6 @@ module Cms
           model.page = true
           model.attributes = [
             title_attribute,
-            show_in_navigation_attribute,
-            sort_key_attribute,
             main_content_attribute,
             sidebar_content_attribute
           ]
@@ -176,7 +171,6 @@ module Cms
           model.attributes = [
             title_attribute,
             content_attribute,
-            show_in_navigation_attribute,
           ]
         end
 
@@ -213,22 +207,6 @@ module Cms
 
       def examples?
         options[:examples]
-      end
-
-      def show_in_navigation_attribute
-        {
-          name: 'show_in_navigation',
-          type: :boolean,
-          title: 'Show in Navigation',
-        }
-      end
-
-      def sort_key_attribute
-        {
-          name: 'sort_key',
-          type: :string,
-          title: 'Sort key',
-        }
       end
 
       def main_content_attribute
