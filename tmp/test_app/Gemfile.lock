@@ -51,12 +51,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.1.1.9)
+    bootstrap-datepicker-rails (1.1.1.10)
       railties (>= 3.0)
     builder (3.0.4)
-    cells (3.9.0)
-      actionpack (>= 3.0)
-      railties (>= 3.0)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -83,7 +80,7 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hike (1.2.3)
-    honeybadger (1.9.4)
+    honeybadger (1.9.5)
       faraday (~> 0.7)
       json
     i18n (0.6.9)
@@ -131,7 +128,7 @@ GEM
       railties (>= 3.1)
     multi_json (1.8.2)
     multipart-post (1.2.0)
-    newrelic_rpm (3.6.9.171)
+    newrelic_rpm (3.7.0.177)
     nokogiri (1.5.10)
     polyglot (0.3.3)
     projekktor-rails (0.0.5)
@@ -218,7 +215,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-datepicker-rails
-  cells
   coffee-rails (~> 3.2.1)
   gravatar_image_tag
   haml-rails

@@ -36,3 +36,12 @@ end
 RailsConnector::Configuration.editing_auth do |env|
   EditModeDetection.editing_allowed?(env)
 end
+
+# Patch: The RailsConnector::WidgetRenderer does not make the session available directly to the
+# widget view and does not account for form request forgery protection. But this is necessary, when
+# a form tries to render its authenticity token. So we add the method "session" to the
+# RailsConnector::WidgetRenderer and extend it to provide a request forgery token and the access to
+# the our "current_user" implementation.
+RailsConnector::WidgetRenderer.send(:define_method, :session, proc { request.session })
+RailsConnector::WidgetRenderer.send(:include, ActionController::RequestForgeryProtection)
+RailsConnector::WidgetRenderer.send(:include, Authentication)

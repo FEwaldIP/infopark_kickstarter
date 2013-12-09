@@ -5,8 +5,8 @@
     Login
 
   .panel-body
-    = form_for(:user, url: cms_path(@login_page), html: { class: 'form-horizontal', role: 'form' }) do |form|
-      = hidden_field_tag(:return_to, cms_path(@page))
+    = form_for(:user, url: cms_path(homepage.login_page), html: { class: 'form-horizontal', role: 'form' }) do |form|
+      = hidden_field_tag(:return_to, cms_path(page))
       = hidden_field_tag(:authenticity_token, form_authenticity_token)
 
       .form-group
@@ -26,4 +26,5 @@
           = form.submit('Login', class: 'btn btn-success')
 
   .panel-footer
-    = render({ state: :reset_password })
+    = link_to(cms_path(homepage.reset_password_page)) do
+      Did you forget your password?

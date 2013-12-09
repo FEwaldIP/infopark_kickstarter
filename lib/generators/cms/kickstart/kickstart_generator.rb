@@ -32,7 +32,6 @@ module Cms
       def install_gems
         gem('active_attr')
         gem('haml-rails')
-        gem('cells')
         gem('utf8-cleaner')
         gem('infopark_crm_connector')
 

@@ -21,22 +21,12 @@ describe Cms::Generators::Widget::LoginGenerator do
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'cells' do
-          directory 'widget' do
-            file 'login_widget_cell.rb'
-
-            directory 'login_widget' do
-              file 'show.html.haml'
-              file 'form.html.haml'
-              file 'reset_password.html.haml'
-            end
-          end
-        end
-
         directory 'widgets' do
           directory 'login_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file '_logged_in.html.haml'
+              file '_logged_out.html.haml'
               file 'thumbnail.html.haml'
             end
 

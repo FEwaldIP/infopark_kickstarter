@@ -1,4 +1,7 @@
 # v4.1.0
+  * Removed the dependency of the generated content to the `cells` gem. This provides a much more
+    familiar way for Ruby on Rails developers on how to create views. You are still free to use
+    `cells` in your own project. This effects almost all components.
   * The search now only finds objects for the current homepage not for the entire CMS content
     anymore. (Thanks @thomasritz)
   * Bugfix: The language switch example generator could not generate its markup anymore, because of
