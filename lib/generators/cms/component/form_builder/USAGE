@@ -9,9 +9,6 @@ Example:
 
     CMS: obj_class FormBuilder
            attribute headline (string)
-           attribute content (html)
-           attribute show_in_navigation (enum)
-           attribute sort_key (string)
            attribute crm_activity_type (string)
 
     CRM: Activity type 'contact-form' with attributes 'email' and 'message'

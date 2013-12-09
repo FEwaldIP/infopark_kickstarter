@@ -1,7 +1,7 @@
 module Cms
   module Generators
     module Component
-      module ProfilePage
+      module FormBuilder
         class ExampleGenerator < ::Rails::Generators::Base
           include Migration
 
@@ -10,11 +10,11 @@ module Cms
           argument :cms_path,
             type: :string,
             default: nil,
-            desc: 'CMS parent path where the example profile should be placed under.',
+            desc: 'CMS parent path where the example form should be placed under.',
             banner: 'LOCATION'
 
           def create_example
-            migration_template('example_migration.rb', 'cms/migrate/create_profile_page_example.rb')
+            migration_template('example_migration.rb', 'cms/migrate/create_form_builder_example.rb')
           end
 
           def notice
@@ -25,16 +25,20 @@ module Cms
 
           private
 
-          def show_in_navigation_attribute_name
-            'show_in_navigation'
+          def class_name
+            'FormBuilder'
           end
 
-          def sort_key_attribute_name
-            'sort_key'
+          def crm_activity_type_attribute_name
+            'crm_activity_type'
           end
 
-          def obj_class_name
-            'ProfilePage'
+          def activity_type
+            'feedback-form'
+          end
+
+          def title_attribute_name
+            'headline'
           end
         end
       end
