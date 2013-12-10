@@ -4,39 +4,20 @@
 # "app/controllers/null_homepage_controller" and
 # "config/initializers/rails_connector.rb" as well.
 class NullHomepage < Obj
-  def controller_name
-    'NullHomepage'
-  end
-
-  def path
-    'null-homepage'
-  end
-
-  def object_type
-    :publication
-  end
-
   def id
     '0'
   end
 
-  def title
-    'Infopark. Up and Running.'
+  def path
+    '/null-homepage'
   end
 
   def obj_class
     'NullHomepage'
   end
 
-  def active?
-    true
-  end
-
-  def homepage
-  end
-
-  def homepages
-    []
+  def object_type
+    :publication
   end
 
   def menu_title

@@ -21,8 +21,4 @@ class NullHomepageController < CmsController
       </div>'
     )
   end
-
-  def self.use_for_obj_dispatch?
-    true
-  end
 end
