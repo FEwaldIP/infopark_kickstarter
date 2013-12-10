@@ -7,7 +7,6 @@ describe Cms::Generators::Component::FormBuilder::ExampleGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['/website/en']
 
   before do
     prepare_destination
