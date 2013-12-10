@@ -43,16 +43,6 @@ class Obj < ::RailsConnector::BasicObj
     (self[:headline] || '').parameterize
   end
 
-  # Return a page object or nil.
-  #
-  # Normally, objects are either pages or resources.
-  # Pages are pages in itself. Resources are filtered out.
-  #
-  # This method can be overridden by subclasses to implement this behaviour.
-  def page
-    nil
-  end
-
   def locale
     (homepage && homepage.locale) || I18n.default_locale
   end
