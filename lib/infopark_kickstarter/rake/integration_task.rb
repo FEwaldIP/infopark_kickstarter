@@ -86,8 +86,6 @@ module InfoparkKickstarter
           'cms:widget:person:example',
           'cms:widget:slider',
           'cms:widget:slider:example',
-          'cms:widget:login',
-          'cms:widget:login:example',
           'cms:widget:slideshare',
           'cms:widget:slideshare:example',
           'cms:widget:column --columns=2',

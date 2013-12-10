@@ -1,6 +1,0 @@
----
-en:
-  widgets:
-    login_widget:
-      title: Login widget
-      description: Displays a login form.

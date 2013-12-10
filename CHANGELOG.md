@@ -1,4 +1,6 @@
 # v4.1.0
+  * Removed the LoginWidget because forms are not yet supported within widgets. This only effects
+    the LoginWidget, not the login page or any login functionality.
   * The Infopark Kickstarter no longer provides a `Page` mixin but a `Page` class. Your CMS pages
     should inherit from that class instead of including the `Page` mixin. This is more consistent to
     the way you define widgets in your Ruby on Rails `model` directory.
