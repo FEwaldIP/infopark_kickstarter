@@ -26,10 +26,6 @@ describe Cms::Generators::Widget::Maps::GoogleMapsGenerator do
 
         directory 'widgets' do
           directory 'google_maps_widget' do
-            directory 'locales' do
-              file 'en.google_maps_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_google_maps_widget'
             end

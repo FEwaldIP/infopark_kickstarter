@@ -53,16 +53,6 @@ module Cms
         end
       end
 
-      def update_rails_configuration
-        gsub_file(
-          'config/application.rb',
-          "# config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]",
-          "config.i18n.load_path += Dir[Rails.root + 'app/widgets/**/locales/*']"
-        )
-
-        log(:info, 'enable widget locales')
-      end
-
       def update_application_configuration
         directory('lib')
         directory('config', force: true)

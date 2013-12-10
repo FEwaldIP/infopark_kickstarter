@@ -15,8 +15,8 @@ describe Cms::Generators::Api::ThumbnailGenerator do
       config.name = 'foo'
       config.icon = 'foo'
       config.path = 'app/views/foo'
-      config.title_key = 'test.foo.foo'
-      config.description_key = 'test.bar.bar'
+      config.title = 'test title'
+      config.description = 'test description'
     end
   end
 
@@ -26,9 +26,9 @@ describe Cms::Generators::Api::ThumbnailGenerator do
         directory 'views' do
           directory 'foo' do
             file 'thumbnail.html.haml' do
-              contains "%i.thumbnail-icon.editing-icon-foo"
-              contains "= t('test.foo.foo')"
-              contains "= t('test.bar.bar')"
+              contains '%i.thumbnail-icon.editing-icon-foo'
+              contains 'test title'
+              contains 'test description'
             end
           end
         end

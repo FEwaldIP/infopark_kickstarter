@@ -9,7 +9,6 @@ require 'generators/cms/migration'
 require 'generators/cms/widget/example'
 
 require 'generators/cms/api/edit_view/edit_view_generator'
-require 'generators/cms/api/locale/locale_generator'
 require 'generators/cms/api/model/model_generator'
 require 'generators/cms/api/obj_class/obj_class_generator'
 require 'generators/cms/api/thumbnail/thumbnail_generator'

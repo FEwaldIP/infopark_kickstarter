@@ -43,13 +43,8 @@ describe Cms::Generators::WidgetGenerator do
               end
               file 'thumbnail.html.haml' do
                 contains 'editing-icon-text'
-              end
-            end
-
-            directory 'locales' do
-              file 'en.news_widget.yml' do
-                contains "title: Test News Title"
-                contains "description: Test News Description"
+                contains 'Test News Title'
+                contains 'Test News Description'
               end
             end
 

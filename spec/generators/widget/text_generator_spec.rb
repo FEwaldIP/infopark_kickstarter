@@ -29,10 +29,6 @@ describe Cms::Generators::Widget::TextGenerator do
               file 'thumbnail.html.haml'
             end
 
-            directory 'locales' do
-              file 'en.text_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_text_widget'
             end

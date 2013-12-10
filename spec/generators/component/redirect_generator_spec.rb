@@ -31,12 +31,6 @@ describe Cms::Generators::Component::RedirectGenerator do
         end
       end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.redirect.yml'
-        end
-      end
-
       directory 'cms' do
         directory 'migrate' do
           migration 'create_redirect'

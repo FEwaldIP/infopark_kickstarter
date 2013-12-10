@@ -19,10 +19,6 @@ describe Cms::Generators::Widget::HeadlineGenerator do
       directory 'app' do
         directory 'widgets' do
           directory 'headline_widget' do
-            directory 'locales' do
-              file 'en.headline_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_headline_widget'
             end

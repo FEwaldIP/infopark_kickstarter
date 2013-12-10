@@ -90,12 +90,6 @@ describe Cms::Generators::Component::BlogGenerator do
         end
       end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.blog.yml'
-        end
-      end
-
       file 'Gemfile' do
         contains 'gem "gravatar_image_tag"'
         contains 'gem "momentjs-rails"'

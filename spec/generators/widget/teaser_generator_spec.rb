@@ -28,10 +28,6 @@ describe Cms::Generators::Widget::TeaserGenerator do
               file 'thumbnail.html.haml'
             end
 
-            directory 'locales' do
-              file 'en.teaser_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_teaser_widget'
             end

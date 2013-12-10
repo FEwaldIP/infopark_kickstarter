@@ -8,6 +8,7 @@ module Cms
           Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
             widget.name = obj_class_name
             widget.icon = 'presentation'
+            widget.title = 'Slideshare'
             widget.description = 'Creates a widget that shows a slide from slideshare.'
             widget.attributes = [
               {

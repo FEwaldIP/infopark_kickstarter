@@ -3,10 +3,10 @@
     = link_to(cms_path(page, page_index: index - 1)) do
       %span.glyphicon.glyphicon-chevron-left
 
-      = t('blog.newer_posts')
+      Newer posts
 
   %li.next
     = link_to(cms_path(page, page_index: index + 1)) do
-      = t('blog.older_posts')
+      Older posts
 
       %span.glyphicon.glyphicon-chevron-right

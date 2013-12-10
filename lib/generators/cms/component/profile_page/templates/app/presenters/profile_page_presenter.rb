@@ -27,12 +27,4 @@ class ProfilePagePresenter
       user.contact.update_attributes(attributes)
     end
   end
-
-  def language_for_select
-    scope = "helpers.label.profile_page_presenter.language_options"
-
-    [:de, :en].collect do |language|
-      [I18n.t(language, scope: scope), language]
-    end
-  end
 end

@@ -7,18 +7,18 @@
   = form_for(@contact_page_presenter, url: cms_path(@obj)) do |form|
     %fieldset
       .form-group
-        = form.label(:email)
+        = form.label(:email, 'Email')
 
         = form.email_field(:email, class: 'form-control', required: true)
 
       .form-group
-        = form.label(:subject)
+        = form.label(:subject, 'Subject')
 
         = form.text_field(:subject, class: 'form-control', required: true)
 
       .form-group
-        = form.label(:message)
+        = form.label(:message, 'Message')
 
         = form.text_area(:message, class: 'form-control', rows: 10)
 
-      = form.submit(class: 'btn btn-default')
+      = form.submit('Submit', class: 'btn btn-default')

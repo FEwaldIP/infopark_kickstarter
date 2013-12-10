@@ -28,10 +28,6 @@ describe Cms::Generators::Widget::ImageGenerator do
               file 'thumbnail.html.haml'
             end
 
-            directory 'locales' do
-              file 'en.image_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_image_widget'
             end

@@ -8,7 +8,6 @@ describe Cms::Generators::Widget::YoutubeGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['--example']
 
   before do
     prepare_destination
@@ -23,10 +22,6 @@ describe Cms::Generators::Widget::YoutubeGenerator do
             directory 'views' do
               file 'show.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'locales' do
-              file 'en.youtube_widget.yml'
             end
 
             directory 'migrate' do

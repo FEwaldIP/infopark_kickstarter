@@ -5,7 +5,7 @@ class RedirectController < CmsController
 
       redirect_to(target)
     else
-      flash.now[:alert] = I18n.t('redirect.index.link_undefined')
+      flash.now[:alert] = 'Please configure a redirect target.'
     end
   end
 end

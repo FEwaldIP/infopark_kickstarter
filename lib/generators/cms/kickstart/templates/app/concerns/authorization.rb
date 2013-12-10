@@ -28,7 +28,7 @@ module Authorization
 
     target = cms_path(homepage.login_page, query_params)
 
-    redirect_to(target, alert: I18n.t(:'flash.authorization_failed'))
+    redirect_to(target, alert: "This page is protected. You either don't have neccessary access rights or you are not logged in.")
   end
 
   def homepage

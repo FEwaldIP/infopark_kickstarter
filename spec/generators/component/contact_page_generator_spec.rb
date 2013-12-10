@@ -37,12 +37,6 @@ describe Cms::Generators::Component::ContactPageGenerator do
         end
       end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.contact_page.yml'
-        end
-      end
-
       directory 'cms' do
         directory 'migrate' do
           migration 'create_contact_page'

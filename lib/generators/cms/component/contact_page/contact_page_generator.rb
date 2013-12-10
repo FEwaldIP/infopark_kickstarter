@@ -30,7 +30,6 @@ module Cms
 
         def copy_app_directory
           directory('app', force: true)
-          directory('config', force: true)
         end
 
         def remove_custom_type

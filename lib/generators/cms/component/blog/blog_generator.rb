@@ -102,7 +102,6 @@ module Cms
 
         def copy_app_directory
           directory('app', force: true)
-          directory('config')
         end
 
         def notice

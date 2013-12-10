@@ -25,7 +25,6 @@ RSpec.configure do |config|
   config.before do
     Cms::Generators::ControllerGenerator.send(:include, TestDestinationRoot)
     Cms::Generators::Api::EditViewGenerator.send(:include, TestDestinationRoot)
-    Cms::Generators::Api::LocaleGenerator.send(:include, TestDestinationRoot)
     Cms::Generators::Api::ModelGenerator.send(:include, TestDestinationRoot)
     Cms::Generators::Api::ObjClassGenerator.send(:include, TestDestinationRoot)
     Cms::Generators::Api::ThumbnailGenerator.send(:include, TestDestinationRoot)

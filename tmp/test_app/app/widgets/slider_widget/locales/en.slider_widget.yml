@@ -1,6 +1,0 @@
----
-en:
-  widgets:
-    slider_widget:
-      title: Slider widget
-      description: Creates a rotating slider gallery from a list of images.

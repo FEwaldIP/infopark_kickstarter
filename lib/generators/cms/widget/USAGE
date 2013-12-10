@@ -13,5 +13,4 @@ Example:
     Views: app/widgets/news_widget/views/show.html.haml
     Views: app/widgets/news_widget/views/edit.html.haml
            app/widgets/news_widget/views/thumbnail.html.haml
-    Locales: app/widgets/news_widget/locales/en.news_widget.yml
     Model: app/models/news_widget.rb

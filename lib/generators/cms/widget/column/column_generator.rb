@@ -22,13 +22,9 @@ module Cms
             widget.name = obj_class_name
             widget.icon = icon
             widget.attributes = column_attributes + column_size_attributes
+            widget.title = "#{columns} Columns"
+            widget.description = "The #{column_title(columns)} column widget displays a box with #{columns} widget fields."
           end
-
-          template(
-            'en.locale.yml',
-            "#{widget_path_for(folder_name)}/locales/en.#{folder_name}.yml",
-            force: true
-          )
 
           template(
             'show.html.haml',

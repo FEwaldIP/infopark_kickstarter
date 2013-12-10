@@ -11,6 +11,7 @@ module Cms
             Api::WidgetGenerator.new(behavior: behavior) do |widget|
               widget.name = obj_class_name
               widget.icon = 'map'
+              widget.title = 'Google Maps'
               widget.description = 'Integrates a map that displays a pin for a given address.'
               widget.attributes = [
                 {

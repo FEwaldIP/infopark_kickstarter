@@ -40,6 +40,7 @@ module Cms
           Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
             widget.name = obj_class_name
             widget.icon = 'video'
+            widget.title = 'Video'
             widget.description = 'Displays a video player for the given video file.'
             widget.attributes = [
               {

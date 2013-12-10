@@ -8,6 +8,7 @@ module Cms
           Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
             widget.name = obj_class_name
             widget.icon = 'text'
+            widget.title = 'Text'
             widget.description = 'Creates a simple widget with content.'
             widget.attributes = [
               {

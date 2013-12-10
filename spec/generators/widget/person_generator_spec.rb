@@ -28,10 +28,6 @@ describe Cms::Generators::Widget::PersonGenerator do
               file 'thumbnail.html.haml'
             end
 
-            directory 'locales' do
-              file 'en.person_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_person_widget'
             end

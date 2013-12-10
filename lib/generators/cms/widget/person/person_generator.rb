@@ -8,6 +8,7 @@ module Cms
           Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
             widget.name = obj_class_name
             widget.icon = 'person'
+            widget.title = 'Person'
             widget.description = 'Displays a WebCRM person and shows their details.'
             widget.attributes = [
               {

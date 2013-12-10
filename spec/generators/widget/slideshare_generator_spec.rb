@@ -28,10 +28,6 @@ describe Cms::Generators::Widget::SlideshareGenerator do
               file 'thumbnail.html.haml'
             end
 
-            directory 'locales' do
-              file 'en.slideshare_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_slideshare_widget'
             end

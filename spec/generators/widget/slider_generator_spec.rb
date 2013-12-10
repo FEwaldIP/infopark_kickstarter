@@ -28,10 +28,6 @@ describe Cms::Generators::Widget::SliderGenerator do
               file 'thumbnail.html.haml'
             end
 
-            directory 'locales' do
-              file 'en.slider_widget.yml'
-            end
-
             directory 'migrate' do
               migration 'create_slider_widget'
             end

@@ -6,9 +6,9 @@ module Cms
 
         source_root File.expand_path('../templates', __FILE__)
 
-        attr_accessor :title_key
+        attr_accessor :title
         attr_accessor :icon
-        attr_accessor :description_key
+        attr_accessor :description
         attr_accessor :path
 
         def initialize(options = {}, config = {})

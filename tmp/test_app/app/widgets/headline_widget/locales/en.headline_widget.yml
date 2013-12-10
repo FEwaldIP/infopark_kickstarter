@@ -1,7 +1,0 @@
----
-en:
-  widgets:
-    headline_widget:
-      title: Headline widget
-      description: The headline widget displays a page heading and allows to set an
-        anchor.

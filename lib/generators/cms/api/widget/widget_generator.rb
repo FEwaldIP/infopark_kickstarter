@@ -63,25 +63,8 @@ module Cms
             thumbnail.name = name
             thumbnail.path = "#{widget_path}/views"
             thumbnail.icon = icon
-            thumbnail.title_key = "widgets.#{file_name}.title"
-            thumbnail.description_key = "widgets.#{file_name}.description"
-          end
-        end
-
-        def add_locale
-          Api::LocaleGenerator.new(behavior: behavior) do |locale|
-            locale.name = name
-            locale.path = "#{widget_path}/locales/en.#{file_name}.yml"
-            locale.translations = {
-              'en' => {
-                'widgets' => {
-                  file_name => {
-                    'title' => title,
-                    'description' => description,
-                  },
-                },
-              },
-            }
+            thumbnail.title = title
+            thumbnail.description = description
           end
         end
 

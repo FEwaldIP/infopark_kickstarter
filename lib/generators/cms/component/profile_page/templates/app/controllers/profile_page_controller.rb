@@ -8,7 +8,7 @@ class ProfilePageController < CmsController
       # Refresh the current user because of possible changes to its attributes.
       current_user.refresh
 
-      flash.now[:notice] = I18n.t('flash.profile_page.success')
+      flash.now[:notice] = 'Your changes have been saved!'
     end
   end
 end

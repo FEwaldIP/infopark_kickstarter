@@ -62,27 +62,8 @@ module Cms
               thumbnail.name = name
               thumbnail.path = "app/views/#{file_name}"
               thumbnail.icon = icon
-              thumbnail.title_key = "obj_classes.#{file_name}.title"
-              thumbnail.description_key = "obj_classes.#{file_name}.description"
-            end
-          end
-        end
-
-        def add_locale
-          if thumbnail?
-            Api::LocaleGenerator.new(behavior: behavior) do |locale|
-              locale.name = name
-              locale.path = 'config/locales/en.obj_classes.yml'
-              locale.translations = {
-                'en' => {
-                  'obj_classes' => {
-                    file_name => {
-                      'title' => title,
-                      'description' => description,
-                    },
-                  },
-                },
-              }
+              thumbnail.title = title
+              thumbnail.description = description
             end
           end
         end

@@ -35,12 +35,6 @@ describe Cms::Generators::Component::ProfilePageGenerator do
         end
       end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.profile_page.yml'
-        end
-      end
-
       directory 'cms' do
         directory 'migrate' do
           migration 'create_profile_page'
