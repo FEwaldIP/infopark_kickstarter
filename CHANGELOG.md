@@ -1,4 +1,6 @@
 # v4.1.0
+  * Removed `DateAttribute` path for the Infopark Cloud Connector, because the functionality is
+    already included in the latest release.
   * Bugfix: Correct spelling of "login".
   * Removed `cms_attribute` model class methods. This again, was very confusing for most users,
     because it suggested to define arbitrary attributes on the model, without having to run any
