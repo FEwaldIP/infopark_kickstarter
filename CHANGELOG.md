@@ -1,4 +1,5 @@
 # v4.1.0
+  * Bugfix: Correct spelling of "login".
   * Removed `cms_attribute` model class methods. This again, was very confusing for most users,
     because it suggested to define arbitrary attributes on the model, without having to run any
     migrations. Also, after running a migration, the model was often not updated and a different

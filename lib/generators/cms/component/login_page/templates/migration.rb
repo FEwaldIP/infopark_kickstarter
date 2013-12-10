@@ -3,7 +3,7 @@ class LoginPageExample < ::RailsConnector::Migration
     login_page = create_obj(
       _path: '<%= configuration_path %>/login',
       _obj_class: '<%= login_obj_class_name %>',
-      headline: 'Login'
+      headline: 'Log in'
     )
 
     reset_password_page = create_obj(
