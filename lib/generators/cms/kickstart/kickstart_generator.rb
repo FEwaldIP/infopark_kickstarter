@@ -137,15 +137,6 @@ module Cms
           model.thumbnail = false
         end
 
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = 'Container'
-          model.title = 'Container'
-          model.thumbnail = false
-          model.attributes = [
-            title_attribute,
-          ]
-        end
-
         class_name = 'ContentPage'
 
         Api::ObjClassGenerator.new(options, behavior: behavior) do |model|

@@ -11,12 +11,4 @@ class Page < Obj
   def menu_title
     self[:headline] || '[no headline]'
   end
-
-  # Overriden method +toclist+ from +RailsConnector::BasicObj+.
-  #
-  # Filter the toclist to only include objects, that should show up in the
-  # navigation.
-  def toclist
-    super.select { |obj| obj.respond_to?(:show_in_navigation?) && obj.show_in_navigation? }
-  end
 end
