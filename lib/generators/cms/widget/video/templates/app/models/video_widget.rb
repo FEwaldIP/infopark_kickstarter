@@ -1,8 +1,8 @@
 class VideoWidget < Widget
   cms_attribute :source, type: :reference
-  cms_attribute :width, type: :integer
-  cms_attribute :height, type: :integer
-  cms_attribute :autoplay, type: :boolean
+  cms_attribute :width, type: :string
+  cms_attribute :height, type: :string
+  cms_attribute :autoplay, type: :enum
   cms_attribute :poster, type: :reference
 
   # Determines the mime type of the video.

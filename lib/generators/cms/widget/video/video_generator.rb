@@ -54,7 +54,7 @@ module Cms
               },
               {
                 name: 'width',
-                type: :integer,
+                type: :string,
                 title: 'Width',
                 default: 660,
               },
@@ -66,8 +66,9 @@ module Cms
               },
               {
                 name: 'autoplay',
-                type: :boolean,
+                type: :enum,
                 title: 'Autoplay this video?',
+                values: ['Yes', 'No'],
                 default: 'No',
               },
             ]

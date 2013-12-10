@@ -70,9 +70,9 @@ describe Cms::Generators::Widget::VideoGenerator do
           file 'video_widget.rb' do
             contains 'class VideoWidget < Widget'
             contains 'cms_attribute :source, type: :reference'
-            contains 'cms_attribute :width, type: :integer'
-            contains 'cms_attribute :height, type: :integer'
-            contains 'cms_attribute :autoplay, type: :boolean'
+            contains 'cms_attribute :width, type: :string'
+            contains 'cms_attribute :height, type: :string'
+            contains 'cms_attribute :autoplay, type: :enum'
             contains 'cms_attribute :poster, type: :reference'
           end
         end

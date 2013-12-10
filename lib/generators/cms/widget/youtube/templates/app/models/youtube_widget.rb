@@ -1,7 +1,7 @@
 class YoutubeWidget < Widget
   cms_attribute :source, type: :linklist, max_size: 1
-  cms_attribute :max_width, type: :integer
-  cms_attribute :max_height, type: :integer
+  cms_attribute :max_width, type: :string
+  cms_attribute :max_height, type: :string
 
   def embed_html
     @embed_html ||= if source_url.present?

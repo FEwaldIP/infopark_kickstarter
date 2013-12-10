@@ -1,7 +1,7 @@
 class VimeoWidget < Widget
   cms_attribute :source, type: :linklist, max_size: 1
-  cms_attribute :width, type: :integer
-  cms_attribute :height, type: :integer
+  cms_attribute :width, type: :string
+  cms_attribute :height, type: :string
 
   def embed_html
     @embed_html ||= if source_url.present?
