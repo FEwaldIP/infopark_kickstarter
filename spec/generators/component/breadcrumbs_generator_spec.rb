@@ -17,7 +17,7 @@ describe Cms::Generators::Component::BreadcrumbsGenerator do
   def prepare_environments
     paths = {
       layout_path: "#{destination_root}/app/views/layouts",
-      concerns_path: "#{destination_root}/app/concerns",
+      models_path: "#{destination_root}/app/models",
     }
 
     paths.each do |_, path|
@@ -25,13 +25,13 @@ describe Cms::Generators::Component::BreadcrumbsGenerator do
     end
 
     File.open("#{paths[:layout_path]}/application.html.haml", 'w') { |f| f.write("      .content\n") }
-    File.open("#{paths[:concerns_path]}/page.rb", 'w') { |f| f.write("module Page\n") }
+    File.open("#{paths[:models_path]}/page.rb", 'w') { |f| f.write("class Page < Obj\n") }
   end
 
   it 'create files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'concerns' do
+        directory 'models' do
           file 'page.rb' do
             contains '  def show_breadcrumbs?'
             contains '  def breadcrumbs'

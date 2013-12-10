@@ -5,7 +5,7 @@ module Cms
         source_root File.expand_path('../templates', __FILE__)
 
         def extend_page_concern
-          file = 'app/concerns/page.rb'
+          file = 'app/models/page.rb'
 
           data = [
             '  # By default pages display a breadcrumb navigation. Either add a',
@@ -25,7 +25,7 @@ module Cms
             "\n",
           ].join("\n")
 
-          insert_point = "module Page\n"
+          insert_point = "class Page < Obj\n"
 
           insert_into_file(file, data, after: insert_point)
 
