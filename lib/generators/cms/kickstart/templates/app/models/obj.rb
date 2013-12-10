@@ -42,6 +42,6 @@ class Obj < ::RailsConnector::BasicObj
   end
 
   def locale
-    (homepage && homepage.locale) || I18n.default_locale
+    (homepage && homepage[:locale]) || I18n.default_locale
   end
 end
