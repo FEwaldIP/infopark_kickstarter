@@ -18,15 +18,15 @@ module Cms
               },
               {
                 name: 'max_width',
-                type: :integer,
+                type: :string,
                 title: 'Width',
-                default: 660,
+                default: '660',
               },
               {
                 name: 'max_height',
                 type: :string,
                 title: 'Height',
-                default: 430,
+                default: '430',
               },
             ]
           end
