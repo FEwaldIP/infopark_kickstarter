@@ -13,10 +13,6 @@ module Cms
 
         source_root File.expand_path('../templates', __FILE__)
 
-        def extend_homepage
-          add_model_attribute('Homepage', search_page_attribute)
-        end
-
         def extend_view
           file = 'app/views/layouts/_main_navigation.html.haml'
           insert_point = "    .navbar-collapse.collapse\n"

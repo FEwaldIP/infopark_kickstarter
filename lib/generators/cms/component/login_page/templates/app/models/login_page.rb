@@ -1,6 +1,5 @@
 class LoginPage < Page
-  cms_attribute :headline, type: :string
-
+  # Overriden method +show_breadcrumbs?+ from +Page+.
   def show_breadcrumbs?
     false
   end

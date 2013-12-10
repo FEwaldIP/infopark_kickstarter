@@ -1,10 +1,8 @@
-require './lib/rails_connector/cms_attributes'
 require './lib/rails_connector/cms_definitions'
 
 # This class represents the base class of all CMS objects and implements behavior that all CMS
 # objects, regardless whether they are pages or resources have in common.
 class Obj < ::RailsConnector::BasicObj
-  include RailsConnector::CmsAttributes
   include RailsConnector::CmsDefinitions
 
   def self.homepage
@@ -44,6 +42,6 @@ class Obj < ::RailsConnector::BasicObj
   end
 
   def locale
-    (homepage && homepage.locale) || I18n.default_locale
+    (homepage && homepage[:locale]) || I18n.default_locale
   end
 end

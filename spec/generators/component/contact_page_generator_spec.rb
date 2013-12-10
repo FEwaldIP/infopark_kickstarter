@@ -24,8 +24,7 @@ describe Cms::Generators::Component::ContactPageGenerator do
       directory 'app' do
         directory 'models' do
           file 'contact_page.rb' do
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :crm_activity_type, type: :string'
+            contains 'class ContactPage < Page'
           end
         end
 

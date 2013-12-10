@@ -1,12 +1,4 @@
 class Homepage < Page
-  cms_attribute :reset_password_page, type: :reference
-  cms_attribute :login_page, type: :reference
-  cms_attribute :search_page, type: :reference
-  cms_attribute :headline, type: :string
-  cms_attribute :main_content, type: :widget
-  cms_attribute :error_not_found_page, type: :reference
-  cms_attribute :locale, type: :string
-
   # TODO edit mapping from hostnames to homepages
   def self.for_hostname(hostname)
     find_by_path('/website/en')
@@ -26,12 +18,7 @@ class Homepage < Page
     parent
   end
 
-  # Overriden method +title+ from +Page+.
-  def title
-    read_attribute('title').presence
-  end
-
-  # Overriden method +show_breadcrumbs+ from +Page+.
+  # Overriden method +show_breadcrumbs?+ from +Page+.
   def show_breadcrumbs?
     false
   end

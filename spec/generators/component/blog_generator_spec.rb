@@ -34,16 +34,11 @@ describe Cms::Generators::Component::BlogGenerator do
       directory 'app' do
         directory 'models' do
           file 'blog.rb' do
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :disqus_shortname, type: :string'
+            contains 'class Blog < Page'
           end
 
           file 'blog_post.rb' do
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :main_content, type: :widget'
-            contains 'cms_attribute :author_id, type: :string'
-            contains 'cms_attribute :author_name, type: :string'
-            contains 'cms_attribute :published_at, type: :date'
+            contains 'class BlogPost < Page'
           end
         end
 

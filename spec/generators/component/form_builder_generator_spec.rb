@@ -18,8 +18,7 @@ describe Cms::Generators::Component::FormBuilderGenerator do
       directory 'app' do
         directory 'models' do
           file 'form_builder.rb' do
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :crm_activity_type, type: :string'
+            contains 'class FormBuilder < Page'
           end
         end
 

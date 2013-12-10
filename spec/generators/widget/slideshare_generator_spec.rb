@@ -41,7 +41,6 @@ describe Cms::Generators::Widget::SlideshareGenerator do
         directory 'models' do
           file 'slideshare_widget.rb' do
             contains 'class SlideshareWidget < Widget'
-            contains 'cms_attribute :source, type: :linklist'
           end
         end
       end

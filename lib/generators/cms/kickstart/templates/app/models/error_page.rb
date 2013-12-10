@@ -1,6 +1,4 @@
 class ErrorPage < Page
-  cms_attribute :headline, type: :string
-
   # Overrides method +show_breadcrumbs?+ from +Page+.
   def show_breadcrumbs?
     false

@@ -42,7 +42,6 @@ describe Cms::Generators::Widget::TextGenerator do
         directory 'models' do
           file 'text_widget.rb' do
             contains 'class TextWidget < Widget'
-            contains 'cms_attribute :content, type: :html'
           end
         end
       end

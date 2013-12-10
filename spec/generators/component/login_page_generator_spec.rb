@@ -38,17 +38,10 @@ describe Cms::Generators::Component::LoginPageGenerator do
         directory 'models' do
           file 'login_page.rb' do
             contains 'class LoginPage < Page'
-            contains 'cms_attribute :headline, type: :string'
           end
 
           file 'reset_password_page.rb' do
             contains 'class ResetPasswordPage < Page'
-            contains 'cms_attribute :headline, type: :string'
-          end
-
-          file 'homepage.rb' do
-            contains 'cms_attribute :login_page, type: :reference'
-            contains 'cms_attribute :reset_password_page, type: :reference'
           end
         end
 

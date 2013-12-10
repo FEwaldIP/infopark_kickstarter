@@ -47,18 +47,6 @@ module Cms
           migration_template('migration.rb', 'cms/migrate/login_page_example.rb')
         end
 
-        def update_homepage_model
-          add_model_attribute('Homepage', {
-            name: login_page_attribute_name,
-            type: :reference,
-          })
-
-          add_model_attribute('Homepage', {
-            name: reset_password_page_attribute_name,
-            type: :reference,
-          })
-        end
-
         def update_footer_cell
           append_file 'app/views/layouts/_footer.html.haml' do
             [

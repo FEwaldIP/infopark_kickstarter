@@ -22,7 +22,7 @@ describe Cms::Generators::Component::ProfilePageGenerator do
       directory 'app' do
         directory 'models' do
           file 'profile_page.rb' do
-            contains 'cms_attribute :headline, type: :string'
+            contains 'class ProfilePage < Page'
           end
         end
 

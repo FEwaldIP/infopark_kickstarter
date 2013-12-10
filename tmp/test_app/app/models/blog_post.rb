@@ -1,10 +1,4 @@
 class BlogPost < Page
-  cms_attribute :headline, type: :string
-  cms_attribute :main_content, type: :widget
-  cms_attribute :author_id, type: :string
-  cms_attribute :author_name, type: :string
-  cms_attribute :published_at, type: :date
-
   # Defines a reference to a blog associated with this page.
   def blog
     parent.blog

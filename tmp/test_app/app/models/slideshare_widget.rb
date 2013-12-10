@@ -1,6 +1,4 @@
 class SlideshareWidget < Widget
-  cms_attribute :source, type: :linklist
-
   def embed_html
     @embed_html ||= if source_url.present?
       data = embedded_information(source_url)

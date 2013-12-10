@@ -34,11 +34,6 @@ describe Cms::Generators::Component::SearchGenerator do
         directory 'models' do
           file 'search_page.rb' do
             contains 'class SearchPage < Page'
-            contains 'cms_attribute :headline, type: :string'
-          end
-
-          file 'homepage.rb' do
-            contains 'cms_attribute :search_page, type: :reference'
           end
         end
 

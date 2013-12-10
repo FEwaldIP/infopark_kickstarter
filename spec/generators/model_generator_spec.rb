@@ -29,8 +29,6 @@ describe Cms::Generators::ModelGenerator do
         directory 'models' do
           file 'news.rb' do
             contains 'class News < Page'
-            contains 'cms_attribute :foo, type: :html'
-            contains 'cms_attribute :bar, type: :enum'
           end
         end
 

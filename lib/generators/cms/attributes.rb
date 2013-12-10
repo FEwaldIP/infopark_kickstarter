@@ -11,14 +11,6 @@ module Cms
             preset_attributes[name] = default
           end
 
-          case type.to_s
-            when 'boolean'
-              definition[:type] = :enum
-              definition[:values] = ['Yes', 'No']
-            when 'integer'
-              definition[:type] = :string
-          end
-
           definition[:title] = definition[:name].humanize
         end
       end

@@ -38,8 +38,6 @@ describe Cms::Generators::Widget::HeadlineGenerator do
         directory 'models' do
           file 'headline_widget.rb' do
             contains 'class HeadlineWidget < Widget'
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :anchor, type: :string'
           end
         end
       end

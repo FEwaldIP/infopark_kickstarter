@@ -41,7 +41,6 @@ describe Cms::Generators::Widget::SliderGenerator do
         directory 'models' do
           file 'slider_widget.rb' do
             contains 'class SliderWidget < Widget'
-            contains 'cms_attribute :images, type: :referencelist'
           end
         end
       end

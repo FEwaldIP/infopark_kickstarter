@@ -22,7 +22,7 @@ describe Cms::Generators::Component::RedirectGenerator do
       directory 'app' do
         directory 'models' do
           file 'redirect.rb' do
-            contains 'cms_attribute :redirect_link, type: :linklist, max_size: 1'
+            contains 'class Redirect < Page'
           end
         end
 

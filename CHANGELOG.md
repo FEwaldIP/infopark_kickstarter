@@ -1,4 +1,9 @@
 # v4.1.0
+  * Removed `cms_attribute` model class methods. This again, was very confusing for most users,
+    because it suggested to define arbitrary attributes on the model, without having to run any
+    migrations. Also, after running a migration, the model was often not updated and a different
+    attribute behavior was noticed. We now use the default Infopark Cloud Connector attribute
+    implementation and do not override all getter methods in the project anymore.
   * Removed the LoginWidget because forms are not yet supported within widgets. This only effects
     the LoginWidget, not the login page or any login functionality.
   * The Infopark Kickstarter no longer provides a `Page` mixin but a `Page` class. Your CMS pages

@@ -1,7 +1,4 @@
 class Blog < Page
-  cms_attribute :headline, type: :string
-  cms_attribute :disqus_shortname, type: :string
-
   # Defines a reference to a blog associated with this page.
   def blog
     self
