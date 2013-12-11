@@ -132,6 +132,8 @@ module Cms
         Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
           model.name = class_name
           model.title = 'Content'
+          model.description = 'Create an empty standard content page.'
+          model.icon = 'special'
           model.page = true
           model.attributes = [
             title_attribute,

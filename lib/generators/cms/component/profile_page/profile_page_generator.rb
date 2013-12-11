@@ -11,6 +11,9 @@ module Cms
           Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
             model.name = obj_class_name
             model.title = 'Profile'
+            model.description = 'The profile page displays a form where logged ' \
+              'in users and editors can edit their profile.'
+            model.icon = 'group'
             model.page = true
             model.attributes = [
               {

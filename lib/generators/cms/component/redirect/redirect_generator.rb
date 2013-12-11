@@ -10,6 +10,9 @@ module Cms
           Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
             model.name = class_name
             model.title = 'Redirect'
+            model.description = 'A redirect page is a CMS page that forwards the ' \
+              'visitor to another URL. The URL can be an internal or external link.'
+            model.icon = 'refresh'
             model.page = true
             model.attributes = [
               {

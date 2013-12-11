@@ -12,6 +12,9 @@ module Cms
           Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
             model.name = class_name
             model.title = 'Contact'
+            model.description = 'Create a contact page with a form to send a ' \
+              'contact request to the WebCRM.'
+            model.icon = 'newsletter'
             model.page = true
             model.attributes = [
               {

@@ -33,6 +33,9 @@ module Cms
           Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
             model.name = blog_class_name
             model.title = 'Blog'
+            model.description = 'Create a new blog overview page that displays ' \
+              'the latest blog posts.'
+            model.icon = 'list'
             model.page = true
             model.attributes = [
               {

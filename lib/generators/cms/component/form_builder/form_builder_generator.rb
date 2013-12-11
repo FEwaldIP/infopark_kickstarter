@@ -10,6 +10,9 @@ module Cms
           Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
             model.name = class_name
             model.title = 'Form Builder'
+            model.description = 'The form builder page displays a form that is ' \
+              'defined in the WebCRM using a custom Activity.'
+            model.icon = 'login'
             model.page = true
             model.attributes = [
               {
