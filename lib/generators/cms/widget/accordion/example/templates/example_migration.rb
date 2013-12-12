@@ -16,8 +16,8 @@ class CreateAccordionWidgetExample < ::RailsConnector::Migration
       _obj_class: '<%= obj_class_name %>',
       panels: {
         'list' => [
-          'widget' => panel_widget1_id,
-          'widget' => panel_widget2_id,
+          { widget: panel_widget1_id },
+          { widget: panel_widget2_id },
         ]
       }
     })
