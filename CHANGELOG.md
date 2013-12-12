@@ -1,4 +1,9 @@
 # v4.1.0
+  * Bugfix: Both editors for enum and multienum CMS attributes got improved by only creating a
+    single JavaScript handler that should now work in all cases.
+  * Added an `AccordionWidget` that allows editors to use the Twitter Bootstrap panel markup to
+    create a collapsable group of panels. Just execute `rails generate cms:widget:accordion` to
+    insert it into your application. (Thanks @spiderpug)
   * Removed `DateAttribute` path for the Infopark Cloud Connector, because the functionality is
     already included in the latest release.
   * Bugfix: Correct spelling of "login".
