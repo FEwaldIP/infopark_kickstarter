@@ -20,8 +20,8 @@ module Cms
                 name: 'align',
                 type: :enum,
                 title: 'Align',
-                values: ['Center', 'Left', 'Right'],
-                default: 'Left',
+                values: ['center', 'left', 'right'],
+                default: 'left',
               },
             ]
           end
