@@ -58,7 +58,6 @@ describe Cms::Generators::Widget::AccordionGenerator do
         directory 'models' do
           file 'accordion_widget.rb' do
             contains 'class AccordionWidget < Widget'
-            contains 'def valid_widget_classes_for'
           end
 
           file 'accordion_panel_widget.rb' do
