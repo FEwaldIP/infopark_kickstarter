@@ -77,6 +77,8 @@ module InfoparkKickstarter
           'cms:component:social_sharing',
           'cms:component:social_sharing:example',
           'cms:component:breadcrumbs',
+          'cms:widget:accordion',
+          'cms:widget:accordion:example',
           'cms:widget:video',
           'cms:widget:video:example',
           'cms:widget:youtube',
