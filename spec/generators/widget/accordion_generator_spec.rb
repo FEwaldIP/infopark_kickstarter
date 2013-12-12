@@ -22,8 +22,10 @@ describe Cms::Generators::Widget::AccordionGenerator do
     destination_root.should have_structure {
       directory 'app' do
         directory 'assets' do
-          directory 'stylesheets' do
-            file 'accordion_widget.css.less'
+          directory 'javascripts' do
+            directory 'editing' do
+              file 'accordion_widget.js.coffee'
+            end
           end
         end
 
