@@ -18,6 +18,7 @@ module Cms
         attr_accessor :page
         attr_accessor :widget
         attr_accessor :thumbnail
+        attr_accessor :edit
         attr_accessor :icon
         attr_accessor :migration
 
@@ -49,10 +50,12 @@ module Cms
         end
 
         def create_edit_view
-          Api::EditViewGenerator.new(behavior: behavior) do |model|
-            model.path = "app/views/#{file_name}"
-            model.definitions = attributes
-            model.object_variable = '@obj'
+          if edit?
+            Api::EditViewGenerator.new(behavior: behavior) do |model|
+              model.path = "app/views/#{file_name}"
+              model.definitions = attributes
+              model.object_variable = '@obj'
+            end
           end
         end
 
@@ -80,6 +83,10 @@ module Cms
 
         def thumbnail?
           @thumbnail.nil? ? true : @thumbnail
+        end
+
+        def edit?
+          @edit.nil? ? true : @edit
         end
 
         def icon
