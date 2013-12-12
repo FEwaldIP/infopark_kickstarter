@@ -2,17 +2,15 @@ module Cms
   module Generators
     module Widget
       class AccordionGenerator < ::Rails::Generators::Base
-        include BasePaths
-        include Actions
-
         source_root File.expand_path('../templates', __FILE__)
 
         def create_widget
           Api::WidgetGenerator.new(behavior: behavior) do |widget|
             widget.name = 'AccordionWidget'
-            widget.icon = 'puzzle'
+            widget.icon = 'list'
             widget.edit_view = false
-            widget.description = 'Displays collapsible content panels for presenting information in a limited amount of space.'
+            widget.description = 'Displays collapsible content panels for ' \
+              'presenting information in a limited amount of space.'
             widget.attributes = [
               {
                 name: 'panels',
@@ -22,33 +20,26 @@ module Cms
             ]
           end
 
-          directory('app', force: true)
-          directory('spec')
-        end
-
-        def call_accordion_panel_generator
-          Rails::Generators.invoke('cms:widget:accordion_panel', args, behavior: behavior)
-        end
-
-        def add_widget_classes_callback
-          file = 'app/models/accordion_widget.rb'
-          insert_point = /^end[\n]*$/
-
-          data = []
-          data << ''
-          data << '  def valid_widget_classes_for(field_name)'
-          data << '    %w(AccordionPanelWidget)'
-          data << '  end'
-          data << ''
-
-          data = data.join("\n")
-
-          if File.exist?(file)
-            insert_into_file(file, data, before: insert_point)
+          Api::WidgetGenerator.new(behavior: behavior) do |widget|
+            widget.name = 'AccordionPanelWidget'
+            widget.icon = '1col'
+            widget.description = 'Displays a collapsible content panel inside an accordion widget.'
+            widget.attributes = [
+              {
+                name: 'headline',
+                type: :string,
+                title: 'Headline',
+              },
+              {
+                name: 'content',
+                type: :html,
+                title: 'Content'
+              },
+            ]
           end
-        end
 
-        private
+          directory('app', force: true)
+        end
 
         def notice
           if behavior == :invoke

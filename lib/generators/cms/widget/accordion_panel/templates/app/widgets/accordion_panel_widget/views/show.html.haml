@@ -1,8 +1,0 @@
-.accordion-group
-  .accordion-heading
-    %a.accordion-toggle{href: "#collapse-panel-#{@widget.id}", data: {toggle: 'collapse', parent: "#accordion-#{@obj.id}"}}
-      = cms_tag(:span, @widget, :headline)
-
-  .accordion-body.collapse{id: "collapse-panel-#{@widget.id}"}
-    .accordion-inner
-      = cms_tag(:div, @widget, :content)

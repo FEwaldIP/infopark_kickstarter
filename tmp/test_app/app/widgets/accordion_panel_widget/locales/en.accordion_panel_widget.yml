@@ -1,6 +1,0 @@
----
-en:
-  widgets:
-    accordion_panel_widget:
-      title: Accordion panel widget
-      description: Displays a collapsible content panel inside an accordion widget.

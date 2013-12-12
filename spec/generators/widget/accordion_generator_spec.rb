@@ -8,42 +8,59 @@ describe Cms::Generators::Widget::AccordionGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['--example']
 
   before do
     prepare_destination
+    prepare_environments
     run_generator
+  end
+
+  def prepare_environments
   end
 
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
+        directory 'assets' do
+          directory 'stylesheets' do
+            file 'accordion_widget.css.less'
+          end
+        end
+
         directory 'widgets' do
           directory 'accordion_widget' do
             directory 'views' do
+              file 'show.html.haml'
               file 'thumbnail.html.haml'
               no_file 'edit.html.haml'
-
-              file 'show.html.haml' do
-                contains "class: 'accordion'"
-              end
-            end
-
-            directory 'locales' do
-              file 'en.accordion_widget.yml'
             end
 
             directory 'migrate' do
               migration 'create_accordion_widget'
             end
           end
+
+          directory 'accordion_panel_widget' do
+            directory 'views' do
+              file 'show.html.haml'
+              file 'thumbnail.html.haml'
+              file 'edit.html.haml'
+            end
+
+            directory 'migrate' do
+              migration 'create_accordion_panel_widget'
+            end
+          end
         end
 
         directory 'models' do
           file 'accordion_widget.rb' do
-            contains 'cms_attribute :panels, type: :widget'
-            contains 'include Widget'
+            contains 'class AccordionWidget < Widget'
             contains 'def valid_widget_classes_for'
+          end
+
+          file 'accordion_panel_widget.rb' do
+            contains 'class AccordionPanelWidget < Widget'
           end
         end
       end

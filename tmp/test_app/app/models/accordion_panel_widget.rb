@@ -1,9 +1,2 @@
-class AccordionPanelWidget < Obj
-  cms_attribute :headline, type: :string
-  cms_attribute :content, type: :html
-
-  # Most CMS objects are either a page or a box. In order for them to
-  # have common behavior, uncomment one of the following lines.
-  # include Page
-  include Widget
+class AccordionPanelWidget < Widget
 end
