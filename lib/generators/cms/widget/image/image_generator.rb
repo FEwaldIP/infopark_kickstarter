@@ -16,6 +16,13 @@ module Cms
                 type: :reference,
                 title: 'Source',
               },
+              {
+                name: 'align',
+                type: :enum,
+                title: 'Align',
+                values: ['Center', 'Left', 'Right'],
+                default: 'Left',
+              },
             ]
           end
 
