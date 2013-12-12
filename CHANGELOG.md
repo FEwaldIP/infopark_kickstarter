@@ -1,4 +1,6 @@
 # v4.1.0
+  * You now have the ability to align images in an `ImageWidget` left, center or right.
+    (Thanks @cocodercoder)
   * Bugfix: The string editor now prevents the click event to trigger a normal link that could be
     wrapped around the string.
   * Bugfix: Both editors for enum and multienum CMS attributes got improved by only creating a
