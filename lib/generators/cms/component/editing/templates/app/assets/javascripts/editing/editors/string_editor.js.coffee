@@ -65,6 +65,7 @@ $ ->
 
     $('body').on 'click', '[data-ip-field-type=string]', (event) ->
       event.preventDefault()
+      event.stopPropagation()
 
       cmsField = $(this)
 
