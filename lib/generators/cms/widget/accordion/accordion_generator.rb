@@ -9,8 +9,7 @@ module Cms
             widget.name = 'AccordionWidget'
             widget.icon = 'list'
             widget.edit_view = false
-            widget.description = 'Displays collapsible content panels for ' \
-              'presenting information in a limited amount of space.'
+            widget.description = 'Displays collapsible content panels for.'
             widget.attributes = [
               {
                 name: 'panels',
@@ -31,9 +30,9 @@ module Cms
                 title: 'Headline',
               },
               {
-                name: 'content',
-                type: :html,
-                title: 'Content'
+                name: 'main_content',
+                type: :widget,
+                title: 'Main Content'
               },
             ]
           end
