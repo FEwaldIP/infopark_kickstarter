@@ -71,6 +71,7 @@ module Cms
           model.type = :generic
           model.title = 'Image'
           model.thumbnail = false
+          model.edit = false
           model.migration = false
           model.attributes = [
             title_attribute,
