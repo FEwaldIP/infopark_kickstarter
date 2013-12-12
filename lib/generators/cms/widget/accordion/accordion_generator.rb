@@ -9,6 +9,7 @@ module Cms
             widget.name = 'AccordionWidget'
             widget.icon = 'list'
             widget.edit_view = false
+            widget.title = 'Accordion'
             widget.description = 'Displays collapsible content panels for.'
             widget.attributes = [
               {
@@ -22,6 +23,7 @@ module Cms
           Api::WidgetGenerator.new(behavior: behavior) do |widget|
             widget.name = 'AccordionPanelWidget'
             widget.icon = '1col'
+            widget.title = 'Accordion Panel'
             widget.description = 'Displays a collapsible content panel inside an accordion widget.'
             widget.attributes = [
               {
