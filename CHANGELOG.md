@@ -1,4 +1,7 @@
 # v4.1.0
+  * The mediabrowser no longer displays the file size for images in the thumbnail views, because it
+    was a detail information that is not crucial for deciding which image to select. It moved to the
+    property view of the image, that can be opened up in the inspector.
   * You now have the ability to align images in an `ImageWidget` left, center or right.
     (Thanks @cocodercoder)
   * Bugfix: The string editor now prevents the click event to trigger a normal link that could be
