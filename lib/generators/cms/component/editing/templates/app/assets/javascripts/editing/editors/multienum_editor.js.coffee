@@ -1,11 +1,8 @@
 $ ->
   # Define editor behavior for multienum attributes.
 
-  infopark.on 'editing', () ->
-    cmsEditEnums = $('[data-ip-field-type=multienum]')
+  infopark.on 'editing', ->
+    $(document).on 'focusout', '[data-ip-field-type=multienum]', ->
+      element = $(@)
 
-    for cmsEditEnum in cmsEditEnums
-      $(cmsEditEnum).on 'focusout', ->
-        element = $(@)
-
-        element.infopark('save', element.val())
+      element.infopark('save', element.val())
