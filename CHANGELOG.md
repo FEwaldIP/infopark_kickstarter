@@ -1,4 +1,6 @@
 # v4.1.0
+  * Bugfix: The string editor now prevents the click event to trigger a normal link that could be
+    wrapped around the string.
   * Bugfix: Both editors for enum and multienum CMS attributes got improved by only creating a
     single JavaScript handler that should now work in all cases.
   * Added an `AccordionWidget` that allows editors to use the Twitter Bootstrap panel markup to
