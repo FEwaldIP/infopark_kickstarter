@@ -129,7 +129,7 @@ GEM
     multi_json (1.8.2)
     multipart-post (1.2.0)
     newrelic_rpm (3.7.0.177)
-    nokogiri (1.5.10)
+    nokogiri (1.5.11)
     polyglot (0.3.3)
     projekktor-rails (0.0.5)
     pry (0.9.12.4)
@@ -201,7 +201,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.2)
+    uglifier (2.3.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     utf8-cleaner (0.0.6)
