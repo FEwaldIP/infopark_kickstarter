@@ -1,9 +1,9 @@
-class CreateTeaserWidgetExample < RailsConnector::Migration
+class TeaserWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path("<%= example_cms_path %>")
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
-    add_widget(homepage, "<%= example_widget_attribute %>", {
-      _obj_class: "<%= obj_class_name %>",
+    add_widget(homepage, '<%= example_widget_attribute %>', {
+      _obj_class: 'TeaserWidget',
       headline: 'Welcome to Infopark',
       content: '<p>You successfully started your
         project. Basic components such as a top navigation, a search panel, this text widget, and a
