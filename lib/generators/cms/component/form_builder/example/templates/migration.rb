@@ -1,7 +1,7 @@
-class CreateFormBuilderExample < ::RailsConnector::Migration
+class FormBuilderExample < ::RailsConnector::Migration
   def up
     create_obj(
-      _path: '<%= homepage_path %>/feedback',
+      _path: '/website/en/feedback',
       _obj_class: 'FormBuilder',
       headline: 'Feedback',
       crm_activity_type: activity_type
@@ -9,6 +9,8 @@ class CreateFormBuilderExample < ::RailsConnector::Migration
 
     setup_crm
   end
+
+  private
 
   def activity_type
     'feedback-form'
@@ -25,7 +27,7 @@ class CreateFormBuilderExample < ::RailsConnector::Migration
     Infopark::Crm::CustomType.create(
       kind: 'Activity',
       name: activity_type,
-      states: ['open', 'closed'],
+      states: %w(open closed),
       icon_css_class: 'omc_activity_23',
       custom_attributes: custom_attributes
     )

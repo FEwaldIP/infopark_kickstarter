@@ -20,13 +20,7 @@ module Cms
         end
 
         def add_dashboard_route
-          route('mount InfoparkDashboard::Engine => "/cms/dashboard" if Rails.env.development?')
-        end
-
-        def notice
-          if behavior == :invoke
-            log(:server, 'Please make sure to restart your server, because of gem changes.')
-          end
+          route("mount InfoparkDashboard::Engine => '/cms/dashboard' if Rails.env.development?")
         end
       end
     end

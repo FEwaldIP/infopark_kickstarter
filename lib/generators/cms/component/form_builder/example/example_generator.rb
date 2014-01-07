@@ -4,12 +4,11 @@ module Cms
       module FormBuilder
         class ExampleGenerator < ::Rails::Generators::Base
           include Migration
-          include BasePaths
 
           source_root File.expand_path('../templates', __FILE__)
 
           def create_example
-            migration_template('migration.rb', 'cms/migrate/create_form_builder_example.rb')
+            migration_template('migration.rb', 'cms/migrate/form_builder_example.rb')
           end
 
           def notice
