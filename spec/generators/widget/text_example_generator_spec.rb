@@ -11,23 +11,14 @@ describe Cms::Generators::Widget::Text::ExampleGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
     destination_root.should have_structure {
-      directory 'app' do
-        directory 'widgets' do
-          directory 'text_widget' do
-
-            directory 'migrate' do
-              migration 'create_text_widget_example'
-            end
-          end
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'text_widget_example'
         end
       end
     }

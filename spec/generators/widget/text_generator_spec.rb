@@ -8,15 +8,10 @@ describe Cms::Generators::Widget::TextGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['--example']
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
@@ -26,11 +21,8 @@ describe Cms::Generators::Widget::TextGenerator do
           directory 'text_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'migrate' do
-              migration 'create_text_widget'
             end
           end
         end
@@ -39,6 +31,12 @@ describe Cms::Generators::Widget::TextGenerator do
           file 'text_widget.rb' do
             contains 'class TextWidget < Widget'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'text_widget'
         end
       end
     }
