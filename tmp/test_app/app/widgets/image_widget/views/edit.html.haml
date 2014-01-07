@@ -1,4 +1,9 @@
-= cms_edit_label(@widget, :source)
-= cms_edit_reference(@widget, :source)
-= cms_edit_label(@widget, :align)
-= cms_edit_enum(@widget, :align)
+%h4
+  Headline
+
+= cms_edit_string(@obj, :headline)
+
+%h4
+  File size
+
+= number_to_human_size(@obj.body_length)
