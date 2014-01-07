@@ -1,4 +1,6 @@
 # v4.1.0
+  * Renamed `rails g cms:model` to `rails g cms:obj`. Details like attributes and thumbnail view can
+    be defined directly in the generated files, instead of on the command line.
   * The column widget generator was split up into separate generators for each number of columns to
     lower the complexity and better fit the common use cases of two and three column widgets.
     Therefore, you don't have to specify the number of columns anymore.
