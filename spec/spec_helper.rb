@@ -28,6 +28,5 @@ RSpec.configure do |config|
     Cms::Generators::Api::ModelGenerator.send(:include, TestDestinationRoot)
     Cms::Generators::Api::ObjClassGenerator.send(:include, TestDestinationRoot)
     Cms::Generators::Api::ThumbnailGenerator.send(:include, TestDestinationRoot)
-    Cms::Generators::Api::WidgetGenerator.send(:include, TestDestinationRoot)
   end
 end

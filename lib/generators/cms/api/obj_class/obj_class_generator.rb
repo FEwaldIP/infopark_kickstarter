@@ -4,7 +4,6 @@ module Cms
       class ObjClassGenerator < ::Rails::Generators::NamedBase
         Rails::Generators.hide_namespace(self.namespace)
 
-        include Attributes
         include Migration
 
         source_root File.expand_path('../templates', __FILE__)
@@ -43,8 +42,6 @@ module Cms
 
         def create_migration
           if migration?
-            transform_attributes!(attributes, preset_attributes)
-
             migration_template('migration.rb', "cms/migrate/create_#{file_name}.rb")
           end
         end

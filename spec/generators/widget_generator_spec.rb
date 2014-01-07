@@ -7,15 +7,7 @@ describe Cms::Generators::WidgetGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../tmp/generators', __FILE__)
-  arguments [
-    'news_widget',
-    '--title=Test News Title',
-    '--icon=text',
-    '--description=Test News Description',
-    '--attributes=foo:html', 'bar:enum',
-    '--mandatory_attributes=foo', 'bar',
-    '--preset_attributes=foo:f', 'bar:b'
-  ]
+  arguments ['news_widget']
 
   before do
     prepare_destination
@@ -35,31 +27,16 @@ describe Cms::Generators::WidgetGenerator do
           directory 'news_widget' do
             directory 'views' do
               file 'show.html.haml'
-              file 'edit.html.haml' do
-                contains 'cms_edit_label(@widget, :foo)'
-                contains 'cms_edit_html(@widget, :foo)'
-                contains 'cms_edit_label(@widget, :bar)'
-                contains 'cms_edit_enum(@widget, :bar)'
-              end
-              file 'thumbnail.html.haml' do
-                contains 'editing-icon-text'
-                contains 'Test News Title'
-                contains 'Test News Description'
-              end
-            end
-
-            directory 'migrate' do
-              migration 'create_news_widget' do
-                contains "name: 'NewsWidget'"
-                contains "title: 'Test News Title'"
-                contains "type: 'publication'"
-                contains '{:name=>"foo", :type=>"html", :title=>"Foo"}'
-                contains '{:name=>"bar", :type=>"enum", :title=>"Bar"}'
-                contains 'mandatory_attributes: ["foo", "bar"]'
-                contains 'preset_attributes: {"foo"=>"f", "bar"=>"b"}'
-              end
+              file 'edit.html.haml'
+              file 'thumbnail.html.haml'
             end
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'news_widget'
         end
       end
     }
