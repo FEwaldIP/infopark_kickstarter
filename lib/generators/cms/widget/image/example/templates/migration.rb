@@ -1,6 +1,6 @@
 require 'open-uri'
 
-class CreateImageWidgetExample < RailsConnector::Migration
+class ImageWidgetExample < RailsConnector::Migration
   def up
     homepage = Obj.find_by_path('<%= example_cms_path %>')
 
