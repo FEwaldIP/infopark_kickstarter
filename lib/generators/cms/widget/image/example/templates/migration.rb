@@ -2,7 +2,7 @@ require 'open-uri'
 
 class CreateImageWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path("<%= example_cms_path %>")
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
     asset_url = 'http://lorempixel.com/1170/400/abstract'
 
@@ -12,8 +12,8 @@ class CreateImageWidgetExample < RailsConnector::Migration
       blob: upload_file(open(asset_url)),
     })
 
-    add_widget(homepage, "<%= example_widget_attribute %>", {
-      _obj_class: "<%= obj_class_name %>",
+    add_widget(homepage, '<%= example_widget_attribute %>', {
+      _obj_class: 'ImageWidget',
       source: asset['id'],
     })
   end
