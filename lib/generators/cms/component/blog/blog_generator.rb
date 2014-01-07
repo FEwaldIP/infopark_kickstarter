@@ -1,5 +1,3 @@
-require_relative 'blog_description'
-
 module Cms
   module Generators
     module Component
@@ -30,62 +28,7 @@ module Cms
         end
 
         def create_migration
-          Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-            model.name = blog_class_name
-            model.title = 'Blog'
-            model.description = 'Create a new blog overview page that displays ' \
-              'the latest blog posts.'
-            model.icon = 'list'
-            model.page = true
-            model.attributes = [
-              {
-                name: 'headline',
-                type: :string,
-                title: 'Headline',
-              },
-              {
-                name: blog_disqus_shortname_attribute_name,
-                type: :string,
-                title: 'Disqus Shortname',
-              },
-            ]
-          end
-
-          Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-            model.name = blog_post_class_name
-            model.title = 'Blog Post'
-            model.thumbnail = false
-            model.page = true
-            model.attributes = [
-              {
-                name: 'headline',
-                type: :string,
-                title: 'Headline',
-              },
-              {
-                name: blog_post_author_id_attribute_name,
-                type: :string,
-                title: 'Author ID',
-              },
-              {
-                name: blog_post_author_name_attribute_name,
-                type: :string,
-                title: 'Author Name',
-              },
-              {
-                name: widget_attribute_name,
-                type: :widget,
-                title: 'Main content',
-              },
-              {
-                name: published_at_attribute_name,
-                type: :date,
-                title: 'Published at',
-              },
-            ]
-          end
-
-          Rails::Generators.invoke('cms:controller', [blog_post_class_name], behavior: behavior)
+          migration_template('migration.rb', 'cms/migrate/blog.rb')
         end
 
         def add_discovery_link
@@ -104,7 +47,7 @@ module Cms
         end
 
         def copy_app_directory
-          directory('app', force: true)
+          directory('app')
         end
 
         def notice
@@ -112,10 +55,6 @@ module Cms
             log(:migration, 'Make sure to run "rake cms:migrate" to apply CMS changes')
           end
         end
-
-        private
-
-        include BlogDescription
       end
     end
   end

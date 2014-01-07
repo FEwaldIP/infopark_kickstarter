@@ -45,6 +45,8 @@ describe Cms::Generators::Component::BlogGenerator do
         directory 'views' do
           directory 'blog' do
             file 'index.html.haml'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
             file 'index.atom.builder'
             file '_comment_count.html.haml'
             file '_discovery.html.haml'
@@ -57,12 +59,14 @@ describe Cms::Generators::Component::BlogGenerator do
 
           directory 'blog_post' do
             file 'index.html.haml'
+            file 'edit.html.haml'
             file '_comments.html.haml'
             file '_gravatar.html.haml'
             file '_main_content.html.haml'
             file '_pagination.html.haml'
             file '_published_at.html.haml'
             file '_published_by.html.haml'
+            no_file 'thumbnail.html.haml'
           end
 
           directory 'layouts' do
@@ -93,6 +97,12 @@ describe Cms::Generators::Component::BlogGenerator do
       file 'Gemfile' do
         contains 'gem "gravatar_image_tag"'
         contains 'gem "momentjs-rails"'
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'blog.rb'
+        end
       end
     }
   end

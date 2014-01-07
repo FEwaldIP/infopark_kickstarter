@@ -1,26 +1,26 @@
-class CreateBlogExample < ::RailsConnector::Migration
+class BlogExample < ::RailsConnector::Migration
   def up
-    blog_path = '<%= cms_path %>/blog'
+    blog_path = '/website/en/blog'
 
     create_obj(
       _path: blog_path,
-      _obj_class: '<%= blog_class_name %>',
+      _obj_class: 'Blog',
       headline: 'Blog',
-      '<%= blog_disqus_shortname_attribute_name %>' => 'your-disqus-shortname'
+      disqus_shortname: 'your-disqus-shortname'
     )
 
     post_path = "#{blog_path}/post-example-1"
 
     post = create_obj(
       _path: post_path,
-      _obj_class: '<%= blog_post_class_name %>',
+      _obj_class: 'BlogPost',
       headline: 'Nulla viverra metus vitae nunc iaculis dignissim',
-      '<%= blog_post_author_id_attribute_name %>' => 'admin@example.com',
-      '<%= blog_post_author_name_attribute_name %>' => 'Administrator',
-      '<%= published_at_attribute_name %>' => (Time.zone.now - 1.days).utc.to_iso
+      author_id: 'admin@example.com',
+      author_name: 'Administrator',
+      published_at: (Time.zone.now - 1.days).utc.to_iso
     )
 
-    add_widget(Obj.find(post['id']), '<%= widget_attribute_name %>',
+    add_widget(Obj.find(post['id']), 'main_content',
       _obj_class: 'TextWidget',
       content: '<p>Quisque eget sem sit amet risus gravida commodo et sed neque. Morbi pellentesque
         urna ut sapien auctor mattis. Donec quis cursus enim. Pellentesque sodales, elit nec
@@ -36,14 +36,14 @@ class CreateBlogExample < ::RailsConnector::Migration
 
     post = create_obj(
       _path: post_path,
-      _obj_class: '<%= blog_post_class_name %>',
+      _obj_class: 'BlogPost',
       headline: 'Excepteur sint occaecat cupidatat',
-      '<%= blog_post_author_id_attribute_name %>' => 'admin@example.com',
-      '<%= blog_post_author_name_attribute_name %>' => 'Administrator',
-      '<%= published_at_attribute_name %>' => (Time.zone.now - 3.days).utc.to_iso
+      author_id: 'admin@example.com',
+      author_name: 'Administrator',
+      published_at: (Time.zone.now - 3.days).utc.to_iso
     )
 
-    add_widget(Obj.find(post['id']), '<%= widget_attribute_name %>',
+    add_widget(Obj.find(post['id']), 'main_content',
       _obj_class: 'TextWidget',
       content: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
