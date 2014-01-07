@@ -1,10 +1,14 @@
-class CreateSlideshareWidgetExample < RailsConnector::Migration
+class SlideshareWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path("<%= example_cms_path %>")
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
-    add_widget(homepage, "<%= example_widget_attribute %>", {
-      _obj_class: "<%= obj_class_name %>",
-      source: [{ url: 'http://de.slideshare.net/AmazonWebServices/infopark-ag-aws-customer-presentation?from_search=5' }]
+    add_widget(homepage, '<%= example_widget_attribute %>', {
+      _obj_class: 'SlideshareWidget',
+      source: [
+        {
+          url: 'http://de.slideshare.net/AmazonWebServices/infopark-ag-aws-customer-presentation?from_search=5'
+        }
+      ]
     })
   end
 
