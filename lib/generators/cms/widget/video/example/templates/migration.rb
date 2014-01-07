@@ -1,6 +1,6 @@
-class CreateVideoWidgetExample < RailsConnector::Migration
+class VideoWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path("<%= example_cms_path %>")
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
     poster_url = 'https://ip-saas-infoparkdev-cms.s3.amazonaws.com/public/284444b2216d2bec/7e0b65a4d87d224d622a41327f07a9bd/getting-started-poster.png'
     video_url = 'https://ip-saas-infoparkdev-cms.s3.amazonaws.com/public/506c948822d39176/7d452f7d1bd716d10bcb609cbe7e3c51/getting-started.mp4'
@@ -17,8 +17,8 @@ class CreateVideoWidgetExample < RailsConnector::Migration
       blob: upload_file(open(video_url)),
     })
 
-    add_widget(homepage, "<%= example_widget_attribute %>", {
-      _obj_class: "<%= obj_class_name %>",
+    add_widget(homepage, '<%= example_widget_attribute %>', {
+      _obj_class: 'VideoWidget',
       source: video['id'],
       poster: poster['id'],
     })
