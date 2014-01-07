@@ -1,9 +1,9 @@
-class CreatePersonWidgetExample < RailsConnector::Migration
+class PersonWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path("<%= example_cms_path %>")
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
-    add_widget(homepage, "<%= example_widget_attribute %>", {
-      _obj_class: "<%= obj_class_name %>",
+    add_widget(homepage, '<%= example_widget_attribute %>', {
+      _obj_class: 'PersonWidget',
       person: 'administrator'
     })
   end
