@@ -1,4 +1,4 @@
-class Column2WidgetExample < RailsConnector::Migration
+class Column3WidgetExample < RailsConnector::Migration
   def up
     homepage = Obj.find_by_path('<%= example_cms_path %>')
 
