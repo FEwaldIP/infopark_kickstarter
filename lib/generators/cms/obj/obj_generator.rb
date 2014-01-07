@@ -6,15 +6,16 @@ module Cms
       source_root File.expand_path('../templates', __FILE__)
 
       def create_model
-        template('model.rb', "app/models/#{class_name}.rb")
+        template('model.rb', File.join('app/models', "#{class_name}.rb"))
       end
 
       def create_views
-        template('thumbnail.html.haml', "app/views/#{file_name}/thumbnail.html.haml")
+        template('edit.html.haml', File.join('app/views', file_name, 'edit.html.haml'))
+        template('thumbnail.html.haml', File.join('app/views', file_name, 'thumbnail.html.haml'))
       end
 
       def create_migration
-        migration_template('migration.rb', "cms/migrate/#{file_name}.rb")
+        migration_template('migration.rb', File.join('cms/migrate', "#{file_name}.rb"))
       end
 
       def notice

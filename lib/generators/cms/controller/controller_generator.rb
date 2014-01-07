@@ -8,7 +8,7 @@ module Cms
       end
 
       def copy_view_file
-        template('index.html.haml', File.join('app/views/', file_name, 'index.html.haml'))
+        template('index.html.haml', File.join('app/views', file_name, 'index.html.haml'))
       end
     end
   end

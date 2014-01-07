@@ -25,6 +25,7 @@ describe Cms::Generators::ObjGenerator do
 
         directory 'views' do
           directory 'news' do
+            file 'edit.html.haml'
             file 'thumbnail.html.haml'
           end
         end
