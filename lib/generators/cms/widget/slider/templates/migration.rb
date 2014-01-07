@@ -1,0 +1,16 @@
+class SliderWidget < ::RailsConnector::Migration
+  def up
+    create_obj_class(
+      name: 'SliderWidget',
+      type: 'publication',
+      title: 'Slider',
+      attributes: [
+        {
+          name: 'images',
+          type: :referencelist,
+          title: 'Images',
+        },
+      ]
+    )
+  end
+end
