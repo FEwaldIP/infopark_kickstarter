@@ -1,21 +1,23 @@
 class CreateContactPageExample < ::RailsConnector::Migration
-  def path
-    '<%= cms_path %>/contact'
-  end
-
   def up
     create_obj(
-      _path: path,
-      _obj_class: '<%= class_name %>',
+      _path: '/website/en/contact',
+      _obj_class: 'ContactPage',
       headline: 'Contact',
-      '<%= crm_activity_type_attribute_name %>' => '<%= activity_type %>'
+      crm_activity_type: activity_type
     )
 
     setup_crm
   end
 
+  private
+
+  def activity_type
+    'contact-form'
+  end
+
   def setup_crm
-    Infopark::Crm::CustomType.find('<%= activity_type %>')
+    Infopark::Crm::CustomType.find(activity_type)
   rescue ActiveResource::ResourceNotFound
     custom_attributes = [
       { name: 'email', title: 'Email Adress', type: 'string' },
@@ -24,8 +26,8 @@ class CreateContactPageExample < ::RailsConnector::Migration
 
     Infopark::Crm::CustomType.create(
       kind: 'Activity',
-      name: '<%= activity_type %>',
-      states: ['open', 'closed'],
+      name: activity_type,
+      states: %w(open closed),
       icon_css_class: 'omc_activity_23',
       custom_attributes: custom_attributes
     )

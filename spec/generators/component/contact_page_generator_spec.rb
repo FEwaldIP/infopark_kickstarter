@@ -8,15 +8,9 @@ describe Cms::Generators::Component::ContactPageGenerator do
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
 
-  arguments ['--cms_path=/website/en']
-
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates file' do
@@ -25,6 +19,18 @@ describe Cms::Generators::Component::ContactPageGenerator do
         directory 'models' do
           file 'contact_page.rb' do
             contains 'class ContactPage < Page'
+          end
+        end
+
+        directory 'controllers' do
+          file 'contact_page_controller.rb'
+        end
+
+        directory 'views' do
+          directory 'contact_page' do
+            file 'index.html.haml'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
           end
         end
 
@@ -39,7 +45,7 @@ describe Cms::Generators::Component::ContactPageGenerator do
 
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_contact_page'
+          migration 'contact_page'
         end
       end
     }
