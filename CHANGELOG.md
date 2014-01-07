@@ -1,4 +1,7 @@
 # v4.1.0
+  * The column widget generator was split up into separate generators for each number of columns to
+    lower the complexity and better fit the common use cases of two and three column widgets.
+    Therefore, you don't have to specify the number of columns anymore.
   * The mediabrowser no longer displays the file size for images in the thumbnail views, because it
     was a detail information that is not crucial for deciding which image to select. It moved to the
     property view of the image, that can be opened up in the inspector.
