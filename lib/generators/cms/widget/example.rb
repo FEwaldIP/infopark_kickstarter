@@ -43,15 +43,6 @@ module Cms
           def example_widget_attribute?
             example_widget_attribute
           end
-
-          def example_migration_template(migration_name)
-            path = "#{widget_path_for(migration_name)}/migrate"
-
-            migration_template(
-              'example_migration.rb',
-              "#{path}/create_#{migration_name}_example.rb"
-            )
-          end
         end
       end
     end
