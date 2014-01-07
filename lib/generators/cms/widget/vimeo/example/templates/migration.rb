@@ -1,9 +1,9 @@
-class CreateVimeoWidgetExample < RailsConnector::Migration
+class VimeoWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path("<%= example_cms_path %>")
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
-    add_widget(homepage, "<%= example_widget_attribute %>", {
-      _obj_class: "<%= obj_class_name %>",
+    add_widget(homepage, '<%= example_widget_attribute %>', {
+      _obj_class: 'VimeoWidget',
       source: [{
         url: 'http://vimeo.com/5545659'
       }],

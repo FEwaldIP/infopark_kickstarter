@@ -21,11 +21,8 @@ describe Cms::Generators::Widget::VimeoGenerator do
           directory 'vimeo_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'migrate' do
-              migration 'create_vimeo_widget'
             end
           end
         end
@@ -34,6 +31,12 @@ describe Cms::Generators::Widget::VimeoGenerator do
           file 'vimeo_widget.rb' do
             contains 'class VimeoWidget < Widget'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'vimeo_widget'
         end
       end
     }
