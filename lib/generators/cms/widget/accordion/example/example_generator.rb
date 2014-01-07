@@ -8,7 +8,10 @@ module Cms
           source_root File.expand_path('../templates', __FILE__)
 
           def create_example
-            example_migration_template(obj_class_name.underscore)
+            migration_template(
+              'example_migration.rb',
+              'cms/migrate/accordion_widget_example.rb'
+            )
           end
 
           notice!
