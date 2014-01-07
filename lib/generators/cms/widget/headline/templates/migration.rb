@@ -8,12 +8,10 @@ class HeadlineWidget < ::RailsConnector::Migration
         {
           name: 'headline',
           type: :string,
-          title: 'Headline',
         },
         {
           name: 'anchor',
           type: :string,
-          title: 'Anchor',
         },
       ]
     )

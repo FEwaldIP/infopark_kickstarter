@@ -8,12 +8,10 @@ class ImageWidget < ::RailsConnector::Migration
         {
           name: 'source',
           type: :reference,
-          title: 'Source',
         },
         {
           name: 'align',
           type: :enum,
-          title: 'Align',
           values: %w(left center right),
         },
       ],

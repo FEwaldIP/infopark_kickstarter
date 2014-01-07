@@ -8,27 +8,22 @@ class VideoWidget < ::RailsConnector::Migration
         {
           name: 'source',
           type: :reference,
-          title: 'Source',
         },
         {
           name: 'poster',
           type: :reference,
-          title: 'Poster',
         },
         {
           name: 'width',
           type: :string,
-          title: 'Width',
         },
         {
           name: 'height',
           type: :string,
-          title: 'Height',
         },
         {
           name: 'autoplay',
           type: :enum,
-          title: 'Autoplay',
           values: %w(Yes No),
         },
       ],

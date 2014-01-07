@@ -8,17 +8,14 @@ class TeaserWidget < ::RailsConnector::Migration
         {
           name: 'headline',
           type: :string,
-          title: 'Headline',
         },
         {
           name: 'content',
           type: :html,
-          title: 'Content',
         },
         {
           name: 'link_to',
           type: :linklist,
-          title: 'Link to',
           max_size: 1,
         },
       ]

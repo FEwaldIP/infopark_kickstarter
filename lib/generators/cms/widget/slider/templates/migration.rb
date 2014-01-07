@@ -8,7 +8,6 @@ class SliderWidget < ::RailsConnector::Migration
         {
           name: 'images',
           type: :referencelist,
-          title: 'Images',
         },
       ]
     )

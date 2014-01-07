@@ -8,7 +8,6 @@ class SlideshareWidget < ::RailsConnector::Migration
         {
           name: 'source',
           type: :linklist,
-          title: 'Source',
           max_size: 1,
         },
       ]

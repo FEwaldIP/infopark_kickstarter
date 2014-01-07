@@ -8,7 +8,6 @@ class TextWidget < ::RailsConnector::Migration
         {
           name: 'content',
           type: :html,
-          title: 'Content',
         },
       ]
     )

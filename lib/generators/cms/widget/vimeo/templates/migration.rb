@@ -8,18 +8,15 @@ class VimeoWidget < ::RailsConnector::Migration
         {
           name: 'source',
           type: :linklist,
-          title: 'Source',
           max_size: 1,
         },
         {
           name: 'width',
           type: :string,
-          title: 'Width',
         },
         {
           name: 'height',
           type: :string,
-          title: 'Height',
         },
       ],
       preset_attributes: {

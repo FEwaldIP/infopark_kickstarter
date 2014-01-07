@@ -8,18 +8,15 @@ class YoutubeWidget < ::RailsConnector::Migration
         {
           name: 'source',
           type: :linklist,
-          title: 'Source',
           max_size: 1,
         },
         {
           name: 'max_width',
           type: :string,
-          title: 'Max width',
         },
         {
           name: 'max_height',
           type: :string,
-          title: 'Max height',
         },
       ],
       preset_attributes: {

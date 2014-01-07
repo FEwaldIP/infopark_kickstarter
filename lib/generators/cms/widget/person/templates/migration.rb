@@ -8,7 +8,6 @@ class PersonWidget < ::RailsConnector::Migration
         {
           name: 'person',
           type: :string,
-          title: 'Person',
         },
       ]
     )

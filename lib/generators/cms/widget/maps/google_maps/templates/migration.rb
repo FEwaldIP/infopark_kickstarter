@@ -8,7 +8,6 @@ class GoogleMapsWidget < ::RailsConnector::Migration
         {
           name: 'address',
           type: :string,
-          title: 'Address',
         },
       ]
     )
