@@ -21,12 +21,4 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.mock_with :rspec
   config.order = 'random'
-
-  config.before do
-    Cms::Generators::ControllerGenerator.send(:include, TestDestinationRoot)
-    Cms::Generators::Api::EditViewGenerator.send(:include, TestDestinationRoot)
-    Cms::Generators::Api::ModelGenerator.send(:include, TestDestinationRoot)
-    Cms::Generators::Api::ObjClassGenerator.send(:include, TestDestinationRoot)
-    Cms::Generators::Api::ThumbnailGenerator.send(:include, TestDestinationRoot)
-  end
 end

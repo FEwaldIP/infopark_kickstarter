@@ -3,7 +3,6 @@ module Cms
     module Widget
       module Example
         class Base < ::Rails::Generators::Base
-          include BasePaths
           include Migration
 
           class_option :cms_path,
@@ -29,7 +28,7 @@ module Cms
           end
 
           def example_cms_path
-            options[:cms_path] || homepage_path
+            options[:cms_path] || '/website/en'
           end
 
           def example_cms_path?
