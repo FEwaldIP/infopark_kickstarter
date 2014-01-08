@@ -1,7 +1,7 @@
 class SearchExample < ::RailsConnector::Migration
   def up
     search_page = create_obj(
-      _path: '/website/en/search',
+      _path: '/website/en/_configuration/search',
       _obj_class: 'SearchPage',
       headline: 'Search'
     )
