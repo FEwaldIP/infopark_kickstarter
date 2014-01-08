@@ -24,7 +24,6 @@ class SitemapController < ActionController::Base
     %w(
       Image
       Video
-      Container
       Website
       Root
       ErrorPage

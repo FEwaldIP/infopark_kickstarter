@@ -36,7 +36,7 @@ describe Cms::Generators::Component::DeveloperToolsGenerator do
 
       directory 'config' do
         file 'routes.rb' do
-          contains 'mount InfoparkDashboard::Engine => "/cms/dashboard"'
+          contains "mount InfoparkDashboard::Engine => '/cms/dashboard'"
         end
       end
     }

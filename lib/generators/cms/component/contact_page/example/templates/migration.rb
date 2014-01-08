@@ -1,4 +1,4 @@
-class CreateContactPageExample < ::RailsConnector::Migration
+class ContactPageExample < ::RailsConnector::Migration
   def up
     create_obj(
       _path: '/website/en/contact',
