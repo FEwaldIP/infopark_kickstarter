@@ -171,6 +171,7 @@ module Cms
         Rails::Generators.invoke('cms:component:editing', ['--editor=redactor'], behavior: behavior)
         Rails::Generators.invoke('cms:component:developer_tools', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:search', [], behavior: behavior)
+        Rails::Generators.invoke('cms:component:search:example', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:login_page', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:login_page:example', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:sitemap', [], behavior: behavior)
