@@ -1,4 +1,8 @@
 # v4.1.0
+  * The Kickstarter is now much easier to extend and all generators follow a very simple approach to
+    allow other developers to more easily create pull requests and add new features. This change
+    also allows us to freely define edit and thumbnail views specific for each object class and
+    widget, which will lead to a more user friendly and better looking experience.
   * Renamed `rails g cms:model` to `rails g cms:obj`. Details like attributes and thumbnail view can
     be defined directly in the generated files, instead of on the command line.
   * The column widget generator was split up into separate generators for each number of columns to
