@@ -1,18 +1,3 @@
 - if EditModeDetection.editing_allowed?(request.env)
-  .editing-menu-bar
-    .menu-bar-panel-workspaces.bar-element
-      %i.editing-icon.editing-icon-workspaces
-
-      %span
-        Working copy:
-
-        = RailsConnector::Workspace.current.title || 'Published content'
-
-    %a#edit-toggle.bar-element
-      %i.editing-icon.editing-icon-edit
-
-    .menu-bar-panel-user.bar-element
-      %i.editing-icon.editing-icon-group
-
-      %span
-        = current_user.full_name
+  %a#edit-toggle{title: 'Activates in-place editing.'}
+    %i.editing-icon.editing-icon-edit

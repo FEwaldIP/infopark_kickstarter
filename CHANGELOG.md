@@ -1,4 +1,6 @@
 # v4.1.0
+  * The Kickstarter no longer generates an additional menubar that was to easily confused with the
+    RailsConnector editing bar. Instead, a fixed edit icon is displayed in the upper right corner.
   * The Kickstarter is now much easier to extend and all generators follow a very simple approach to
     allow other developers to more easily create pull requests and add new features. This change
     also allows us to freely define edit and thumbnail views specific for each object class and
