@@ -1,4 +1,4 @@
-class CreateAccordionWidgetExample < ::RailsConnector::Migration
+class AccordionWidgetExample < ::RailsConnector::Migration
   def up
     homepage = Obj.find_by_path('<%= example_cms_path %>')
 

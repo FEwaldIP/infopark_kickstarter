@@ -3,21 +3,13 @@ module Cms
     module Widget
       module Person
         class ExampleGenerator < Cms::Generators::Widget::Example::Base
-          include Migration
-
-          source_root File.expand_path('../../templates', __FILE__)
+          source_root File.expand_path('../templates', __FILE__)
 
           def create_example
-            example_migration_template(obj_class_name.underscore)
+            migration_template('migration.rb', 'cms/migrate/person_widget_example.rb')
           end
 
           notice!
-
-          private
-
-          def obj_class_name
-            'PersonWidget'
-          end
         end
       end
     end

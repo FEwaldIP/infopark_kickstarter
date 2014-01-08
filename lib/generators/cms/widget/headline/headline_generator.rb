@@ -2,41 +2,20 @@ module Cms
   module Generators
     module Widget
       class HeadlineGenerator < ::Rails::Generators::Base
+        include Migration
+
         source_root File.expand_path('../templates', __FILE__)
 
         def create_widget
-          Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
-            widget.name = obj_class_name
-            widget.icon = 'headline'
-            widget.title = 'Headline'
-            widget.description = 'The headline widget displays a page heading and allows to set an anchor.'
-            widget.attributes = [
-              {
-                name: 'headline',
-                type: :string,
-                title: 'Headline',
-              },
-              {
-                name: 'anchor',
-                type: :string,
-                title: 'Anchor',
-              },
-            ]
-          end
+          migration_template('migration.rb', 'cms/migrate/headline_widget.rb')
 
-          directory('app', force: true)
+          directory('app')
         end
 
         def notice
           if behavior == :invoke
             log(:migration, 'Make sure to run "rake cms:migrate" to apply CMS changes')
           end
-        end
-
-        private
-
-        def obj_class_name
-          'HeadlineWidget'
         end
       end
     end

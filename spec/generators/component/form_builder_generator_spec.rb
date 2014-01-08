@@ -22,9 +22,15 @@ describe Cms::Generators::Component::FormBuilderGenerator do
           end
         end
 
+        directory 'controllers' do
+          file 'form_builder_controller.rb'
+        end
+
         directory 'views' do
           directory 'form_builder' do
             file 'index.html.haml'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
 
             directory 'input' do
               file '_string.html.haml'
@@ -46,7 +52,7 @@ describe Cms::Generators::Component::FormBuilderGenerator do
 
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_form_builder'
+          migration 'form_builder'
         end
       end
     }

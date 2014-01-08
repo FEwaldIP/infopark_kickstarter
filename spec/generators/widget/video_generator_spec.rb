@@ -52,11 +52,8 @@ describe Cms::Generators::Widget::VideoGenerator do
           directory 'video_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'migrate' do
-              migration 'create_video_widget'
             end
           end
         end
@@ -70,6 +67,12 @@ describe Cms::Generators::Widget::VideoGenerator do
 
       file 'Gemfile' do
         contains 'gem "projekktor-rails"'
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'video_widget'
+        end
       end
     }
   end

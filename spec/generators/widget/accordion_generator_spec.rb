@@ -36,10 +36,6 @@ describe Cms::Generators::Widget::AccordionGenerator do
               file 'thumbnail.html.haml'
               no_file 'edit.html.haml'
             end
-
-            directory 'migrate' do
-              migration 'create_accordion_widget'
-            end
           end
 
           directory 'accordion_panel_widget' do
@@ -47,10 +43,6 @@ describe Cms::Generators::Widget::AccordionGenerator do
               file 'show.html.haml'
               file 'thumbnail.html.haml'
               file 'edit.html.haml'
-            end
-
-            directory 'migrate' do
-              migration 'create_accordion_panel_widget'
             end
           end
         end
@@ -63,6 +55,12 @@ describe Cms::Generators::Widget::AccordionGenerator do
           file 'accordion_panel_widget.rb' do
             contains 'class AccordionPanelWidget < Widget'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'accordion_widget'
         end
       end
     }

@@ -10,11 +10,7 @@ describe Cms::Generators::Component::RedirectGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
@@ -26,6 +22,14 @@ describe Cms::Generators::Component::RedirectGenerator do
           end
         end
 
+        directory 'views' do
+          directory 'redirect' do
+            file 'index.html.haml'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
+          end
+        end
+
         directory 'controllers' do
           file 'redirect_controller.rb'
         end
@@ -33,7 +37,7 @@ describe Cms::Generators::Component::RedirectGenerator do
 
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_redirect'
+          migration 'redirect'
         end
       end
     }

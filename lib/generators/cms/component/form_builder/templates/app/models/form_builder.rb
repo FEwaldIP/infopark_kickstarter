@@ -1,0 +1,2 @@
+class FormBuilder < Page
+end

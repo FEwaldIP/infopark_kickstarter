@@ -4,7 +4,6 @@ module Cms
   module Generators
     class KickstartGenerator < ::Rails::Generators::Base
       include Migration
-      include BasePaths
 
       class_option :examples,
         type: :boolean,
@@ -63,103 +62,11 @@ module Cms
         append_file('.gitignore', "config/custom_cloud.yml\n")
       end
 
-      # TODO: remove special migration once the CMS tenant is properly reset after signup. This
-      # should also allow to remove the "migration" variable on Api::ObjClassGenerator.
-      def create_special_case_image
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = 'Image'
-          model.type = :generic
-          model.title = 'Image'
-          model.thumbnail = false
-          model.edit = false
-          model.migration = false
-          model.attributes = [
-            title_attribute,
-          ]
-        end
-
-        migration_template('create_image.rb', 'cms/migrate/create_image')
-      end
-
       def create_structure_migration_file
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = 'Video'
-          model.type = :generic
-          model.title = 'Video'
-          model.thumbnail = false
-          model.attributes = [
-            title_attribute,
-          ]
-        end
+        # TODO: remove special migration once the CMS tenant is properly reset after signup.
+        migration_template('create_image.rb', 'cms/migrate/create_image')
 
-        class_name = 'Homepage'
-
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = class_name
-          model.title = 'Homepage'
-          model.thumbnail = false
-          model.attributes = [
-            title_attribute,
-            main_content_attribute,
-            {
-              name: 'error_not_found_page',
-              type: :reference,
-              title: 'Error Not Found Page',
-            },
-            {
-              name: 'locale',
-              type: :string,
-              title: 'Locale',
-            },
-          ]
-        end
-
-        Rails::Generators.invoke('cms:controller', [class_name], behavior: behavior)
-
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = 'Root'
-          model.title = 'Root'
-          model.thumbnail = false
-        end
-
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = 'Website'
-          model.title = 'Website'
-          model.thumbnail = false
-        end
-
-        class_name = 'ContentPage'
-
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = class_name
-          model.title = 'Content'
-          model.description = 'Create an empty standard content page.'
-          model.icon = 'special'
-          model.page = true
-          model.attributes = [
-            title_attribute,
-            main_content_attribute,
-            sidebar_content_attribute
-          ]
-        end
-
-        Rails::Generators.invoke('cms:controller', [class_name], behavior: behavior)
-
-        class_name = 'ErrorPage'
-
-        Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-          model.name = class_name
-          model.title = 'Error'
-          model.thumbnail = false
-          model.page = true
-          model.attributes = [
-            title_attribute,
-            content_attribute,
-          ]
-        end
-
-        Rails::Generators.invoke('cms:controller', [class_name], behavior: behavior)
-
+        migration_template('migration.rb', 'cms/migrate/kickstart.rb')
         migration_template('create_structure.rb', 'cms/migrate/create_structure.rb')
       end
 
@@ -171,7 +78,9 @@ module Cms
         Rails::Generators.invoke('cms:component:editing', ['--editor=redactor'], behavior: behavior)
         Rails::Generators.invoke('cms:component:developer_tools', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:search', [], behavior: behavior)
+        Rails::Generators.invoke('cms:component:search:example', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:login_page', [], behavior: behavior)
+        Rails::Generators.invoke('cms:component:login_page:example', [], behavior: behavior)
         Rails::Generators.invoke('cms:component:sitemap', [], behavior: behavior)
 
         unless examples?
@@ -191,38 +100,6 @@ module Cms
 
       def examples?
         options[:examples]
-      end
-
-      def main_content_attribute
-        {
-          name: 'main_content',
-          type: :widget,
-          title: 'Main content',
-        }
-      end
-
-      def sidebar_content_attribute
-        {
-          name: 'sidebar_content',
-          type: :widget,
-          title: 'Sidebar content',
-        }
-      end
-
-      def title_attribute
-        {
-          name: 'headline',
-          type: :string,
-          title: 'Headline',
-        }
-      end
-
-      def content_attribute
-        {
-          name: 'content',
-          type: :html,
-          title: 'Content',
-        }
       end
     end
   end

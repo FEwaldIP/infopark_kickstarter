@@ -11,11 +11,7 @@ describe Cms::Generators::Widget::SliderGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
@@ -25,11 +21,8 @@ describe Cms::Generators::Widget::SliderGenerator do
           directory 'slider_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'migrate' do
-              migration 'create_slider_widget'
             end
           end
         end
@@ -38,6 +31,12 @@ describe Cms::Generators::Widget::SliderGenerator do
           file 'slider_widget.rb' do
             contains 'class SliderWidget < Widget'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'slider_widget'
         end
       end
     }

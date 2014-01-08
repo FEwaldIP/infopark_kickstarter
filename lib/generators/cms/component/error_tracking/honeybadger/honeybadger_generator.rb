@@ -3,8 +3,6 @@ module Cms
     module Component
       module ErrorTracking
         class HoneybadgerGenerator < ::Rails::Generators::Base
-          Rails::Generators.hide_namespace(self.namespace)
-
           source_root File.expand_path('../templates', __FILE__)
 
           class_option :skip_deployment_notification,

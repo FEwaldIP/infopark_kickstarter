@@ -25,7 +25,7 @@ module Cms
           Rails::Generators.invoke('cms:component:contact_page:example', ['/website/en'], behavior: behavior)
 
           Rails::Generators.invoke('cms:component:blog')
-          Rails::Generators.invoke('cms:component:blog:example', ['/website/en'], behavior: behavior)
+          Rails::Generators.invoke('cms:component:blog:example', [], behavior: behavior)
         end
       end
     end

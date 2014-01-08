@@ -7,54 +7,17 @@ module Cms
         source_root File.expand_path('../templates', __FILE__)
 
         def create_migration
-          Api::ObjClassGenerator.new(options, behavior: behavior) do |model|
-            model.name = class_name
-            model.title = 'Form Builder'
-            model.description = 'The form builder page displays a form that is ' \
-              'defined in the WebCRM using a custom Activity.'
-            model.icon = 'login'
-            model.page = true
-            model.attributes = [
-              {
-                name: title_attribute_name,
-                type: :string,
-                title: 'Headline',
-              },
-              {
-                name: crm_activity_type_attribute_name,
-                type: :string,
-                title: 'CRM Activity Type',
-              },
-            ]
-          end
+          migration_template('migration.rb', 'cms/migrate/form_builder.rb')
         end
 
         def copy_app_directory
-          directory('app', force: true)
+          directory('app')
         end
 
         def notice
           if behavior == :invoke
             log(:migration, 'Make sure to run "rake cms:migrate" to apply CMS changes')
           end
-        end
-
-        private
-
-        def class_name
-          'FormBuilder'
-        end
-
-        def crm_activity_type_attribute_name
-          'crm_activity_type'
-        end
-
-        def activity_type
-          'feedback-form'
-        end
-
-        def title_attribute_name
-          'headline'
         end
       end
     end

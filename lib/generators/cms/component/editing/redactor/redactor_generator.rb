@@ -3,9 +3,7 @@ module Cms
     module Component
       module Editing
         class RedactorGenerator < ::Rails::Generators::Base
-          include Cms::Generators::Actions
-
-          Rails::Generators.hide_namespace(self.namespace)
+          include Actions
 
           source_root File.expand_path('../templates', __FILE__)
 

@@ -6,10 +6,11 @@ class CreateImage < ::RailsConnector::Migration
         type: 'generic',
         title: 'Image',
         attributes: [
-          {:name=>"headline", :type=>:string, :title=>"Headline"},
-        ],
-        preset_attributes: {},
-        mandatory_attributes: []
+          {
+            name: 'headline',
+            type: :string,
+          },
+        ]
       )
     end
   end
