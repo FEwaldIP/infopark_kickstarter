@@ -26,6 +26,10 @@ class SlideshareWidget < Widget
     Rails.logger.error("Unknown slideshare url: #{url}")
 
     nil
+  rescue RestClient::ServiceUnavailable
+    Rails.logger.error('Slideshare service is currently not available.')
+
+    nil
   end
 
   def slideshare_url(slide_url)
