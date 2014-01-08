@@ -1,12 +1,4 @@
 module EditingHelper
-  def cms_edit_string(object, attribute_name)
-    cms_tag(:div, object, attribute_name)
-  end
-
-  def cms_edit_html(object, attribute_name)
-    cms_tag(:div, object, attribute_name)
-  end
-
   def cms_edit_enum(object, attribute_name)
     cms_tag(:select, object, attribute_name) do |tag|
       cms_options_for_select(object, attribute_name)
@@ -30,12 +22,6 @@ module EditingHelper
 
     cms_tag(:div, object, attribute_name) do
       tag(:input, type: 'text', value: value_string)
-    end
-  end
-
-  def cms_edit_label(object, attribute_name)
-    content_tag(:h4) do
-      object.cms_attribute_definition(attribute_name)['title']
     end
   end
 
