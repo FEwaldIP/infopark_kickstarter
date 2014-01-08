@@ -8,12 +8,10 @@ class FormBuilder < ::RailsConnector::Migration
         {
           name: 'headline',
           type: :string,
-          title: 'Headline',
         },
         {
           name: 'crm_activity_type',
           type: :string,
-          title: 'CRM Activity Type',
         },
       ]
     )

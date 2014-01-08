@@ -8,7 +8,6 @@ class ProfilePage < ::RailsConnector::Migration
         {
           name: 'headline',
           type: :string,
-          title: 'Headline',
         },
       ]
     )

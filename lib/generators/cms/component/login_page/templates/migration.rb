@@ -8,7 +8,6 @@ class LoginPage < ::RailsConnector::Migration
         {
           name: 'headline',
           type: :string,
-          title: 'Headline',
         },
       ]
     )
@@ -21,7 +20,6 @@ class LoginPage < ::RailsConnector::Migration
         {
           name: 'headline',
           type: :string,
-          title: 'Headline',
         },
       ]
     )
