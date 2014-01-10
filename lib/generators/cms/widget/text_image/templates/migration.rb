@@ -12,7 +12,7 @@ class TextImageWidget < ::RailsConnector::Migration
         {
           name: 'align',
           type: :enum,
-          values: %w(left right top bottom),
+          values: %w(left right),
         },
         {
           name: 'content',
