@@ -1,0 +1,6 @@
+- if @widget.image_top_order?
+  = cms_image_tag(@widget, :source, class: "img-responsive img-#{@widget.align}")
+  = cms_tag(:div, @widget, :content)
+- else
+  = cms_tag(:div, @widget, :content)
+  = cms_image_tag(@widget, :source, class: "img-responsive img-#{@widget.align}")
