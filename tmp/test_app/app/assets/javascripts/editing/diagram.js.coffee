@@ -16,39 +16,31 @@ $ ->
          </a>
        </div>")
 
-  decode = ->
+  parse = ->
+    elements = []
     string = getDataElement().text()
-    model = []
 
-    if !!string
-      for data in string.split("|")
-        nameValue = data.split(',')
+    for data in string.split('|')
+      [name, value] = data.split(',')
 
-        name = nameValue[0]
-        value = nameValue[1]
+      if !!name && !!value
+        elements.push({
+          name: name,
+          value: value
+        })
 
-        if !!name && !!value
-          model.push({
-            name: name,
-            value: value
-          })
+    elements
 
-    model
-
-  endcode = ->
-    string = ''
+  serialize = ->
+    elements = []
 
     getCmsField().find('ul li').each ->
-      if !!string
-        string += "|"
-
       name = $(this).find('[name="name"]').val()
       value = $(this).find('[name="value"]').val()
 
-      if !!name && !!value
-        string += "#{name},#{value}"
+      elements.push("#{name},#{value}")
 
-    string
+    elements.join('|')
 
   # Returns the closest linklist DOM element.
   getCmsField = ->
@@ -57,40 +49,29 @@ $ ->
   getDataElement = ->
     $(getCmsField().find('[data-ip-field-name="data"]'))
 
-  # Adds a new field to the list.
-  addField = (event) ->
-    event.preventDefault()
+  assignHandlers = (element) ->
+    element.on 'click', '.add-value', addEmptyElement
+    element.on 'click', '.delete', removeField
+    element.on 'focusout', 'input', save
 
-    cmsField = $(event.currentTarget).closest('ul')
-    content = $('<li>').html(template())
+  addEmptyElement = ->
+    element = $('<li>').html(template())
+    list = getCmsField().find('ul')
 
-    cmsField.append(content)
-    assignHandlers(content)
+    list.append(element)
+    assignHandlers(element)
 
-    content
+  addElements = (items) ->
+    list = getCmsField().find('ul')
 
-  assignHandlers = (content) ->
-    content.on 'click', '.add-value', addField
-    content.on 'click', '.delete', removeField
-    content.on 'focusout', 'input', save
+    for item in items
+      element = $('<li>').html(template())
+      list.append(element)
 
-  addEmptyField = ->
-    content = $('<li>').html(template())
+      element.find('[name="name"]').val(item['name'])
+      element.find('[name="value"]').val(item['value'])
 
-    getCmsField().find('ul').append(content)
-    assignHandlers(content)
-
-  addFilledFields = (datas) ->
-    cmsField = getCmsField().find('ul')
-
-    for data in datas
-      content = $('<li>').html(template())
-      cmsField.append(content)
-
-      content.find('[name="name"]').attr('value', data['name'])
-      content.find('[name="value"]').attr('value', data['value'])
-
-      assignHandlers(content)
+      assignHandlers(element)
 
   # Removes a field from the list.
   removeField = (event) ->
@@ -103,16 +84,15 @@ $ ->
 
   #
   save = ->
-    getDataElement().infopark('save', endcode())
+    getDataElement().infopark('save', serialize())
 
   # Initialize linklist editor and setup event callbacks.
   infopark.on 'new_content', (root) ->
-    listElements = getCmsField().find('li')
-    datas = decode()
+    items = parse()
 
-    if datas.length == 0
-      addEmptyField()
+    unless items.length == 0
+      addElements(items)
     else
-      addFilledFields(datas)
+      addEmptyElement()
 
 
