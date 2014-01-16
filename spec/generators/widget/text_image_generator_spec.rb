@@ -21,14 +21,6 @@ describe Cms::Generators::Widget::TextImageGenerator do
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'assets' do
-          directory 'stylesheets' do
-            directory 'application' do
-              file 'text_image_widget.css.less'
-            end
-          end
-        end
-
         directory 'widgets' do
           directory 'text_image_widget' do
             directory 'views' do
