@@ -95,6 +95,8 @@ module InfoparkKickstarter
           'cms:widget:column2:example',
           'cms:widget:column3',
           'cms:widget:column3:example',
+          'cms:widget:text_image',
+          'cms:widget:text_image:example',
         ]
         generators.each do |generator|
           sh("rails generate #{generator}")
