@@ -11,11 +11,7 @@ describe Cms::Generators::Widget::TextImageGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
