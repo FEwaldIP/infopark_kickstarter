@@ -16,36 +16,46 @@ $ ->
          </a>
        </div>")
 
-  decodeDatas = (datas) ->
+  decode = ->
+    string = getDataElement().text()
     model = []
 
-    for data in datas.split("|")
-      console.log(data)
-      model.push({
-        name: data.split(',')[0],
-        value: data.split(',')[1]
-      })
+    if !!string
+      for data in string.split("|")
+        nameValue = data.split(',')
+
+        name = nameValue[0]
+        value = nameValue[1]
+
+        if !!name && !!value
+          model.push({
+            name: name,
+            value: value
+          })
 
     model
 
-  endcodeData = () ->
-    model = []
-    $('.editing.diagramm_widget ul li').each ->
-      console.log($(this).find('input[name="name"]'))
-      model.push({
-        name: $(this).find('[name="name"]').val(),
-        value: $(this).find('[name="value"]').val()
-      })
+  endcode = ->
+    string = ''
 
-    string = ""
-    for entry in model
-      string += "#{entry['name']},#{entry['value']}|"
+    getCmsField().find('ul li').each ->
+      if !!string
+        string += "|"
+
+      name = $(this).find('[name="name"]').val()
+      value = $(this).find('[name="value"]').val()
+
+      if !!name && !!value
+        string += "#{name},#{value}"
 
     string
 
   # Returns the closest linklist DOM element.
-  getCmsField = (element) ->
-    element.closest('.editing.diagramm_widget')
+  getCmsField = ->
+    $('.editing.diagramm_widget')
+
+  getDataElement = ->
+    $(getCmsField().find('[data-ip-field-name="data"]'))
 
   # Adds a new field to the list.
   addField = (event) ->
@@ -55,56 +65,54 @@ $ ->
     content = $('<li>').html(template())
 
     cmsField.append(content)
-
-    content.on 'click', '.add-value', addField
-    content.on 'click', '.delete', removeField
+    assignHandlers(content)
 
     content
 
-  # Removes a field from the list.
-  removeField = (event) ->
-    event.preventDefault()
+  assignHandlers = (content) ->
+    content.on 'click', '.add-value', addField
+    content.on 'click', '.delete', removeField
+    content.on 'focusout', 'input', save
 
-    target = $(event.currentTarget).closest('li')
-
-    target.remove()
-
-  addDefault = ->
-    cmsField = getCmsField($('.editing.diagramm_widget'))
+  addEmptyField = ->
     content = $('<li>').html(template())
 
-    cmsField.find('ul').append(content)
+    getCmsField().find('ul').append(content)
+    assignHandlers(content)
 
-  fillFields = (datas) ->
+  addFilledFields = (datas) ->
+    cmsField = getCmsField().find('ul')
+
     for data in datas
-      console.log('fill field')
-      cmsField = $('.editing.diagramm_widget').find('ul')
       content = $('<li>').html(template())
-
       cmsField.append(content)
 
       content.find('[name="name"]').attr('value', data['name'])
       content.find('[name="value"]').attr('value', data['value'])
 
-      content.on 'click', '.add-value', addField
-      content.on 'click', '.delete', removeField
-      content.on 'focusout', 'input', save
+      assignHandlers(content)
 
+  # Removes a field from the list.
+  removeField = (event) ->
+    event.preventDefault()
+
+    content = $(event.currentTarget).closest('li')
+
+    content.remove()
+    save()
+
+  #
   save = ->
-    console.log('save' + endcodeData())
-    $('.editing.diagramm_widget [data-ip-field-name="data"]').infopark('save', endcodeData())
+    getDataElement().infopark('save', endcode())
 
   # Initialize linklist editor and setup event callbacks.
   infopark.on 'new_content', (root) ->
-    listElements = $('.editing.diagramm_widget li')
-    datas = decodeDatas($('.editing .diagram_data').val())
+    listElements = getCmsField().find('li')
+    datas = decode()
 
     if datas.length == 0
-      addDefault()
+      addEmptyField()
     else
-      fillFields(datas)
-
-    listElements.on 'click', '.add-value', addField
-    listElements.on 'click', '.delete', removeField
+      addFilledFields(datas)
 
 
