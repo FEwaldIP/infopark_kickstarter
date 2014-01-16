@@ -4,7 +4,7 @@ class TextImageWidgetExample < RailsConnector::Migration
   def up
     homepage = Obj.find_by_path('<%= example_cms_path %>')
 
-    asset_url = 'http://lorempixel.com/500/400/abstract'
+    asset_url = 'http://lorempixel.com/150/120/abstract'
 
     asset = create_obj({
       _obj_class: 'Image',
