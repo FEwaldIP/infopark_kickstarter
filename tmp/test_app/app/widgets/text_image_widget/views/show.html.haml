@@ -1,3 +1,4 @@
-= cms_image_tag(@widget, :source, class: "img-responsive pull-#{@widget.align}")
+.media
+  = cms_image_tag(@widget, :source, class: "img-responsive pull-#{@widget.align} media-object")
 
-= cms_tag(:div, @widget, :content)
+  = cms_tag(:div, @widget, :content, class: 'media-body')
