@@ -112,13 +112,13 @@ module InfoparkKickstarter
 
       def permalinks(workspace)
         RailsConnector::Workspace.find(workspace).as_current do
-          objs = Obj.
-            where(:_permalink, :is_greater_than, ' ').
-            order(:_permalink).
-            to_a
+          objs = Obj
+            .where(:_permalink, :is_greater_than, 'a')
+            .order(:_permalink)
+            .to_a
 
           objs.inject({}) do |permalinks, obj|
-            permalinks[obj[:_permalink]] = obj[:_path]
+            permalinks[obj[:_permalink]] = [obj[:_path], obj[:id]]
 
             permalinks
           end
