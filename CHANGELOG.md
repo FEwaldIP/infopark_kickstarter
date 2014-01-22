@@ -1,4 +1,9 @@
 # v4.1.0
+  * A new `TextImageWidget` was added, that allows editors to let text float left or right around
+    an image. Both, the image and text remain structured content in separate attributes, so that the
+    project developer has full power over the design and the editor can't break it easily.
+  * Bugfix: The permalink task now works again and prints not only the path but also the object id
+    of all found CMS objects with a permalink. Run `bundle exec rake cms:info:permalinks`.
   * The Kickstarter no longer generates an additional menubar that was to easily confused with the
     RailsConnector editing bar. Instead, a fixed edit icon is displayed in the upper right corner.
   * The Kickstarter is now much easier to extend and all generators follow a very simple approach to
