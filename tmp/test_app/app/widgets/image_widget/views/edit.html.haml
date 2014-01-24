@@ -6,4 +6,4 @@
 %h4
   File size
 
-= number_to_human_size(@obj.body_length)
+= number_to_human_size(@widget.source.try(:body_length))
