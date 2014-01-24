@@ -26,14 +26,6 @@ describe Cms::Generators::Widget::Maps::GoogleMapsGenerator do
 
         directory 'widgets' do
           directory 'google_maps_widget' do
-            directory 'locales' do
-              file 'en.google_maps_widget.yml'
-            end
-
-            directory 'migrate' do
-              migration 'create_google_maps_widget'
-            end
-
             directory 'views' do
               file 'show.html.haml'
               file 'thumbnail.html.haml'
@@ -44,8 +36,13 @@ describe Cms::Generators::Widget::Maps::GoogleMapsGenerator do
         directory 'models' do
           file 'google_maps_widget.rb' do
             contains 'class GoogleMapsWidget < Widget'
-            contains 'cms_attribute :address, type: :string'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'google_maps_widget'
         end
       end
     }

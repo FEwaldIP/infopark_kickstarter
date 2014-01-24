@@ -3,8 +3,6 @@ module Cms
     module Component
       module Monitoring
         class NewrelicGenerator < ::Rails::Generators::NamedBase
-          Rails::Generators.hide_namespace(self.namespace)
-
           source_root File.expand_path('../templates', __FILE__)
 
           def include_gemfile

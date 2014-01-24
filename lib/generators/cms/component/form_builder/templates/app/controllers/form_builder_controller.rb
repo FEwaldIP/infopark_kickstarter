@@ -1,9 +1,10 @@
 class FormBuilderController < CmsController
   def index
-    @form = FormPresenter.new(@obj.crm_activity_type, params[:form_presenter])
+    @presenter = FormPresenter.new(@obj.crm_activity_type, params[:form_presenter])
+    @custom_attributes = @presenter.definition.custom_attributes
 
-    if request.post? && @form.submit
-      redirect_to(cms_path(@obj), notice: I18n.t('flash.form_builder.success'))
+    if request.post? && @presenter.submit
+      redirect_to(cms_path(@obj), notice: 'The form was sent successfully.')
     end
   end
 end

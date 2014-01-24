@@ -1,6 +1,4 @@
 class SlideshareWidget < Widget
-  cms_attribute :source, type: :linklist
-
   def embed_html
     @embed_html ||= if source_url.present?
       data = embedded_information(source_url)
@@ -26,6 +24,10 @@ class SlideshareWidget < Widget
     nil
   rescue RestClient::ResourceNotFound
     Rails.logger.error("Unknown slideshare url: #{url}")
+
+    nil
+  rescue RestClient::ServiceUnavailable
+    Rails.logger.error('Slideshare service is currently not available.')
 
     nil
   end

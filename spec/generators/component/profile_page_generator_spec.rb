@@ -10,11 +10,7 @@ describe Cms::Generators::Component::ProfilePageGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
@@ -22,10 +18,15 @@ describe Cms::Generators::Component::ProfilePageGenerator do
       directory 'app' do
         directory 'models' do
           file 'profile_page.rb' do
-            contains 'cms_attribute :sort_key, type: :string'
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :content, type: :html'
+            contains 'class ProfilePage < Page'
+          end
+        end
+
+        directory 'views' do
+          directory 'profile_page' do
+            file 'index.html.haml'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
           end
         end
 
@@ -38,15 +39,9 @@ describe Cms::Generators::Component::ProfilePageGenerator do
         end
       end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.profile_page.yml'
-        end
-      end
-
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_profile_page'
+          migration 'profile_page'
         end
       end
     }

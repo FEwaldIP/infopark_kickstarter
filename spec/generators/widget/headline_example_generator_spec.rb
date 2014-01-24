@@ -15,13 +15,9 @@ describe Cms::Generators::Widget::Headline::ExampleGenerator do
 
   it 'creates files' do
     destination_root.should have_structure {
-      directory 'app' do
-        directory 'widgets' do
-          directory 'headline_widget' do
-            directory 'migrate' do
-              migration 'create_headline_widget_example'
-            end
-          end
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'headline_widget_example'
         end
       end
     }

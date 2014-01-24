@@ -1,3 +1,112 @@
+# v4.1.0
+  * A new `TextImageWidget` was added, that allows editors to let text float left or right around
+    an image. Both, the image and text remain structured content in separate attributes, so that the
+    project developer has full power over the design and the editor can't break it easily.
+  * Bugfix: The permalink task now works again and prints not only the path but also the object id
+    of all found CMS objects with a permalink. Run `bundle exec rake cms:info:permalinks`.
+  * The Kickstarter no longer generates an additional menubar that was to easily confused with the
+    RailsConnector editing bar. Instead, a fixed edit icon is displayed in the upper right corner.
+  * The Kickstarter is now much easier to extend and all generators follow a very simple approach to
+    allow other developers to more easily create pull requests and add new features. This change
+    also allows us to freely define edit and thumbnail views specific for each object class and
+    widget, which will lead to a more user friendly and better looking experience.
+  * Renamed `rails g cms:model` to `rails g cms:obj`. Details like attributes and thumbnail view can
+    be defined directly in the generated files, instead of on the command line.
+  * The column widget generator was split up into separate generators for each number of columns to
+    lower the complexity and better fit the common use cases of two and three column widgets.
+    Therefore, you don't have to specify the number of columns anymore.
+  * The mediabrowser no longer displays the file size for images in the thumbnail views, because it
+    was a detail information that is not crucial for deciding which image to select. It moved to the
+    property view of the image, that can be opened up in the inspector.
+  * You now have the ability to align images in an `ImageWidget` left, center or right.
+    (Thanks @cocodercoder)
+  * Bugfix: The string editor now prevents the click event to trigger a normal link that could be
+    wrapped around the string.
+  * Bugfix: Both editors for enum and multienum CMS attributes got improved by only creating a
+    single JavaScript handler that should now work in all cases.
+  * Added an `AccordionWidget` that allows editors to use the Twitter Bootstrap panel markup to
+    create a collapsable group of panels. Just execute `rails generate cms:widget:accordion` to
+    insert it into your application. (Thanks @spiderpug)
+  * Removed `DateAttribute` path for the Infopark Cloud Connector, because the functionality is
+    already included in the latest release.
+  * Bugfix: Correct spelling of "login".
+  * Removed `cms_attribute` model class methods. This again, was very confusing for most users,
+    because it suggested to define arbitrary attributes on the model, without having to run any
+    migrations. Also, after running a migration, the model was often not updated and a different
+    attribute behavior was noticed. We now use the default Infopark Cloud Connector attribute
+    implementation and do not override all getter methods in the project anymore.
+  * Removed the LoginWidget because forms are not yet supported within widgets. This only effects
+    the LoginWidget, not the login page or any login functionality.
+  * The Infopark Kickstarter no longer provides a `Page` mixin but a `Page` class. Your CMS pages
+    should inherit from that class instead of including the `Page` mixin. This is more consistent to
+    the way you define widgets in your Ruby on Rails `model` directory.
+  * Removed the dependency of the generated content to the `cells` gem. This provides a much more
+    familiar way for Ruby on Rails developers on how to create views. You are still free to use
+    `cells` in your own project. This effects almost all components.
+  * The search now only finds objects for the current homepage not for the entire CMS content
+    anymore. (Thanks @thomasritz)
+  * Bugfix: The language switch example generator could not generate its markup anymore, because of
+    markup and file changes.
+  * Updated the slider widget to use the new Twitter Bootstrap 3 markup.
+  * The "ResourceContainer" class got removed. Object classes for "Image" and "Video" still exist,
+    but the folder "/resources", "/resources/images", "/resources/audio", "/resources/videos" and
+    "/resources/pdfs" are no longer created by default, because they were not used.
+  * Updated the Google Analytics code to the new Universal Analytics snippet. We also further
+    simplified the entire integration by only relying on a single partial and no cell anymore.
+  * Removed the `rails-footnotes` from the developer tools generator, because it added one more
+    network request to every page request in development mode and was not very popular among
+    developers. (Thanks @thomasritz)
+  * Major rework on the login and reset password page together with the login widget. We simplified
+    the controller logic, threw out I18n support and gave all forms a fresh look.
+  * Bugfix: The Kickstarter menu bar did not use the correct CSS box model in Firefox. As part of
+    the fix, we extracted the menu bar styles into their own CSS file to better separate concerns.
+    (Thanks @aviebke)
+  * Bugfix: Twitter Bootstrap 3 changed the default behavior of images to not being responsive
+    anymore. Image widgets now deliver responsive image again. (Thanks @TimoRenz)
+  * Bugfix: The mediabrowser can now be closed with ESC, even if opened a second time.
+  * You can now delete any number of selected resources in the mediabrowser by means of a button in
+    the bottom bar. This removes the trash icon from the inspector view. The change also introduced
+    a different behavior for reference and linklist attributes. Before, it was not possible to
+    select more than one item, this is no longer true, as you can always select as many items as you
+    want, but in these two cases only the first selected item will be used.
+  * Created separate editor JavaScript files for handling date, enum and multienum attributes. Those
+    were in the base editing JavaScript file before.
+  * Extracted the mediabrowser into its own generator. Running
+    `rails g cms:component:editing:mediabrowser` will generate all mediabrowser related files. The
+    main editing generator still generates the mediabrowser. This separation should ease the update
+    process for already existing applications.
+  * Anchors can now be defined for headline widgets on their properties view. Anchors are not set by
+    default. (Thanks @aviebke)
+  * Changed "save" to "select" in the media browser bottom button bar to better indicate the actual
+    action.
+  * Added progress bars for file uploads in the mediabrowser. This better indicates the overall
+    upload progress when multiple files are uploaded.
+  * Major update of the blog component. It now features widget latest blog posts, custom
+    published_at date attribute, no more direct CRM dependency, a create blog post button for
+    editors, pagination on both the blog and blog post pages, explicit link to an ATOM feed and an
+    updated Twitter Bootstrap 3 design.
+  * Extends the body DOM element, that already holds the current object path, with information about
+    the current object id and object class to use them via JavaScript.
+  * Provide a simple javascript user model in editing mode based on the current logged in user.
+  * Simplified the user model by only storing the ID in the session and fetching all other
+    attributes from the user source. Editors are cached in a file system cache for faster access and
+    the profile and login page are updated to reflect these changes.
+  * Bugfix: Twitter Bootstrap 3 changed the name of the red alert CSS class from "error" to
+    "danger".
+  * Bugfix: The public/404 error page is now displayed in case no homepage could be found matching
+    the current request host.
+  * Updated the search result page to give it a more meaningful output for each search result and a
+    nicer overall look and feel.
+  * Bugfix: The slideshare widget generator tried to copy a directory `spec` that no longer exists.
+  * Bugfix: ESC events handled by the html and string editor and the mediabrowser are now propagated
+    correctly and do not close an underlying properties view anymore.
+  * Bugfix: After deleting an selected object in the mediabrowser the spinner now disappears after
+    the operation is finished.
+  * Bugfix: The mediabrowser inspector did not appear when an object was selected, because of a
+    wrong API call.
+  * Bugfix: The main yield statement in `app/views/layouts/application.html.haml` was not indented
+    correctly.
+
 # v4.0.0
   * The Kickstarter now supports the new widgets, which are no longer separate CMS object instances,
     but are embedded into their CMS pages. See the

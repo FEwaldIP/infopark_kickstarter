@@ -16,7 +16,8 @@ describe Cms::Generators::Component::BlogGenerator do
 
   def prepare_environments
     paths = {
-      layout_path: "#{destination_root}/app/views/layouts",
+      layout: "#{destination_root}/app/views/layouts",
+      javascripts: "#{destination_root}/app/assets/javascripts",
     }
 
     paths.each do |_, path|
@@ -24,7 +25,8 @@ describe Cms::Generators::Component::BlogGenerator do
     end
 
     File.open("#{destination_root}/Gemfile", 'w')
-    File.open("#{paths[:layout_path]}/application.html.haml", 'w') { |f| f.write("%link{href: '/favicon.ico', rel: 'shortcut icon'}\n") }
+    File.open("#{paths[:layout]}/application.html.haml", 'w') { |f| f.write("%link{href: '/favicon.ico', rel: 'shortcut icon'}\n") }
+    File.open("#{paths[:javascripts]}/editing.js", 'w') { |file| file.write("\n//= require_self") }
   end
 
   it 'create files' do
@@ -32,52 +34,45 @@ describe Cms::Generators::Component::BlogGenerator do
       directory 'app' do
         directory 'models' do
           file 'blog.rb' do
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
-            contains 'cms_attribute :sort_key, type: :string'
-            contains 'cms_attribute :disqus_shortname, type: :string'
-            contains 'cms_attribute :description, type: :text'
+            contains 'class Blog < Page'
           end
 
           file 'blog_post.rb' do
-            contains 'cms_attribute :headline, type: :string'
-            contains 'cms_attribute :author, type: :string'
+            contains 'class BlogPost < Page'
           end
         end
 
         directory 'views' do
           directory 'blog' do
             file 'index.html.haml'
-            file 'index.rss.builder'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
+            file 'index.atom.builder'
+            file '_comment_count.html.haml'
+            file '_discovery.html.haml'
+            file '_latest_blog_posts.html.haml'
+            file '_pagination.html.haml'
+            file '_post.html.haml'
+            file '_short_post.html.haml'
+            file '_useful_links.html.haml'
           end
 
           directory 'blog_post' do
             file 'index.html.haml'
+            file 'edit.html.haml'
+            file '_comments.html.haml'
+            file '_gravatar.html.haml'
+            file '_main_content.html.haml'
+            file '_pagination.html.haml'
+            file '_published_at.html.haml'
+            file '_published_by.html.haml'
+            no_file 'thumbnail.html.haml'
           end
 
           directory 'layouts' do
             file 'application.html.haml' do
-              contains '= render_cell(:blog, :discovery, @obj)'
+              contains "    = render('blog/discovery', page: @obj)"
             end
-          end
-        end
-
-        directory 'cells' do
-          file 'blog_cell.rb'
-
-          directory 'blog' do
-            file 'posts.html.haml'
-            file 'posts.rss.builder'
-            file 'post.html.haml'
-            file 'post.rss.builder'
-            file 'discovery.html.haml'
-            file 'comment.html.haml'
-            file 'snippet.html.haml'
-            file 'snippet.rss.builder'
-            file 'published_by.html.haml'
-            file 'published_at.html.haml'
-            file 'gravatar.html.haml'
-            file 'post_details.html.haml'
           end
         end
 
@@ -85,16 +80,29 @@ describe Cms::Generators::Component::BlogGenerator do
           file 'blog_controller.rb'
           file 'blog_post_controller.rb'
         end
-      end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.blog.yml'
+        directory 'assets' do
+          directory 'images' do
+            file 'feed-icon.svg'
+          end
+
+          directory 'javascripts' do
+            directory 'editing' do
+              file 'blog.js.coffee'
+            end
+          end
         end
       end
 
       file 'Gemfile' do
         contains 'gem "gravatar_image_tag"'
+        contains 'gem "momentjs-rails"'
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'blog.rb'
+        end
       end
     }
   end

@@ -2,35 +2,20 @@ module Cms
   module Generators
     module Widget
       class PersonGenerator < ::Rails::Generators::Base
+        include Migration
+
         source_root File.expand_path('../templates', __FILE__)
 
         def create_migration
-          Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
-            widget.name = obj_class_name
-            widget.icon = 'person'
-            widget.description = 'Displays a WebCRM person and shows their details.'
-            widget.attributes = [
-              {
-                name: 'person',
-                type: :string,
-                title: 'Person identifier',
-              },
-            ]
-          end
+          migration_template('migration.rb', 'cms/migrate/person_widget.rb')
 
-          directory('app', force: true)
+          directory('app')
         end
 
         def notice
           if behavior == :invoke
             log(:migration, 'Make sure to run "rake cms:migrate" to apply CMS changes.')
           end
-        end
-
-        private
-
-        def obj_class_name
-          'PersonWidget'
         end
       end
     end

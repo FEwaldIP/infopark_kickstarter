@@ -8,7 +8,7 @@ class ContactPageController < CmsController
         @obj.crm_activity_type
       ).submit
 
-      redirect_to(cms_path(@obj), notice: I18n.t('flash.contact_page.success'))
+      redirect_to(cms_path(@obj), notice: 'The contact form was sent successfully.')
     end
   end
 end

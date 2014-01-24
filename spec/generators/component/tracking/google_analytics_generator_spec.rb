@@ -20,26 +20,22 @@ describe Cms::Generators::Component::Tracking::GoogleAnalyticsGenerator do
 
     mkdir_p(layouts_path)
 
-    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("    = javascript_include_tag('editing') if inplace_editing_allowed?") }
+    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write('    = rails_connector_after_content_tags') }
   end
 
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'cells' do
-          file 'google_analytics_cell.rb'
-
-          directory 'google_analytics' do
-            file 'javascript.html.haml'
-            file 'anonymize.js.haml'
-            file 'tracking_id.js.haml'
+        directory 'views' do
+          directory 'layouts' do
+            file '_google_analytics.html.haml'
           end
         end
 
         directory 'views' do
           directory 'layouts' do
             file 'application.html.haml' do
-              contains "    = render_cell(:google_analytics, :javascript, 'UA-xxxxxx-x', true)"
+              contains "    = render('layouts/google_analytics', tracking_id: 'UA-XXXX-Y', anonymize: true)"
             end
           end
         end

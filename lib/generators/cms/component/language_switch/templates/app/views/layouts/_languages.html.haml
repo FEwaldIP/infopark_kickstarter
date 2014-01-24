@@ -1,0 +1,23 @@
+%ul.nav.navbar-nav.navbar-right
+  - if homepages.count > 1
+    %li.dropdown
+      %a.dropdown-toggle{data: { toggle: 'dropdown' }}
+        Language:
+
+        = current.locale
+
+        %b.caret
+
+      %ul.dropdown-menu
+        - homepages.each do |homepage|
+          - next if current == homepage
+
+          = link_to(cms_path(homepage)) do
+            = homepage.locale
+
+  - else
+    %li
+      %a
+        Language:
+
+        = current.locale

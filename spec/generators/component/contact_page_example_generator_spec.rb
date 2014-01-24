@@ -23,7 +23,7 @@ describe Cms::Generators::Component::ContactPage::ExampleGenerator do
     destination_root.should have_structure {
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_contact_page_example'
+          migration 'contact_page_example'
         end
       end
     }

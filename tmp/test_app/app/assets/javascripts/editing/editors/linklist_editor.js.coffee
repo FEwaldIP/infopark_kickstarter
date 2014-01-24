@@ -40,7 +40,6 @@ $ ->
     linkItem = $(event.currentTarget).closest('li')
 
     Mediabrowser.open
-      allowedLength: 1
       selection: []
       onSave: (selection) =>
         onMediabrowserSaveLinkItem(selection, linkItem)

@@ -1,15 +1,4 @@
-class Homepage < Obj
-  cms_attribute :login_page, type: :reference
-  cms_attribute :search_page, type: :reference
-  cms_attribute :headline, type: :string
-  cms_attribute :main_content, type: :widget
-  cms_attribute :show_in_navigation, type: :boolean
-  cms_attribute :sort_key, type: :string
-  cms_attribute :error_not_found_page, type: :reference
-  cms_attribute :locale, type: :string
-
-  include Page
-
+class Homepage < Page
   # TODO edit mapping from hostnames to homepages
   def self.for_hostname(hostname)
     find_by_path('/website/en')
@@ -29,8 +18,8 @@ class Homepage < Obj
     parent
   end
 
-  # Overriden method +title+ from +Page+.
-  def title
-    read_attribute('title').presence
+  # Overriden method +show_breadcrumbs?+ from +Page+.
+  def show_breadcrumbs?
+    false
   end
 end

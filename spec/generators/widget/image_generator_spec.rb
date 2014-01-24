@@ -21,19 +21,20 @@ describe Cms::Generators::Widget::ImageGenerator do
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
+        directory 'assets' do
+          directory 'stylesheets' do
+            directory 'application' do
+              file 'image_widget.css.less'
+            end
+          end
+        end
+
         directory 'widgets' do
           directory 'image_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'locales' do
-              file 'en.image_widget.yml'
-            end
-
-            directory 'migrate' do
-              migration 'create_image_widget'
             end
           end
         end
@@ -41,8 +42,13 @@ describe Cms::Generators::Widget::ImageGenerator do
         directory 'models' do
           file 'image_widget.rb' do
             contains 'class ImageWidget < Widget'
-            contains 'cms_attribute :source, type: :reference'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'image_widget'
         end
       end
     }

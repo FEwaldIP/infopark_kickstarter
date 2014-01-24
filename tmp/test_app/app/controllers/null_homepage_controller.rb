@@ -6,7 +6,7 @@ class NullHomepageController < CmsController
   def index
     render(layout: true, inline: '
       <div style="text-align: center;">
-        <h1 style="font-size: 100px; line-height: 1;">Infopark Platform. Up and Running.</h1>
+        <h1 style="font-size: 100px; line-height: 1;">Infopark. Up and Running.</h1>
         <p style="font-size: 24px; line-height: 1.25;">Usually, here you would see your published
           content, for example your homepage or content page, but right now all your changes are made
           in a working copy. Think of it as a duplicate of your content, where you can edit and test
@@ -20,9 +20,5 @@ class NullHomepageController < CmsController
         </p>
       </div>'
     )
-  end
-
-  def self.use_for_obj_dispatch?
-    true
   end
 end

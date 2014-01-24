@@ -7,22 +7,17 @@ describe Cms::Generators::Component::ProfilePage::ExampleGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['/website/en']
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
     destination_root.should have_structure {
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_profile_page_example'
+          migration 'profile_page_example'
         end
       end
     }

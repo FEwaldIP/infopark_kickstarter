@@ -1,2 +1,0 @@
-class LoginWidget < Widget
-end

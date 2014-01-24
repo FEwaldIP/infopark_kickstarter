@@ -1,25 +1,29 @@
 @import "editing/mixins";
-@import "editing/fixed_menubar";
 
-// Inplace editing styles when editing is active and an editable working copy
-// is selected.
+// Nested widget styles
+//
+// For nested widgets it is immportant that their corresponding edit markers are all visible and
+// accessible for the editor. A nested widget is identified, when the div of the outer structure
+// widget has a CMS widget attribute inside. If that is the case, the structure widget edit marker
+// is placed above the edit marker for the CMS widget attribute and gets a different color.
 
 body.ip_editing_active.ip_editable_workspace {
-  // Widget inplace editing field styles
-
   div[data-ip-private-widget-obj-class] {
+    // Color to highlight the structure widget
     @nestedWidgetColor: #74e000;
 
-    min-height: 30px;
+    // Minimum Height of both widgets, to move the edit markers apart.
+    @nestedWidgetMinHeight: 30px;
+
+    min-height: @nestedWidgetMinHeight;
 
     div[data-ip-field-type=widget] {
       .transition(~"outline-color ease-in-out .8s");
 
       margin-top: 35px;
-      min-height: 30px;
+      min-height: @nestedWidgetMinHeight;
       outline: 2px dotted @nestedWidgetColor;
       outline: 2px dotted fade(@nestedWidgetColor, 20%);
-      padding: 3px;
 
       &:hover {
         .transition(~"outline-color ease-in-out .3s");
@@ -32,12 +36,18 @@ body.ip_editing_active.ip_editable_workspace {
       }
     }
   }
+}
 
-  // Inplace editing field styles
+// Inplace editing CMS attributes styles
+//
+// When CMS attributes are displayed on the page and edit mode is active, the attributes get
+// highlighted and indicate, that they can be edited via inplace editing.
 
+body.ip_editing_active.ip_editable_workspace {
   [data-ip-field-type=html],
   [data-ip-field-type=string],
-  [data-ip-field-type=reference] {
+  [data-ip-field-type=reference],
+  [data-ip-field-type=date] {
     @editableFieldColor: #ffa500;
 
    .transition(~"outline-color ease-in-out .8s");
@@ -54,61 +64,5 @@ body.ip_editing_active.ip_editable_workspace {
       outline: 2px dotted @editableFieldColor;
       text-shadow: none;
     }
-  }
-}
-
-// Preview bar styles
-
-.editing-menu-bar,
-.editing-menu-bar * {
-  box-sizing: border-box;
-}
-
-.editing-menu-bar {
-  .box-shadow(0 0 5px 0 #666);
-  #gradient.vertical-three-colors(#8094bb, #7889ab, 54%, #456f9a);
-
-  border-top: 1px solid #b6c0d3;
-  border-bottom: 1px solid #2c5580;
-  color: #fff;
-  font-size: 14px;
-  position: fixed;
-  text-shadow: 0 1px 1px #333;
-  top: 0;
-  width: 100%;
-  z-index: 1031;
-
-  #edit-toggle {
-    cursor: pointer;
-    color: #fff;
-    float: right;
-
-    &:hover {
-      .box-shadow(0 -3px 3px #3e5b87 inset);
-      #gradient.vertical-three-colors(#8094bb, #60769b, 55%, #365077);
-    }
-  }
-
-  .bar-element {
-    float: left;
-    font-size: 11px;
-    font-weight: bold;
-    height: 100%;
-    padding: 13px 10px 17px;
-    text-shadow: 0 1px 1px #333;
-
-    i + span {
-      padding: 0 0 0 7px;
-    }
-  }
-
-  .menu-bar-panel-user {
-    float: right;
-  }
-}
-
-.ip_editing_active {
-  .editing-menu-bar {
-    display: none;
   }
 }

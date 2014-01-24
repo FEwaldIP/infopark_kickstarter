@@ -6,7 +6,7 @@
     %meta{:'http-equiv' => 'X-UA-Compatible', content: 'IE=Edge,chrome=1'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-    = render_cell(:title, :show, @obj)
+    = render('layouts/title', page: @obj)
 
     = csrf_meta_tags
 
@@ -21,32 +21,35 @@
 
     %link{href: '/favicon.ico', rel: 'shortcut icon'}
 
-    = render_cell(:blog, :discovery, @obj)
+    = render('blog/discovery', page: @obj)
 
   %body{body_attributes(@obj)}
-    = render_cell(:menu_bar, :show)
+    = render('layouts/menubar', current_user: current_user)
 
     .container
-      = render_cell(:main_navigation, :show, @obj)
+      = render('layouts/main_navigation', homepage: @obj.homepage)
 
       .content
         .row
           .col-md-12
-            = render_cell(:breadcrumbs, :show, @obj)
+            = render('layouts/breadcrumbs', page: @obj)
 
         .row
           .col-md-12
-            = render_cell(:flash, :messages, flash)
+            = render('layouts/flash', flash: flash)
 
-          = yield
+            = yield
 
-      = render_cell(:social_sharing, :show, cms_url(@obj))
+      = render('layouts/social_sharing', url: cms_url(@obj))
 
-      = render_cell(:footer, :show, @obj)
+      = render('layouts/footer', page: @obj)
 
     = javascript_include_tag('application')
-    = javascript_include_tag('editing') if inplace_editing_allowed?
 
-    = render_cell(:google_analytics, :javascript, 'UA-xxxxxx-x', true)
+    - if inplace_editing_allowed?
+      = javascript_include_tag('editing')
+      = render('layouts/user_javascript', current_user: current_user)
+
+    = render('layouts/google_analytics', tracking_id: 'UA-XXXX-Y', anonymize: true)
 
     = rails_connector_after_content_tags

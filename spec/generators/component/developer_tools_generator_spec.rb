@@ -27,7 +27,6 @@ describe Cms::Generators::Component::DeveloperToolsGenerator do
     destination_root.should have_structure {
       file 'Gemfile' do
         contains 'gem "pry-rails"'
-        contains 'gem "rails-footnotes"'
         contains 'gem "thin"'
         contains 'gem "infopark_dashboard"'
 
@@ -36,23 +35,8 @@ describe Cms::Generators::Component::DeveloperToolsGenerator do
       end
 
       directory 'config' do
-        directory 'initializers' do
-          file 'rails_footnotes.rb'
-        end
-
         file 'routes.rb' do
-          contains 'mount InfoparkDashboard::Engine => "/cms/dashboard"'
-        end
-      end
-
-      directory 'lib' do
-        directory 'footnotes' do
-          directory 'notes' do
-            file 'help_note.rb'
-            file 'dashboard_note.rb'
-            file 'dev_center_note.rb'
-            file 'obj_class_note.rb'
-          end
+          contains "mount InfoparkDashboard::Engine => '/cms/dashboard'"
         end
       end
     }

@@ -6,7 +6,7 @@
     %meta{:'http-equiv' => 'X-UA-Compatible', content: 'IE=Edge,chrome=1'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-    = render_cell(:title, :show, @obj)
+    = render('layouts/title', page: @obj)
 
     = csrf_meta_tags
 
@@ -22,20 +22,22 @@
     %link{href: '/favicon.ico', rel: 'shortcut icon'}
 
   %body{body_attributes(@obj)}
-
     .container
-      = render_cell(:main_navigation, :show, @obj)
+      = render('layouts/main_navigation', homepage: @obj.homepage)
 
       .content
         .row
           .col-md-12
-            = render_cell(:flash, :messages, flash)
+            = render('layouts/flash', flash: flash)
 
-          = yield
+            = yield
 
-      = render_cell(:footer, :show, @obj)
+      = render('layouts/footer', page: @obj)
 
     = javascript_include_tag('application')
-    = javascript_include_tag('editing') if inplace_editing_allowed?
+
+    - if inplace_editing_allowed?
+      = javascript_include_tag('editing')
+      = render('layouts/user_javascript', current_user: current_user)
 
     = rails_connector_after_content_tags

@@ -7,8 +7,9 @@ en:
 
   mediabrowser:
     button_bar:
-      save: 'Save'
+      select: 'Select'
       close: 'Cancel'
+      delete: 'Delete'
 
     filter:
       results: 'All results'

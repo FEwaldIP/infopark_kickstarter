@@ -1,37 +1,22 @@
 class LoginPageController < CmsController
   def index
-    @presenter = LoginPresenter.new(params[:login_presenter])
-
     if request.post?
-      if @presenter.valid?
-        login(@presenter, @obj)
-      else
-        flash.now[:alert] = t(:'flash.login.failure')
-      end
+      contact = Infopark::Crm::Contact.authenticate(user_params[:login], user_params[:password])
+      self.current_user = User.new(id: contact.id)
+
+      target = params[:return_to] || cms_path(@obj.homepage)
+      redirect_to(target, notice: 'You logged in successfully.')
     elsif request.delete?
-      logout(@obj)
+      discard_user
+      redirect_to(cms_path(@obj.homepage), notice: 'You logged out successfully.')
     end
+  rescue Infopark::Crm::Errors::AuthenticationFailed, ActiveResource::ResourceInvalid
+    flash[:alert] = 'Log in failed. Please try it again.'
   end
 
   private
 
-  def login(presenter, obj)
-    self.current_user = presenter.authenticate
-
-    if current_user.logged_in?
-      target = params[:return_to] || cms_path(obj.homepage)
-
-      redirect_to(target, notice: t(:'flash.login.success'))
-    else
-      flash.now[:alert] = t(:'flash.login.failure')
-    end
-  end
-
-  def logout(obj)
-    discard_user
-
-    target = cms_path(obj.homepage)
-
-    redirect_to(target, notice: t(:'flash.logout.success'))
+  def user_params
+    params[:user]
   end
 end
