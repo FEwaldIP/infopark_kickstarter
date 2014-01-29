@@ -1,4 +1,5 @@
 # v4.1.0
+  * Bugfix: The example video used in the video widget now has the correct mime type.
   * Bugfix: Video widget now checks if a video source is present, before trying to render the view.
   * A new `TextImageWidget` was added, that allows editors to let text float left or right around
     an image. Both, the image and text remain structured content in separate attributes, so that the
