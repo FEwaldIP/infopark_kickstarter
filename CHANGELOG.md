@@ -1,4 +1,6 @@
 # v4.1.0
+  * Bugfix: The Infopark status rake task `rake infopark:status` now opens the official Infopark
+    status page in a webbrowser instead of displaying the status on the command line.
   * Bugfix: The example video used in the video widget now has the correct mime type.
   * Bugfix: Video widget now checks if a video source is present, before trying to render the view.
   * A new `TextImageWidget` was added, that allows editors to let text float left or right around
