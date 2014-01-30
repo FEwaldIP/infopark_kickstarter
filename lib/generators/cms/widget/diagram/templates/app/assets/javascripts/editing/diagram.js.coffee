@@ -19,27 +19,27 @@ $ ->
        </li>")
 
   # parse the serialized list-entry elements
-  parse = (string)->
+  parse = (string) ->
     data = []
 
     for attributes in string.split('|')
-      [name, value] = attributes.split(',')
+      [name, value] = attributes.split(/\s*,\s*/)
 
-      if !!name && !!value
-        data.push({
-          name: name,
+      if name? and value?
+        data.push
+          name: name
           value: value
-        })
 
     data
 
   # serialize the list-entry elements
-  serialize = (elements)->
+  serialize = (elements) ->
     chunks = []
 
     for element in elements
-      name = $(element).find('[name="name"]').val()
-      value = $(element).find('[name="value"]').val()
+      element = $(element)
+      name = element.find('[name="name"]').val()
+      value = element.find('[name="value"]').val()
       chunks.push("#{name},#{value}")
 
     chunks.join('|')

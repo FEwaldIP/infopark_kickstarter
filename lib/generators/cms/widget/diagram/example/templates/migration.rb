@@ -4,7 +4,7 @@ class DiagramWidgetExample < RailsConnector::Migration
 
     add_widget(homepage, '<%= example_widget_attribute %>', {
       _obj_class: 'DiagramWidget',
-      data: 'Count of users,30|Pageload,70'
+      data: 'Number of users,30|Pageload,70'
     })
   end
 

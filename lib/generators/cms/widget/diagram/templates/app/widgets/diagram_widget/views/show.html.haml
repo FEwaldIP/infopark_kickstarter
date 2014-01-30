@@ -1,10 +1,6 @@
-- if @widget.data.blank?
-  .alert
-    Keine Daten angegeben
-- else
-  - @widget.data.split('|').each do |entry|
-    - name, percent = entry.split(",")
-    %h3
-      = name
-    .progress
-      .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => percent, role: "progressbar", style: "width: #{percent}%"}
+- @widget.data.each do |title, percent|
+  %h3
+    = title
+
+  .progress
+    .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{percent}%;", aria: { valuemax: '100', valuemin: '0', valuenow: percent }}

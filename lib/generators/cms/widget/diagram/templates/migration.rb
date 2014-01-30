@@ -3,7 +3,6 @@ class DiagramWidget < ::RailsConnector::Migration
     create_obj_class(
       name: 'DiagramWidget',
       type: 'publication',
-      title: 'Diagram',
       attributes: [
         {
           name: 'data',
