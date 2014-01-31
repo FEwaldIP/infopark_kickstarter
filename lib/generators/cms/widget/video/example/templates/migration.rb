@@ -13,7 +13,7 @@ class VideoWidgetExample < RailsConnector::Migration
 
     video = create_obj({
       _obj_class: 'Video',
-      _path: "_resources/#{SecureRandom.hex(8)}/example_video.jpg",
+      _path: "_resources/#{SecureRandom.hex(8)}/example_video.mp4",
       blob: upload_file(open(video_url)),
     })
 
