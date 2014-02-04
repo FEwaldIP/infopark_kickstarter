@@ -22,6 +22,12 @@ describe Cms::Generators::Widget::DiagramGenerator do
             directory 'application' do
               file 'diagram.css.less'
             end
+
+            directory 'editing' do
+              directory 'editors' do
+                file 'diagram_editor.css.less'
+              end
+            end
           end
 
           directory 'javascripts' do
@@ -30,7 +36,9 @@ describe Cms::Generators::Widget::DiagramGenerator do
             end
 
             directory 'editing' do
-              file 'diagram.js.coffee'
+              directory 'editors' do
+                file 'diagram_editor.js.coffee'
+              end
             end
           end
         end
