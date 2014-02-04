@@ -62,6 +62,7 @@ describe Cms::Generators::Component::EditingGenerator do
 
               directory 'editors' do
                 file 'string_editor.css.less'
+                file 'text_editor.css.less'
                 file 'linklist_editor.css.less'
                 file 'reference_editor.css.less'
                 file 'referencelist_editor.css.less'
@@ -79,6 +80,7 @@ describe Cms::Generators::Component::EditingGenerator do
 
               directory 'editors' do
                 file 'string_editor.js.coffee'
+                file 'text_editor.js.coffee'
                 file 'linklist_editor.js.coffee'
                 file 'reference_editor.js.coffee'
                 file 'referencelist_editor.js.coffee'

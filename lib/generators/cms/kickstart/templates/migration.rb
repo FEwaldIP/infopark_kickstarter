@@ -65,6 +65,10 @@ class Kickstart < ::RailsConnector::Migration
           name: 'sidebar_content',
           type: :widget,
         },
+        {
+          name: 'test',
+          type: :text,
+        },
       ]
     )
 
