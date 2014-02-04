@@ -87,6 +87,8 @@ module InfoparkKickstarter
           'cms:widget:vimeo:example',
           'cms:widget:person',
           'cms:widget:person:example',
+          'cms:widget:diagram',
+          'cms:widget:diagram:example',
           'cms:widget:slider',
           'cms:widget:slider:example',
           'cms:widget:slideshare',
