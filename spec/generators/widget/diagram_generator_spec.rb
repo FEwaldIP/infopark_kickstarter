@@ -18,7 +18,17 @@ describe Cms::Generators::Widget::DiagramGenerator do
     destination_root.should have_structure {
       directory 'app' do
         directory 'assets' do
+          directory 'stylesheets' do
+            directory 'application' do
+              file 'diagram.css.less'
+            end
+          end
+
           directory 'javascripts' do
+            directory 'application' do
+              file 'diagram.js.coffee'
+            end
+
             directory 'editing' do
               file 'diagram.js.coffee'
             end

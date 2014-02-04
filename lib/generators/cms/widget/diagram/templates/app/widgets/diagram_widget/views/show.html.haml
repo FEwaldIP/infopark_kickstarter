@@ -1,6 +1,1 @@
-- @widget.data.each do |title, percent|
-  %h3
-    = title
-
-  .progress
-    .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{percent}%;", aria: { valuemax: '100', valuemin: '0', valuenow: percent }}
+= cms_tag(:div, @widget, :data, class: 'diagram-source')
