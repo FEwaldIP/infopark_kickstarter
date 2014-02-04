@@ -13,46 +13,66 @@ $ ->
 
       bars
 
-  diagramTemplate = (barsData) ->
-    diagramElement = $('<div></div>')
-      .addClass('diagram')
+    serialize: (barsData) ->
+      output = []
 
-    for barData in barsData
-      labelElement = labelTemplate(barData['title'])
-      progressbarElement = progressbarTemplate(barData['value'])
+      for barData in barsData
+        title = barData['title']
+        value = barData['value']
+
+        output.push "#{title},#{value}"
+
+      output.join('|')
+
+  class window.Diagram
+    constructor: (selector) ->
+      @element = $(selector)
+      @serializer = new DiagramSerializer
+
+    init: ->
+      if @element? && @element.length > 0
+        sourceData = @element.text()
+        barsData = @serializer.parse(sourceData)
+
+        @diagramTemplate(barsData)
+          .insertAfter(@element)
+
+    source: ->
+      @element
+
+    diagramTemplate: (barsData) ->
+      diagramElement = $('<div></div>')
+        .addClass('diagram')
+
+      for barData in barsData
+        labelElement = @labelTemplate(barData['title'])
+        progressbarElement = @progressbarTemplate(barData['value'])
+
+        diagramElement
+          .append(labelElement)
+          .append(progressbarElement)
 
       diagramElement
-        .append(labelElement)
-        .append(progressbarElement)
 
-    diagramElement
+    labelTemplate: (title) ->
+      $('<h3></h3>')
+        .text(title)
 
-  labelTemplate = (title) ->
-    $('<h3></h3>')
-      .text(title)
+    progressbarTemplate: (percent) ->
+      wrapper = $('<div></div>')
+        .addClass('progress')
 
-  progressbarTemplate = (percent) ->
-    wrapper = $('<div></div>')
-      .addClass('progress')
+      bar = $('<div></div>')
+        .addClass('progress-bar')
+        .addClass('progress-bar-success')
+        .attr('role', 'progressbar')
+        .attr('aria-valuemin', '0')
+        .attr('aria-valuemax', '100')
+        .attr('aria-valuenow', percent)
+        .css('width', "#{percent}%")
+        .appendTo(wrapper)
 
-    bar = $('<div></div>')
-      .addClass('progress-bar')
-      .addClass('progress-bar-success')
-      .attr('role', 'progressbar')
-      .attr('aria-valuemin', '0')
-      .attr('aria-valuemax', '100')
-      .attr('aria-valuenow', percent)
-      .css('width', "#{percent}%")
-      .appendTo(wrapper)
+      wrapper
 
-    wrapper
-
-  init = (element) ->
-    serializer = new DiagramSerializer
-    sourceData = element.text()
-    barsData = serializer.parse(sourceData)
-    diagramElement = diagramTemplate(barsData)
-
-    element.replaceWith(diagramElement)
-
-  init($('.diagram-source'))
+  diagram = new Diagram('.diagram-source')
+  diagram.init()
