@@ -1,4 +1,6 @@
 # v4.1.0
+  * Added a diagram widget that displays a variable number of progressbars. It can be edited on the
+    widgets property view. Run `rails g cms:widget:diagram` to add it to your project.
   * Update Redactor html editor to version 9.1.9.
   * Bugfix: The Infopark status rake task `rake infopark:status` now opens the official Infopark
     status page in a webbrowser instead of displaying the status on the command line.
