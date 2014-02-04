@@ -1,4 +1,8 @@
 $ ->
+  # The DiagramSerializer is a helper class to combine the parse and serialize
+  # logic, so that it can be used by both the diagram and the diagram editor. It
+  # can parse a string or turn a hash back into a string. The class is globally
+  # available.
   class window.DiagramSerializer
     parse: (source) ->
       bars = []
@@ -24,6 +28,9 @@ $ ->
 
       output.join('|')
 
+  # The Diagram class holds the logic to display a set of progressbars each with
+  # a title and a percentage. It uses the Twitter Bootstrap progressbars and is
+  # based on a CMS string attribute.
   class window.Diagram
     constructor: (selector) ->
       @element = $(selector)
@@ -36,9 +43,6 @@ $ ->
 
         @diagramTemplate(barsData)
           .insertAfter(@element)
-
-    source: ->
-      @element
 
     diagramTemplate: (barsData) ->
       diagramElement = $('<div></div>')
@@ -74,5 +78,4 @@ $ ->
 
       wrapper
 
-  diagram = new Diagram('.diagram-source')
-  diagram.init()
+  new Diagram('.diagram-source').init()

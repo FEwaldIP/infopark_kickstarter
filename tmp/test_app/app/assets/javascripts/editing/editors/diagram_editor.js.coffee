@@ -89,20 +89,6 @@ $ ->
 
     link
 
-  serialize = ->
-    elements = diagramEditor().find('li')
-    barsData = []
-
-    for element in elements
-      element = $(element)
-
-      barsData.push
-        title: element.find('[name="title"]').val()
-        value: element.find('[name="value"]').val()
-
-    serializer = new DiagramSerializer
-    serializer.serialize(barsData)
-
   diagramEditor = ->
     $('.diagram-editor')
 
@@ -126,13 +112,30 @@ $ ->
 
   save = ->
     data = serialize()
+
     diagramEditor()
       .data('cmsField')
       .infopark('save', data)
 
+  serialize = ->
+    elements = diagramEditor().find('li')
+    barsData = []
+
+    for element in elements
+      element = $(element)
+
+      barsData.push
+        title: element.find('[name="title"]').val()
+        value: element.find('[name="value"]').val()
+
+    serializer = new DiagramSerializer
+    serializer.serialize(barsData)
+
+  # The diagram editor is initialized when the widget property window is opened. It is based on a
+  # CMS string field. The editor also makes sure, that changes are saved to the CMS and that the
+  # diagram is reloaded if changes occur.
   infopark.on 'new_content', ->
-    diagram = new Diagram('.diagram-source')
-    diagram.init()
+    new Diagram('.diagram-source').init()
 
     element = $('.diagram-editor-source')
 
