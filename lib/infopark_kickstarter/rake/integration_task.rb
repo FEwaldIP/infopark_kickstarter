@@ -70,6 +70,7 @@ module InfoparkKickstarter
           'cms:component:error_tracking --provider=honeybadger',
           'cms:component:monitoring "Test Website" --provider=newrelic',
           'cms:component:tracking --provider=google_analytics',
+          'cms:component:deployment --provider=opsworks',
           'cms:component:language_switch',
           'cms:component:language_switch:example',
           'cms:component:form_builder',

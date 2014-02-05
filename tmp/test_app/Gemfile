@@ -72,4 +72,5 @@ end
 gem "airbrake"
 gem "honeybadger"
 gem "newrelic_rpm"
+gem "whenever", :require => false
 gem "projekktor-rails"
