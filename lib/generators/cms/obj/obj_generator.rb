@@ -6,7 +6,7 @@ module Cms
       source_root File.expand_path('../templates', __FILE__)
 
       def create_model
-        template('model.rb', File.join('app/models', "#{class_name}.rb"))
+        template('model.rb', File.join('app/models', "#{file_name}.rb"))
       end
 
       def create_views
