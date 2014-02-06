@@ -1,4 +1,7 @@
-# v4.1.0
+# v5.0.0
+  * Update to Cloud Connector version 7.1 using the new `infopark.gui` methods, implementing an
+    editor for CMS text attributes, and improve the linklist editor to also store internal CMS
+    links.
   * All generators can now be executed as many times as you want. The generators now notice, if the
     migrations are already there and also ask to override files, if they have changed.
   * Added a new generator that helps to configure the Ruby on Rails application to be deployed with
