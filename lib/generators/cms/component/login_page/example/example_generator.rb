@@ -9,6 +9,7 @@ module Cms
 
           def create_example
             migration_template('migration.rb', 'cms/migrate/login_page_example.rb')
+          rescue Rails::Generators::Error
           end
 
           def copy_application_files

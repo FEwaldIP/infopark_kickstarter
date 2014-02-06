@@ -9,6 +9,7 @@ module Cms
 
           def create_example
             migration_template('migration.rb', 'cms/migrate/blog_example.rb')
+          rescue Rails::Generators::Error
           end
         end
       end

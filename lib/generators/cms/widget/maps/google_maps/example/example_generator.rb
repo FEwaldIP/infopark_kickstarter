@@ -8,6 +8,7 @@ module Cms
 
             def create_example
               migration_template('migration.rb', 'cms/migrate/google_maps_widget_example.rb')
+            rescue Rails::Generators::Error
             end
 
             notice!

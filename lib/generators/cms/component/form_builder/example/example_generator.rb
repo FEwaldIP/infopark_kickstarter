@@ -9,6 +9,7 @@ module Cms
 
           def create_example
             migration_template('migration.rb', 'cms/migrate/form_builder_example.rb')
+          rescue Rails::Generators::Error
           end
 
           def notice

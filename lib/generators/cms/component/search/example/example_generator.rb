@@ -9,6 +9,7 @@ module Cms
 
           def create_example
             migration_template('migration.rb', 'cms/migrate/search_example.rb')
+          rescue Rails::Generators::Error
           end
 
           def extend_view

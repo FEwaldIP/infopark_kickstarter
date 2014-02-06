@@ -8,6 +8,7 @@ module Cms
 
         def create_migration
           migration_template('migration.rb', 'cms/migrate/contact_page.rb')
+        rescue Rails::Generators::Error
         end
 
         def copy_app_directory

@@ -37,29 +37,6 @@ module Cms
           directory('app')
         end
 
-        def add_javascript_directives
-          data = []
-
-          data << ''
-          data << '//= require jquery.ui.sortable'
-          data << '//= require bootstrap-datepicker'
-
-          data = data.join("\n")
-
-          update_javascript_editing_manifest(data)
-        end
-
-        def add_stylesheet_manifest
-          data = []
-
-          data << ''
-          data << ' *= require bootstrap-datepicker'
-
-          data = data.join("\n")
-
-          update_stylesheet_editing_manifest(data)
-        end
-
         def update_production_environment
           data = []
 

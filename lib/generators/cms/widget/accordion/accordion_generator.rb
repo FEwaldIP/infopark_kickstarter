@@ -7,11 +7,11 @@ module Cms
         source_root File.expand_path('../templates', __FILE__)
 
         def create_widget
-          migration_template(
-            'migration.rb',
-            'cms/migrate/accordion_widget.rb'
-          )
+          migration_template('migration.rb', 'cms/migrate/accordion_widget.rb')
+        rescue Rails::Generators::Error
+        end
 
+        def copy_app_directory
           directory('app')
         end
 

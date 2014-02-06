@@ -29,6 +29,7 @@ module Cms
 
         def create_migration
           migration_template('migration.rb', 'cms/migrate/blog.rb')
+        rescue Rails::Generators::Error
         end
 
         def add_discovery_link

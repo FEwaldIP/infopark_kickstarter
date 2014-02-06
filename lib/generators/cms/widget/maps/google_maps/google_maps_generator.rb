@@ -9,7 +9,10 @@ module Cms
 
           def create_migration
             migration_template('migration.rb', 'cms/migrate/google_maps_widget.rb')
+          rescue Rails::Generators::Error
+          end
 
+          def copy_app_directory
             directory('app')
           end
 

@@ -6,10 +6,8 @@ module Cms
           source_root File.expand_path('../templates', __FILE__)
 
           def create_example
-            migration_template(
-              'example_migration.rb',
-              'cms/migrate/accordion_widget_example.rb'
-            )
+            migration_template('migration.rb', 'cms/migrate/accordion_widget_example.rb')
+          rescue Rails::Generators::Error
           end
 
           notice!

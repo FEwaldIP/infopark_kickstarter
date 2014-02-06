@@ -8,7 +8,10 @@ module Cms
 
         def create_widget
           migration_template('migration.rb', 'cms/migrate/text_image_widget.rb')
+        rescue Rails::Generators::Error
+        end
 
+        def copy_app_directory
           directory('app')
         end
 

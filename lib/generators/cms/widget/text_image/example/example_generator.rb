@@ -7,6 +7,7 @@ module Cms
 
           def create_example
             migration_template('migration.rb', 'cms/migrate/text_image_widget_example.rb')
+          rescue Rails::Generators::Error
           end
 
           notice!

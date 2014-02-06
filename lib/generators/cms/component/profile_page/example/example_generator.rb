@@ -9,6 +9,7 @@ module Cms
 
           def create_example
             migration_template('migration.rb', 'cms/migrate/profile_page_example.rb')
+          rescue Rails::Generators::Error
           end
 
           def notice

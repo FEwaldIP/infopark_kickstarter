@@ -28,7 +28,6 @@ module Cms
           insert_point = "class Page < Obj\n"
 
           insert_into_file(file, data, after: insert_point)
-
         end
 
         def extend_layout

@@ -1,4 +1,6 @@
 # v4.1.0
+  * All generators can now be executed as many times as you want. The generators now notice, if the
+    migrations are already there and also ask to override files, if they have changed.
   * Added a new generator that helps to configure the Ruby on Rails application to be deployed with
     Amazon OpsWorks. Run `rails g cms:component:deployment --provider=opsworks` set up your
     application.

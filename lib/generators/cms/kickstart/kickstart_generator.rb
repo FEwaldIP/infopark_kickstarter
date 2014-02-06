@@ -68,6 +68,7 @@ module Cms
 
         migration_template('migration.rb', 'cms/migrate/kickstart.rb')
         migration_template('create_structure.rb', 'cms/migrate/create_structure.rb')
+      rescue Rails::Generators::Error
       end
 
       def override_application
