@@ -32,17 +32,18 @@ $ ->
   # a title and a percentage. It uses the Twitter Bootstrap progressbars and is
   # based on a CMS string attribute.
   class window.Diagram
-    constructor: (selector) ->
-      @element = $(selector)
+    constructor: (@element) ->
       @serializer = new DiagramSerializer
 
     init: ->
       if @element? && @element.length > 0
-        sourceData = @element.text()
-        barsData = @serializer.parse(sourceData)
+        for element in @element
+          element = $(element)
+          sourceData = element.text()
+          barsData = @serializer.parse(sourceData)
 
-        @diagramTemplate(barsData)
-          .insertAfter(@element)
+          @diagramTemplate(barsData)
+            .insertAfter(element)
 
     diagramTemplate: (barsData) ->
       diagramElement = $('<div></div>')
@@ -78,4 +79,4 @@ $ ->
 
       wrapper
 
-  new Diagram('.diagram-source').init()
+  new Diagram($('.diagram-source')).init()
