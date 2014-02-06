@@ -5,13 +5,7 @@ require './lib/rails_connector/cms_definitions'
 class Widget < ::RailsConnector::BasicWidget
   include RailsConnector::CmsDefinitions
 
-  # Determines the page where the widget is embedded.
-  def page
-    obj
-  end
-
-  # Determines the homepage based on the widget page.
   def homepage
-    page.homepage
+    obj.homepage
   end
 end

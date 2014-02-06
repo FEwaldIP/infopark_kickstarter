@@ -134,10 +134,11 @@ $ ->
   # The diagram editor is initialized when the widget property window is opened. It is based on a
   # CMS string field. The editor also makes sure, that changes are saved to the CMS and that the
   # diagram is reloaded if changes occur.
-  infopark.on 'new_content', ->
-    new Diagram('.diagram-source').init()
+  infopark.on 'new_content', (root) ->
+    diagramSourceElement = $(root).find('.diagram-source')
+    new Diagram(diagramSourceElement).init()
 
-    element = $('.diagram-editor-source')
+    element = $(root).find('.diagram-editor-source')
 
     if element? && element.length > 0
       serializer = new DiagramSerializer

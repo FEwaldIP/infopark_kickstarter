@@ -5,12 +5,17 @@ $ ->
 
   infopark.on 'editing', ->
     template = ->
-      $('<div class="string-editor">
-         <input type="text" />
-         </div>')
+      editor = $('<div></div>')
+        .addClass('text-editor')
+
+      input = $('<textarea />')
+        .attr('rows', '6')
+        .appendTo(editor)
+
+      editor
 
     getBox = (element) ->
-      element.closest('.string-editor')
+      element.closest('.text-editor')
 
     editMarker = (cmsField) ->
       cmsField.closest('[data-ip-private-widget-obj-class]').find('.ip_editing_marker')
@@ -30,8 +35,6 @@ $ ->
         clearTimeout(timeout)
 
       switch key
-        when 13 # Enter
-          save(event, true)
         when 27 # Esc
           cancel(event)
         else
@@ -66,7 +69,7 @@ $ ->
     onBlur = (event) ->
       save(event, true)
 
-    $('body').on 'click', '[data-ip-field-type=string]', (event) ->
+    $('body').on 'click', '[data-ip-field-type=text]', (event) ->
       event.preventDefault()
       event.stopPropagation()
 
@@ -75,7 +78,7 @@ $ ->
       template()
         .data('cmsField', cmsField)
         .insertAfter(cmsField)
-        .find('input')
+        .find('textarea')
         .val(cmsField.infopark('content') || '')
         .focusout(onBlur)
         .keyup(keyUp)

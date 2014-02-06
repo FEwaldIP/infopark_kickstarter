@@ -8,6 +8,7 @@ class MediabrowserController < ApplicationController
     %w(
       Image
       BlogPost
+      ErrorPage
     )
   end
 

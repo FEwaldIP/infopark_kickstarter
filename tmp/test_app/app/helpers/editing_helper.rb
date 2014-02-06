@@ -80,7 +80,13 @@ module EditingHelper
         html = ''.html_safe
 
         linklist.each do |link|
-          html << content_tag(:li, link.title, 'data-title' => link.title, 'data-url' => link.url)
+          url = if link.internal?
+            "/#{link.obj.id}"
+          else
+            link.url
+          end
+
+          html << content_tag(:li, link.title, 'data-title' => link.title, 'data-url' => url)
         end
 
         html

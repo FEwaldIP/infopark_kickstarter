@@ -12,7 +12,7 @@ $ ->
   # click on the menu item 'Deactivate in-place editing' to deactivate it.
 
   $('a#edit-toggle').on 'click', ->
-    if infopark.editing.is_active()
-      infopark.editing.deactivate()
+    if infopark.gui.is_open()
+      infopark.gui.close()
     else
-      infopark.editing.activate()
+      infopark.gui.open()

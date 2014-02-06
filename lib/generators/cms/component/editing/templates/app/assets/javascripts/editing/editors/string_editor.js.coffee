@@ -45,6 +45,9 @@ $ ->
       box = getBox(inputField)
       cmsField = box.data('cmsField')
 
+      if timeout
+        clearTimeout(timeout)
+
       if closeInput
         box.addClass('saving')
 
