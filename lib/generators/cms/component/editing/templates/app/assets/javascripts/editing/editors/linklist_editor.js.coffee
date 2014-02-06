@@ -55,6 +55,11 @@ $ ->
 
     true
 
+  # Transforms an obj id into an url that can be parsed by the RailsConnector
+  # to establish an internal link.
+  buildUrl = (id) ->
+    "/#{id}"
+
   # Collects all link attributes for a given linklist.
   getAttributes = (cmsField) ->
     items = $(cmsField).find('li')
@@ -65,11 +70,6 @@ $ ->
 
         'title': item.find('[name=title]').val()
         'url': item.find('[name=url]').val()
-
-  # Transforms an obj id into an url that can be parsed by the RailsConnector
-  # to establish an internal link.
-  buildUrl = (id) ->
-    "#{document.location.origin}/#{id}"
 
   # Adds a new link to the linklist.
   addLink = (event) ->
