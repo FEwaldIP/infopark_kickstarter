@@ -15,11 +15,13 @@ en:
       results: 'All results'
       selected: 'Selected'
       image: 'Images'
-      blog_post: 'Blogposts'
+      blog_post: 'Blog Posts'
+      error_page: 'Error Pages'
 
       icon_class:
         image: 'image'
         blog_post: 'generic'
+        error_page: 'generic'
 
     header:
       search:

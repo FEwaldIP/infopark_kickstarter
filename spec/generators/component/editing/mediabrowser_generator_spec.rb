@@ -64,6 +64,7 @@ describe Cms::Generators::Component::Editing::MediabrowserGenerator do
             directory 'thumbnails' do
               file 'blog_post.html.haml'
               file 'image.html.haml'
+              file 'error_page.html.haml'
             end
           end
 
