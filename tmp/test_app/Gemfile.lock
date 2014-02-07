@@ -1,7 +1,7 @@
 PATH
   remote: ../../
   specs:
-    infopark_kickstarter (4.0.0)
+    infopark_kickstarter (5.0.0)
       bundler
       infopark_cloud_connector (>= 7.1)
       launchy
