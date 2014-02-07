@@ -1,3 +1,12 @@
+@import "editing/mixins";
+
+// Icon font styles
+//
+// All editing icons are stored in a font for better quality, easy access and flexibility. Fonts for
+// all browsers are provided for maximum compatibility. Editing icons are used for placeholder but
+// also for the widget or object class thumbnail views. All icons are referencable by a specific
+// class name "editing-icon-*".
+
 @font-face {
   font-family: 'editing_iconsregular';
   font-style: normal;
@@ -21,6 +30,8 @@
 }
 
 .thumbnail-icon {
+  .user-select(none);
+
   color: #888;
   display: block;
   font-family: 'editing_iconsregular';
@@ -31,12 +42,7 @@
   padding: 0;
   text-decoration: none;
   text-shadow: 0 1px 5px #fff;
-  user-select: none;
   vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
 }
 
 .editing-icon-ip:after { content: "\F000"; }
@@ -92,35 +98,38 @@
 .editing-icon-plus:after { content: "\F044"; }
 
 
-// placeholder icons
+// Placeholder icons style
+//
+// Placeholder icons are only displayed, when the editor is in edit mode and has an editable working
+// copy selected. The icons are based on the CMS attribute type. Each type has a default icon, which
+// can be overriden below.
 
-[data-ip-field-type]:empty:before {
-  font-family: 'editing_iconsregular';
-  font-style: normal;
-  font-weight: normal;
-  vertical-align: middle;
-  text-decoration: none;
-  color: #ccc;
-  display: block;
-  font-size: 13px;
-  padding: 0;
-  margin: 0;
-  line-height: 35px !important;
-  content: '\F015';
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+body.ip_editing_active.ip_editable_workspace {
+  [data-ip-field-type]:empty:before {
+    .user-select(none);
+
+    color: #ccc;
+    content: '\F015';
+    display: block;
+    font-family: 'editing_iconsregular';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 35px !important;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  [data-ip-field-type=string]:empty:before { content: '\F016'; }
+  [data-ip-field-type=text]:empty:before { content: '\F017'; }
+  [data-ip-field-type=html]:empty:before { content: '\F018'; }
+  [data-ip-field-type=enum]:empty:before { content: '\F019'; }
+  [data-ip-field-type=multienum]:empty:before { content: '\F01A'; }
+  [data-ip-field-type=boolean]:empty:before { content: '\F01B'; }
+  [data-ip-field-type=date]:empty:before { content: '\F01C'; }
+  [data-ip-field-type=linklist]:empty:before { content: '\F01D'; }
+  [data-ip-field-type=reference]:empty:before { content: '\F01D'; }
+  [data-ip-field-type=referencelist]:empty:before { content: '\F01D'; }
 }
-
-[data-ip-field-type=string]:empty:before { content: '\F016'; }
-[data-ip-field-type=text]:empty:before { content: '\F017'; }
-[data-ip-field-type=html]:empty:before { content: '\F018'; }
-[data-ip-field-type=enum]:empty:before { content: '\F019'; }
-[data-ip-field-type=multienum]:empty:before { content: '\F01A'; }
-[data-ip-field-type=boolean]:empty:before { content: '\F01B'; }
-[data-ip-field-type=date]:empty:before { content: '\F01C'; }
-[data-ip-field-type=linklist]:empty:before { content: '\F01D'; }
-[data-ip-field-type=reference]:empty:before { content: '\F01D'; }
-[data-ip-field-type=referencelist]:empty:before { content: '\F01D'; }

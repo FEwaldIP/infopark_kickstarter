@@ -1,10 +1,13 @@
 class SearchPageController < CmsController
   def index
     @query = params[:q]
-    limit = params[:limit] || 10
+    limit = params[:limit] || 100
     offset = params[:offset] || 0
 
-    results = Obj.all.offset(offset)
+    results = Obj
+      .all
+      .offset(offset)
+      .and(:_path, :starts_with, @obj.homepage.path)
 
     if @query.present?
       results.and(:*, :contains_prefix, @query)
@@ -12,7 +15,5 @@ class SearchPageController < CmsController
 
     @hits = results.take(limit)
     @total = results.count
-  rescue RailsConnector::ClientError
-    flash.now[:alert] = t('search.no_index')
   end
 end

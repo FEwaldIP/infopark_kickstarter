@@ -1,25 +1,19 @@
 class ResetPasswordPageController < CmsController
   def index
-    @presenter = ResetPasswordPresenter.new(params[:reset_password_presenter])
+    if request.post?
+      contact = Infopark::Crm::Contact.search(params: { login: user_params[:login] }).first
 
-    if request.post? && @presenter.valid?
-      handle_redirect(@presenter.password_request, @obj)
+      if contact && contact.password_request
+        redirect_to(cms_path(@obj.homepage), notice: 'Password reset successfully. You receive an email with further instructions.')
+      else
+        flash[:alert] = 'Password reset failed. Please try it again.'
+      end
     end
   end
 
   private
 
-  def handle_redirect(status, target)
-    options = {}
-
-    if status
-      target = target.homepage
-      options[:notice] = t('flash.reset_password.success')
-    else
-      options[:alert] = t('flash.reset_password.failed')
-    end
-
-    target_path = cms_path(target)
-    redirect_to(target_path, options)
+  def user_params
+    params[:user]
   end
 end

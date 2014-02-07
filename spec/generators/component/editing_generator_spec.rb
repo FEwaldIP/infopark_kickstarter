@@ -14,6 +14,8 @@ describe Cms::Generators::Component::EditingGenerator do
     # the test. This is not done globally, as this is the only test, were the sub generator is called.
     require 'generators/cms/component/editing/redactor/redactor_generator'
     Cms::Generators::Component::Editing::RedactorGenerator.send(:include, TestDestinationRoot)
+    require 'generators/cms/component/editing/mediabrowser/mediabrowser_generator'
+    Cms::Generators::Component::Editing::MediabrowserGenerator.send(:include, TestDestinationRoot)
 
     prepare_destination
     prepare_environments
@@ -35,7 +37,7 @@ describe Cms::Generators::Component::EditingGenerator do
 
     File.open("#{destination_root}/Gemfile", 'w')
     File.open("#{environments_path}/production.rb", 'a') { |f| f.write('Test::Application.configure do') }
-    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("%body{body_attributes(@obj)}") }
+    File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("  %body{body_attributes(@obj)}\n") }
     File.open("#{config_path}/routes.rb", 'w') { |file| file.write('Dummy::Application.routes.draw do') }
   end
 
@@ -51,13 +53,16 @@ describe Cms::Generators::Component::EditingGenerator do
 
           directory 'stylesheets' do
             directory 'editing' do
+              file 'base.css.less'
               file 'mixins.less'
               file 'icons.css.less'
               file 'buttons.css.less'
               file 'base.css.less'
+              file 'menubar.css.less'
 
               directory 'editors' do
                 file 'string_editor.css.less'
+                file 'text_editor.css.less'
                 file 'linklist_editor.css.less'
                 file 'reference_editor.css.less'
                 file 'referencelist_editor.css.less'
@@ -75,9 +80,13 @@ describe Cms::Generators::Component::EditingGenerator do
 
               directory 'editors' do
                 file 'string_editor.js.coffee'
+                file 'text_editor.js.coffee'
                 file 'linklist_editor.js.coffee'
                 file 'reference_editor.js.coffee'
                 file 'referencelist_editor.js.coffee'
+                file 'enum_editor.js.coffee'
+                file 'multienum_editor.js.coffee'
+                file 'date_editor.js.coffee'
               end
             end
 
@@ -88,24 +97,16 @@ describe Cms::Generators::Component::EditingGenerator do
           end
         end
 
-        directory 'cells' do
-          directory 'menu_bar' do
-            file 'edit_toggle.html.haml'
-            file 'show.html.haml'
-            file 'user.html.haml'
-            file 'workspaces.html.haml'
-          end
-          file 'menu_bar_cell.rb'
-        end
-
         directory 'helpers' do
           file 'editing_helper.rb'
         end
 
         directory 'views' do
           directory 'layouts' do
+            file '_menubar.html.haml'
+
             file 'application.html.haml' do
-              contains '    = render_cell(:menu_bar, :show)'
+              contains "    = render('layouts/menubar', current_user: current_user)"
             end
           end
         end
@@ -116,12 +117,6 @@ describe Cms::Generators::Component::EditingGenerator do
           file 'production.rb' do
             contains 'config.assets.precompile += %w(editing.css editing.js)'
           end
-        end
-
-        file 'routes.rb' do
-          contains "get 'mediabrowser', to: 'mediabrowser#index'"
-          contains "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
-          contains "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
         end
       end
 

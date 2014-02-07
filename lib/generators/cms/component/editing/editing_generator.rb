@@ -13,12 +13,6 @@ module Cms
           default: SUPPORTED_EDITORS.first,
           desc: "Select what html editor to use. (#{SUPPORTED_EDITORS.join(' | ')})"
 
-        def add_routes
-          route "get 'mediabrowser', to: 'mediabrowser#index'"
-          route "get 'mediabrowser/inspector', to: 'mediabrowser#inspector'"
-          route "get 'mediabrowser/modal', to: 'mediabrowser#modal'"
-        end
-
         def validate_editor
           unless SUPPORTED_EDITORS.include?(editor)
             puts 'Please choose a supported editor. See options for more details.'
@@ -31,10 +25,8 @@ module Cms
         end
 
         def install_gems
-          gem_group(:assets) do
-            gem('bootstrap-datepicker-rails')
-            gem('jquery-ui-rails')
-          end
+          gem('bootstrap-datepicker-rails')
+          gem('jquery-ui-rails')
 
           Bundler.with_clean_env do
             run('bundle --quiet')
@@ -43,29 +35,6 @@ module Cms
 
         def create_common_files
           directory('app')
-        end
-
-        def add_javascript_directives
-          data = []
-
-          data << ''
-          data << '//= require jquery.ui.sortable'
-          data << '//= require bootstrap-datepicker'
-
-          data = data.join("\n")
-
-          update_javascript_editing_manifest(data)
-        end
-
-        def add_stylesheet_manifest
-          data = []
-
-          data << ''
-          data << ' *= require bootstrap-datepicker'
-
-          data = data.join("\n")
-
-          update_stylesheet_editing_manifest(data)
         end
 
         def update_production_environment
@@ -84,15 +53,21 @@ module Cms
 
         def add_menu_bar_to_layout
           file = 'app/views/layouts/application.html.haml'
-          insert_point = '%body{body_attributes(@obj)}'
+          insert_point = "  %body{body_attributes(@obj)}\n"
 
-          data = "\n    = render_cell(:menu_bar, :show)"
+          data = []
+
+          data << "    = render('layouts/menubar', current_user: current_user)\n"
+          data << ''
+
+          data = data.join("\n")
 
           insert_into_file(file, data, after: insert_point)
         end
 
         def run_generator_for_selected_editor
           Rails::Generators.invoke("cms:component:editing:#{editor}", [], behavior: behavior)
+          Rails::Generators.invoke('cms:component:editing:mediabrowser', [], behavior: behavior)
         end
 
         private

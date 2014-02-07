@@ -1,7 +1,5 @@
 class PersonWidget < Widget
-  cms_attribute :person, type: :string
-
-  # Overrides auto-generated method +person+ from +CmsAttributes+.
+  # Overrides CMS getter method +person+.
   def person
     person = self[:person] || ''
 

@@ -10,22 +10,7 @@ describe Cms::Generators::Component::SearchGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
-    paths = {
-      models: "#{destination_root}/app/models",
-      main_navigation: "#{destination_root}/app/cells/main_navigation",
-    }
-
-    paths.each do |_, path|
-      mkdir_p(path)
-    end
-
-    File.open("#{paths[:models]}/homepage.rb", 'w') { |f| f.write("class Homepage < Obj\n") }
-    File.open("#{paths[:main_navigation]}/show.html.haml", 'w') { |f| f.write("    .container\n") }
   end
 
   it 'creates files' do
@@ -33,66 +18,29 @@ describe Cms::Generators::Component::SearchGenerator do
       directory 'app' do
         directory 'models' do
           file 'search_page.rb' do
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
-            contains 'cms_attribute :headline, type: :string'
-            contains '  include Page'
-          end
-
-          file 'homepage.rb' do
-            contains 'cms_attribute :search_page, type: :reference'
+            contains 'class SearchPage < Page'
           end
         end
 
         directory 'views' do
           directory 'search_page' do
-            file 'index.html.haml' do
-              contains 'render_cell(:search, :results, @query, @hits, @total)'
-            end
+            file 'index.html.haml'
+            file 'edit.html.haml'
+          end
+
+          directory 'layouts' do
+            file '_search.html.haml'
           end
         end
 
         directory 'controllers' do
           file 'search_page_controller.rb'
         end
-
-        directory 'cells' do
-          file 'search_cell.rb'
-
-          directory 'search' do
-            file 'form.html.haml'
-            file 'hit.html.haml'
-            file 'hits.html.haml'
-            file 'no_hits.html.haml'
-          end
-
-          directory 'main_navigation' do
-            file 'show.html.haml' do
-              contains 'render_cell(:search, :form, @page, params[:q])'
-            end
-          end
-        end
-      end
-
-      directory 'config' do
-        directory 'locales' do
-          file 'en.search.yml'
-        end
       end
 
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_search_page'
-          migration 'create_search_page_example'
-        end
-      end
-
-      directory 'spec' do
-        directory 'models' do
-          file 'search_page_spec.rb'
-        end
-
-        directory 'controllers' do
-          file 'search_page_controller_spec.rb'
+          migration 'search'
         end
       end
     }

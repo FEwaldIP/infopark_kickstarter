@@ -1,1 +1,0 @@
-xml << render_cell(:box, :posts, @obj, @posts)

@@ -6,10 +6,10 @@ module Authentication
   end
 
   def current_user
-    cache = session[:user]
+    user_id = session[:user]
 
-    @current_user ||= if cache
-      User.new(cache)
+    @current_user ||= if user_id
+      User.new(id: user_id)
     else
       NullUser.new
     end
@@ -25,7 +25,7 @@ module Authentication
     user ||= NullUser.new
 
     @current_user = user
-    session[:user] = user.cache_attributes
+    session[:user] = user.id
   end
 
   def discard_user

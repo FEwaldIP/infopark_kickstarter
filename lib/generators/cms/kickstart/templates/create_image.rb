@@ -4,11 +4,13 @@ class CreateImage < ::RailsConnector::Migration
       create_obj_class(
         name: 'Image',
         type: 'generic',
-        title: 'Resource: Image',
+        title: 'Image',
         attributes: [
-        ],
-        preset_attributes: {},
-        mandatory_attributes: []
+          {
+            name: 'headline',
+            type: :string,
+          },
+        ]
       )
     end
   end

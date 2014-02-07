@@ -15,29 +15,15 @@ describe Cms::Generators::Component::LanguageSwitchGenerator do
   end
 
   def prepare_environments
-    layouts_path = "#{destination_root}/app/views/layouts"
-
-    mkdir_p(layouts_path)
-
-    File.open("#{layouts_path}/application.html.haml", 'w') { |f| f.write("            = render_cell(:meta_navigation, :show, @obj, current_user)\n") }
   end
 
   it 'creates files' do
     destination_root.should have_structure {
       directory 'app' do
-        directory 'cells' do
-          file 'language_switch_cell.rb'
-
-          directory 'language_switch' do
-            file 'show.html.haml'
-            file 'entry.html.haml'
+        directory 'views' do
+          directory 'layouts' do
+            file '_languages.html.haml'
           end
-        end
-      end
-
-      directory 'config' do
-        directory 'locales' do
-          file 'en.language_switch.yml'
         end
       end
     }

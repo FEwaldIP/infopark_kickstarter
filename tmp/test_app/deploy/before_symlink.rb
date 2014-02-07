@@ -5,3 +5,6 @@ template "#{release_path}/config/newrelic.yml" do
   mode 0664
   source "#{release_path}/deploy/templates/newrelic.yml.erb"
 end
+
+# Clear Whenever cron job.
+run "cd #{release_path} && bundle exec whenever --clear-crontab myapp"

@@ -11,22 +11,14 @@ describe Cms::Generators::Widget::Person::ExampleGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
     destination_root.should have_structure {
-      directory 'app' do
-        directory 'widgets' do
-          directory 'person_widget' do
-            directory 'migrate' do
-              migration 'create_person_widget_example'
-            end
-          end
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'person_widget_example'
         end
       end
     }

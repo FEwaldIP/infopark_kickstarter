@@ -1,10 +1,9 @@
-= cms_edit_label(@obj, :headline)
-= cms_edit_string(@obj, :headline)
-= cms_edit_label(@obj, :content)
-= cms_edit_html(@obj, :content)
-= cms_edit_label(@obj, :crm_activity_type)
-= cms_edit_string(@obj, :crm_activity_type)
-= cms_edit_label(@obj, :show_in_navigation)
-= cms_edit_enum(@obj, :show_in_navigation)
-= cms_edit_label(@obj, :sort_key)
-= cms_edit_string(@obj, :sort_key)
+%h4
+  Headline
+
+= cms_tag(:div, @obj, :headline)
+
+%h4
+  CRM activity type
+
+= cms_tag(:div, @obj, :crm_activity_type)

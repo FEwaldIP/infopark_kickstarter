@@ -8,7 +8,6 @@ describe Cms::Generators::Widget::VideoGenerator do
   include GeneratorSpec::TestCase
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
-  arguments ['--example']
 
   before do
     prepare_destination
@@ -53,15 +52,8 @@ describe Cms::Generators::Widget::VideoGenerator do
           directory 'video_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'locales' do
-              file 'en.video_widget.yml'
-            end
-
-            directory 'migrate' do
-              migration 'create_video_widget'
             end
           end
         end
@@ -69,17 +61,18 @@ describe Cms::Generators::Widget::VideoGenerator do
         directory 'models' do
           file 'video_widget.rb' do
             contains 'class VideoWidget < Widget'
-            contains 'cms_attribute :source, type: :reference'
-            contains 'cms_attribute :width, type: :integer'
-            contains 'cms_attribute :height, type: :integer'
-            contains 'cms_attribute :autoplay, type: :boolean'
-            contains 'cms_attribute :poster, type: :reference'
           end
         end
       end
 
       file 'Gemfile' do
         contains 'gem "projekktor-rails"'
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'video_widget'
+        end
       end
     }
   end

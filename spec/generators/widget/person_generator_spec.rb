@@ -11,11 +11,7 @@ describe Cms::Generators::Widget::PersonGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
@@ -25,15 +21,8 @@ describe Cms::Generators::Widget::PersonGenerator do
           directory 'person_widget' do
             directory 'views' do
               file 'show.html.haml'
+              file 'edit.html.haml'
               file 'thumbnail.html.haml'
-            end
-
-            directory 'locales' do
-              file 'en.person_widget.yml'
-            end
-
-            directory 'migrate' do
-              migration 'create_person_widget'
             end
           end
         end
@@ -41,8 +30,13 @@ describe Cms::Generators::Widget::PersonGenerator do
         directory 'models' do
           file 'person_widget.rb' do
             contains 'class PersonWidget < Widget'
-            contains 'cms_attribute :person, type: :string'
           end
+        end
+      end
+
+      directory 'cms' do
+        directory 'migrate' do
+          migration 'person_widget'
         end
       end
     }

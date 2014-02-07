@@ -16,7 +16,7 @@ module InfoparkKickstarter
 
           desc 'Get status information of all Infopark services'
           task :status do
-            status
+            Launchy.open('http://status.infopark.net')
           end
 
           namespace :info do
@@ -112,40 +112,16 @@ module InfoparkKickstarter
 
       def permalinks(workspace)
         RailsConnector::Workspace.find(workspace).as_current do
-          objs = Obj.
-            where(:_permalink, :is_greater_than, ' ').
-            order(:_permalink).
-            to_a
+          objs = Obj
+            .where(:_permalink, :is_greater_than, 'a')
+            .order(:_permalink)
+            .to_a
 
           objs.inject({}) do |permalinks, obj|
-            permalinks[obj[:_permalink]] = obj[:_path]
+            permalinks[obj[:_permalink]] = [obj[:_path], obj[:id]]
 
             permalinks
           end
-        end
-      end
-
-      def status
-        uri = URI('http://status.infopark.net/services.json')
-        response = Net::HTTP.get(uri)
-        json = JSON.parse(response)
-
-        service_status = {
-          'Platform' => 'up and running',
-          'CMS' => 'up and running',
-          'WebCRM' => 'up and running',
-        }
-
-        now = Time.now.strftime("%Y-%m-%d")
-
-        if json.has_key?(now)
-          json[now].each do |service, info|
-            service_status[service] = info['description']
-          end
-        end
-
-        service_status.each do |service, status|
-          puts "  #{service}: #{status}"
         end
       end
     end

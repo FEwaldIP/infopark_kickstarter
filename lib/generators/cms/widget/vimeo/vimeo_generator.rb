@@ -2,48 +2,23 @@ module Cms
   module Generators
     module Widget
       class VimeoGenerator < ::Rails::Generators::Base
+        include Migration
+
         source_root File.expand_path('../templates', __FILE__)
 
         def create_migration
-          Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
-            widget.name = obj_class_name
-            widget.icon = 'video'
-            widget.description = 'Displays a vimeo video player for the given vimeo link.'
-            widget.attributes = [
-              {
-                name: 'source',
-                type: :linklist,
-                title: 'Source',
-                max_size: 1,
-              },
-              {
-                name: 'width',
-                type: :integer,
-                title: 'Width',
-                default: 660,
-              },
-              {
-                name: 'height',
-                type: :string,
-                title: 'Height',
-                default: 430,
-              },
-            ]
-          end
+          migration_template('migration.rb', 'cms/migrate/vimeo_widget.rb')
+        rescue Rails::Generators::Error
+        end
 
-          directory('app', force: true)
+        def copy_app_directory
+          directory('app')
         end
 
         def notice
           if behavior == :invoke
             log(:migration, 'Make sure to run "rake cms:migrate" to apply CMS changes')
           end
-        end
-
-        private
-
-        def obj_class_name
-          'VimeoWidget'
         end
       end
     end

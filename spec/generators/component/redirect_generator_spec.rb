@@ -10,11 +10,7 @@ describe Cms::Generators::Component::RedirectGenerator do
 
   before do
     prepare_destination
-    prepare_environments
     run_generator
-  end
-
-  def prepare_environments
   end
 
   it 'creates files' do
@@ -22,9 +18,15 @@ describe Cms::Generators::Component::RedirectGenerator do
       directory 'app' do
         directory 'models' do
           file 'redirect.rb' do
-            contains 'cms_attribute :show_in_navigation, type: :boolean'
-            contains 'cms_attribute :sort_key, type: :string'
-            contains 'cms_attribute :redirect_link, type: :linklist, max_size: 1'
+            contains 'class Redirect < Page'
+          end
+        end
+
+        directory 'views' do
+          directory 'redirect' do
+            file 'index.html.haml'
+            file 'edit.html.haml'
+            file 'thumbnail.html.haml'
           end
         end
 
@@ -33,15 +35,9 @@ describe Cms::Generators::Component::RedirectGenerator do
         end
       end
 
-      directory 'config' do
-        directory 'locales' do
-          file 'en.redirect.yml'
-        end
-      end
-
       directory 'cms' do
         directory 'migrate' do
-          migration 'create_redirect'
+          migration 'redirect'
         end
       end
     }

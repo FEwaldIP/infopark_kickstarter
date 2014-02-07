@@ -1,10 +1,10 @@
-class ErrorPage < Obj
-  cms_attribute :headline, type: :string
-  cms_attribute :show_in_navigation, type: :boolean
+class ErrorPage < Page
+  # Overrides method +show_breadcrumbs?+ from +Page+.
+  def show_breadcrumbs?
+    false
+  end
 
-  include Page
-
-  # Overrides #show_in_navigation from Cms::Attributes::ShowInNavigation.
+  # Overrides method +show_in_navigation?+ from +Page+.
   def show_in_navigation?
     false
   end

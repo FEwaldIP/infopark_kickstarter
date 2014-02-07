@@ -13,7 +13,7 @@ $ ->
       element.closest('.string-editor')
 
     editMarker = (cmsField) ->
-      cmsField.closest('[data-ip-widget-obj-class]').find('.ip_editing_marker')
+      cmsField.closest('[data-ip-private-widget-obj-class]').find('.ip_editing_marker')
 
     disableEditMode = (box) ->
       cmsField = box.data('cmsField')
@@ -23,6 +23,7 @@ $ ->
       box.remove()
 
     keyUp = (event) ->
+      event.stopPropagation()
       key = event.keyCode || event.which
 
       if timeout
@@ -38,12 +39,14 @@ $ ->
             save(event)
           ), 3000
 
-
     save = (event, closeInput = false) ->
       inputField = $(event.currentTarget)
       content = inputField.val()
       box = getBox(inputField)
       cmsField = box.data('cmsField')
+
+      if timeout
+        clearTimeout(timeout)
 
       if closeInput
         box.addClass('saving')
@@ -65,6 +68,7 @@ $ ->
 
     $('body').on 'click', '[data-ip-field-type=string]', (event) ->
       event.preventDefault()
+      event.stopPropagation()
 
       cmsField = $(this)
 

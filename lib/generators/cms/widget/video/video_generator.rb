@@ -3,6 +3,7 @@ module Cms
     module Widget
       class VideoGenerator < ::Rails::Generators::Base
         include Actions
+        include Migration
 
         source_root File.expand_path('../templates', __FILE__)
 
@@ -37,55 +38,18 @@ module Cms
         end
 
         def create_migration
-          Api::WidgetGenerator.new(options, behavior: behavior) do |widget|
-            widget.name = obj_class_name
-            widget.icon = 'video'
-            widget.description = 'Displays a video player for the given video file.'
-            widget.attributes = [
-              {
-                name: 'source',
-                type: :reference,
-                title: 'Source',
-              },
-              {
-                name: 'poster',
-                type: :reference,
-                title: 'Poster',
-              },
-              {
-                name: 'width',
-                type: :integer,
-                title: 'Width',
-                default: 660,
-              },
-              {
-                name: 'height',
-                type: :string,
-                title: 'Height',
-                default: 430,
-              },
-              {
-                name: 'autoplay',
-                type: :boolean,
-                title: 'Autoplay this video?',
-                default: 'No',
-              },
-            ]
-          end
+          migration_template('migration.rb', 'cms/migrate/video_widget.rb')
+        rescue Rails::Generators::Error
+        end
 
-          directory('app', force: true)
+        def copy_app_directory
+          directory('app')
         end
 
         def notice
           if behavior == :invoke
             log(:migration, 'Make sure to run "rake cms:migrate" to apply CMS changes')
           end
-        end
-
-        private
-
-        def obj_class_name
-          'VideoWidget'
         end
       end
     end
