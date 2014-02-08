@@ -20,5 +20,5 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.filter_run :focus
   config.mock_with :rspec
-  config.order = 'random'
+  config.order = :random
 end

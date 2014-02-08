@@ -23,7 +23,6 @@ Gem::Specification.new do |gem|
   gem.executables = []
   gem.test_files  = Dir['spec/**/*']
   gem.files       = Dir[
-    'app/**/*',
     'lib/**/*',
     'LICENSE',
     'Rakefile',
@@ -33,7 +32,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'bundler'
   gem.add_dependency 'rails'
-  gem.add_dependency 'launchy'
   gem.add_dependency 'infopark_cloud_connector', '>= 7.1'
 
   gem.add_development_dependency 'yard'

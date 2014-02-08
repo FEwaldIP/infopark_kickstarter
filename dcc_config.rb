@@ -1,5 +1,5 @@
 send_notifications_to({
-  :infopark => "falk.koeppe@infopark.de",
+  infopark: 'falk.koeppe@infopark.de',
 })
 
 buckets 'kickstarter' do

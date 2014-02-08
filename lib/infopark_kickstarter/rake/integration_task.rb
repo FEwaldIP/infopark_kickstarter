@@ -45,7 +45,7 @@ module InfoparkKickstarter
       def create_application
         rm_rf(app_path)
 
-        sh("rails new #{app_path} --skip-test-unit --skip-active-record --skip-bundle --template template.rb")
+        sh("rails new #{app_path} --skip-test-unit --skip-active-record --skip-bundle --template spec/template.rb")
       end
 
       def create_configuration_files
@@ -58,7 +58,13 @@ module InfoparkKickstarter
       end
 
       def reset_cms
-        sh('bundle exec rake cms:reset[true]')
+        tenant_name = RailsConnector::Configuration.cms_url.match(/\/\/(.*?)\./)[1]
+        revision_id = RailsConnector::Workspace.default.revision_id
+
+        RailsConnector::CmsRestApi.delete('workspaces', {
+          revision_id: revision_id,
+          tenant_name: tenant_name,
+        })
       end
 
       def call_generators
