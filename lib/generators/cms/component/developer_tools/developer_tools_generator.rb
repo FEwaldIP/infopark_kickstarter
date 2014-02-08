@@ -6,7 +6,6 @@ module Cms
           gem_group(:test, :development) do
             gem('pry-rails')
             gem('thin')
-            gem('infopark_dashboard', '~> 0.0.3')
           end
 
           gem_group(:development) do
@@ -17,10 +16,6 @@ module Cms
           Bundler.with_clean_env do
             run('bundle --quiet')
           end
-        end
-
-        def add_dashboard_route
-          route("mount InfoparkDashboard::Engine => '/cms/dashboard' if Rails.env.development?")
         end
       end
     end

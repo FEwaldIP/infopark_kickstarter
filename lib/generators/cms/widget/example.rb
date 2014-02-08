@@ -28,7 +28,7 @@ module Cms
           end
 
           def example_cms_path
-            options[:cms_path] || '/website/en'
+            options[:cms_path] || '/en'
           end
 
           def example_cms_path?

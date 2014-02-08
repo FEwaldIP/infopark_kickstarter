@@ -1,6 +1,6 @@
 class LoginPageExample < ::RailsConnector::Migration
   def up
-    configuration_path = '/website/en/_configuration'
+    configuration_path = '/en/_configuration'
 
     login_page = create_obj(
       _path: "#{configuration_path}/login",
@@ -31,7 +31,7 @@ class LoginPageExample < ::RailsConnector::Migration
     update_obj_class('Homepage', attributes: attributes)
 
     update_obj(
-      Obj.find_by_path('/website/en').id,
+      Obj.find_by_path('/en').id,
       login_page: login_page['id'],
       reset_password_page: reset_password_page['id'],
     )

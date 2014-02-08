@@ -43,12 +43,6 @@ class Kickstart < ::RailsConnector::Migration
     )
 
     create_obj_class(
-      name: 'Website',
-      type: 'publication',
-      title: 'Website'
-    )
-
-    create_obj_class(
       name: 'ContentPage',
       type: 'publication',
       title: 'Content',

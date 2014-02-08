@@ -1,7 +1,6 @@
 class CreateStructure < ::RailsConnector::Migration
   def up
-    website_path = '/website'
-    homepage_path = "#{website_path}/en"
+    homepage_path = '/en'
     configuration_path = "#{homepage_path}/_configuration"
 
     delete_obj_by_path('/logo.png')
@@ -15,11 +14,6 @@ class CreateStructure < ::RailsConnector::Migration
     )
 
     try_update_obj_class('Root', is_active: false)
-
-    try_create_obj(
-      _path: website_path,
-      _obj_class: 'Website'
-    )
 
     try_create_obj(
       _path: homepage_path,

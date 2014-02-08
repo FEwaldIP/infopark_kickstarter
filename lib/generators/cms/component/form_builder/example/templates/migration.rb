@@ -1,7 +1,7 @@
 class FormBuilderExample < ::RailsConnector::Migration
   def up
     create_obj(
-      _path: '/website/en/feedback',
+      _path: '/en/feedback',
       _obj_class: 'FormBuilder',
       headline: 'Feedback',
       crm_activity_type: activity_type

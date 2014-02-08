@@ -29,11 +29,7 @@ class Obj < ::RailsConnector::BasicObj
   end
 
   def homepages
-    website.homepages
-  end
-
-  def website
-    homepage.website
+    @homepages ||= parent.children.select { |obj| obj.is_a?(Homepage) }
   end
 
   # Overriden method +slug+ from +RailsConnector::BasicObj+.
