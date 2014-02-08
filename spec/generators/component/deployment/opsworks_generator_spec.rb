@@ -52,7 +52,7 @@ describe Cms::Generators::Component::Deployment::OpsworksGenerator do
       end
 
       file 'Gemfile' do
-        contains 'gem "whenever", :require => false'
+        contains 'gem "whenever", require: false'
       end
     }
   end
