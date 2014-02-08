@@ -47,7 +47,7 @@ module InfoparkKickstarter
       def create_application
         rm_rf(app_path)
 
-        sh("rails _3.2.16_ new #{app_path} --skip-test-unit --skip-active-record --skip-bundle --template lib/infopark_kickstarter/rake/template.rb")
+        sh("rails new #{app_path} --skip-test-unit --skip-active-record --skip-bundle --template lib/infopark_kickstarter/rake/template.rb")
       end
 
       def create_configuration_files
