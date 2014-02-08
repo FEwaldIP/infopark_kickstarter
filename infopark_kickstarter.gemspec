@@ -32,7 +32,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'bundler'
   gem.add_dependency 'rails'
-  gem.add_dependency 'infopark_cloud_connector', '>= 7.1'
 
   gem.add_development_dependency 'yard'
   gem.add_development_dependency 'pry'

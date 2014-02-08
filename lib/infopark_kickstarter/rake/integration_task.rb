@@ -2,6 +2,7 @@ require 'rake'
 require 'rake/tasklib'
 
 require 'infopark_kickstarter/rake/configuration_helper'
+require 'infopark_kickstarter/rake/cms_client'
 
 module InfoparkKickstarter
   module Rake
@@ -26,6 +27,7 @@ module InfoparkKickstarter
           end
 
           task :app do
+            reset_cms
             create_application
             create_configuration_files
 
@@ -45,7 +47,7 @@ module InfoparkKickstarter
       def create_application
         rm_rf(app_path)
 
-        sh("rails new #{app_path} --skip-test-unit --skip-active-record --skip-bundle --template spec/template.rb")
+        sh("rails _3.2.16_ new #{app_path} --skip-test-unit --skip-active-record --skip-bundle --template lib/infopark_kickstarter/rake/template.rb")
       end
 
       def create_configuration_files
@@ -58,13 +60,7 @@ module InfoparkKickstarter
       end
 
       def reset_cms
-        tenant_name = RailsConnector::Configuration.cms_url.match(/\/\/(.*?)\./)[1]
-        revision_id = RailsConnector::Workspace.default.revision_id
-
-        RailsConnector::CmsRestApi.delete('workspaces', {
-          revision_id: revision_id,
-          tenant_name: tenant_name,
-        })
+        CmsClient.new.reset_cms
       end
 
       def call_generators
