@@ -24,7 +24,6 @@ class SitemapController < ActionController::Base
     %w(
       Image
       Video
-      Website
       Root
       ErrorPage
       LoginPage

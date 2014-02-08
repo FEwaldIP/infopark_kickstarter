@@ -1,7 +1,7 @@
 class SearchExample < ::RailsConnector::Migration
   def up
     search_page = create_obj(
-      _path: '/website/en/_configuration/search',
+      _path: '/en/_configuration/search',
       _obj_class: 'SearchPage',
       headline: 'Search'
     )
@@ -13,7 +13,7 @@ class SearchExample < ::RailsConnector::Migration
     })
 
     update_obj(
-      Obj.find_by_path('/website/en').id,
+      Obj.find_by_path('/en').id,
       search_page: search_page['id']
     )
   end

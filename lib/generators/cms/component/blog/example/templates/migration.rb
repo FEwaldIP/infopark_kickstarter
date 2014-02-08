@@ -1,6 +1,6 @@
 class BlogExample < ::RailsConnector::Migration
   def up
-    blog_path = '/website/en/blog'
+    blog_path = '/en/blog'
 
     create_obj(
       _path: blog_path,

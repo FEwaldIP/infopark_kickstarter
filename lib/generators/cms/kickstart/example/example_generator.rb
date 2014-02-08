@@ -19,10 +19,10 @@ module Cms
           Rails::Generators.invoke('cms:widget:text:example', [], behavior: behavior)
 
           Rails::Generators.invoke('cms:component:profile_page', [], behavior: behavior)
-          Rails::Generators.invoke('cms:component:profile_page:example', ['/website/en'], behavior: behavior)
+          Rails::Generators.invoke('cms:component:profile_page:example', ['/en'], behavior: behavior)
 
           Rails::Generators.invoke('cms:component:contact_page', [], behavior: behavior)
-          Rails::Generators.invoke('cms:component:contact_page:example', ['/website/en'], behavior: behavior)
+          Rails::Generators.invoke('cms:component:contact_page:example', ['/en'], behavior: behavior)
 
           Rails::Generators.invoke('cms:component:blog')
           Rails::Generators.invoke('cms:component:blog:example', [], behavior: behavior)

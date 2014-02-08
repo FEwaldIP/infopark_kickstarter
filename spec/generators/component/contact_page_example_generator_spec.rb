@@ -8,7 +8,7 @@ describe Cms::Generators::Component::ContactPage::ExampleGenerator do
 
   destination File.expand_path('../../../../tmp/generators', __FILE__)
 
-  arguments ['/website/en']
+  arguments ['/en']
 
   before do
     prepare_destination

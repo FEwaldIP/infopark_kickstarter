@@ -1,7 +1,7 @@
 class Homepage < Page
   # TODO edit mapping from hostnames to homepages
   def self.for_hostname(hostname)
-    find_by_path('/website/en')
+    find_by_path('/en')
   end
 
   # TODO edit mapping from homepages to hostnames
@@ -12,10 +12,6 @@ class Homepage < Page
 
   def homepage
     self
-  end
-
-  def website
-    parent
   end
 
   # Overriden method +show_breadcrumbs?+ from +Page+.
