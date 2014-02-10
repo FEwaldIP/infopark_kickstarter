@@ -75,5 +75,7 @@ class CreateStructure < ::RailsConnector::Migration
     else
       puts "[delete obj] The object at '#{path}' does not exist."
     end
+  rescue RailsConnector::ClientError => error
+    warning(error)
   end
 end
