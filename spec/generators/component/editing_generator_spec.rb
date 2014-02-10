@@ -69,9 +69,7 @@ describe Cms::Generators::Component::EditingGenerator do
               end
             end
 
-            file 'editing.css' do
-              contains '*= require bootstrap-datepicker'
-            end
+            file 'editing.css'
           end
 
           directory 'javascripts' do
@@ -91,7 +89,6 @@ describe Cms::Generators::Component::EditingGenerator do
             end
 
             file 'editing.js' do
-              contains '//= require bootstrap-datepicker'
               contains '//= require jquery.ui.sortable'
             end
           end
@@ -121,7 +118,6 @@ describe Cms::Generators::Component::EditingGenerator do
       end
 
       file 'Gemfile' do
-        contains 'gem "bootstrap-datepicker-rails"'
         contains 'gem "jquery-ui-rails"'
       end
     }

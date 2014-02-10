@@ -11,20 +11,6 @@ module EditingHelper
     end
   end
 
-  def cms_edit_date(object, attribute_name)
-    value = object.send(attribute_name)
-
-    value_string = if value.present?
-      value.strftime("%Y-%m-%d")
-    else
-      ''
-    end
-
-    cms_tag(:div, object, attribute_name) do
-      tag(:input, type: 'text', value: value_string)
-    end
-  end
-
   # Displays a CMS reference attribute on an edit page.
   #
   # @param [Obj] object the cms object with a reference attribute

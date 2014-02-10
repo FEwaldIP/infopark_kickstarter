@@ -1,3 +1,7 @@
+# v5.1.0
+  * Removed `bootstrap-datepicker-rails` dependency and went back to a simmple but effective input
+    field for date attributes using the standard Infopark Cloud Connector `cms_tag` helper.
+
 # v5.0.0
   * Update to Cloud Connector version 7.1 using the new `infopark.gui` methods, implementing an
     editor for CMS text attributes, and improve the linklist editor to also store internal CMS
