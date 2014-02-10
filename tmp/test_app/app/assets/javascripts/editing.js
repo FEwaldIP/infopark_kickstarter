@@ -11,7 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery.ui.sortable
-//= require bootstrap-datepicker
 //= require redactor
 //= require moment
 //= require_self
