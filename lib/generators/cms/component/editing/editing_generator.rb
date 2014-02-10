@@ -25,7 +25,6 @@ module Cms
         end
 
         def install_gems
-          gem('bootstrap-datepicker-rails')
           gem('jquery-ui-rails')
 
           Bundler.with_clean_env do
