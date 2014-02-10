@@ -15,6 +15,26 @@ $ ->
     getEditor = (element) ->
       element.closest('.date-editor')
 
+    keyUp = (event) ->
+      event.stopPropagation()
+      key = event.keyCode || event.which
+
+      switch key
+        when 13 # Enter
+          save(event)
+        when 27 # Esc
+          cancel(event)
+
+    cancel = (event) ->
+      element = $(event.currentTarget)
+      editor = getEditor(element)
+      disableEditMode(editor)
+
+    disableEditMode = (editor) ->
+      cmsField = editor.data('cmsField')
+      cmsField.show()
+      editor.remove()
+
     save = (event) ->
       inputField = $(event.currentTarget)
       editor = getEditor(inputField)
@@ -28,11 +48,8 @@ $ ->
 
       cmsField.infopark('save', content)
         .done ->
-          cmsField
-            .html(content)
-            .show()
-
-          editor.remove()
+          cmsField.html(content)
+          disableEditMode(editor)
         .fail ->
           editor.removeClass('saving')
 
@@ -51,6 +68,7 @@ $ ->
         .find('input')
         .val(content)
         .focusout(save)
+        .keyup(keyUp)
         .focus()
 
       cmsField.hide()
