@@ -17,9 +17,12 @@ $ ->
 
     save = (event) ->
       inputField = $(event.currentTarget)
-      content = new Date(inputField.val())
       editor = getEditor(inputField)
       cmsField = editor.data('cmsField')
+      content = inputField.val()
+
+      if content? && content.length > 0
+        content = new Date(content)
 
       editor.addClass('saving')
 
@@ -37,7 +40,10 @@ $ ->
       event.preventDefault()
 
       cmsField = $(this)
-      content = new Date(cmsField.html()).toString()
+      content = cmsField.html()
+
+      if content? && content.length > 0
+        new Date(content).toString()
 
       template()
         .data('cmsField', cmsField)
