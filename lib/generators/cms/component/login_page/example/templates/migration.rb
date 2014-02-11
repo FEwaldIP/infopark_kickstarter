@@ -2,13 +2,13 @@ class LoginPageExample < ::RailsConnector::Migration
   def up
     configuration_path = '/en/_configuration'
 
-    login_page = create_obj(
+    login_page = Obj.create(
       _path: "#{configuration_path}/login",
       _obj_class: 'LoginPage',
       headline: 'Log in'
     )
 
-    reset_password_page = create_obj(
+    reset_password_page = Obj.create(
       _path: "#{configuration_path}/reset-password",
       _obj_class: 'ResetPasswordPage',
       headline: 'Reset Password'
@@ -30,8 +30,8 @@ class LoginPageExample < ::RailsConnector::Migration
 
     update_obj_class('Homepage', attributes: attributes)
 
-    update_obj(
-      Obj.find_by_path('/en').id,
+    obj = Obj.find_by_path('/en')
+    obj.update(
       login_page: login_page['id'],
       reset_password_page: reset_password_page['id'],
     )

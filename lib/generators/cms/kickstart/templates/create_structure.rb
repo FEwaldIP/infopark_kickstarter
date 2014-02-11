@@ -3,8 +3,8 @@ class CreateStructure < ::RailsConnector::Migration
     homepage_path = '/en'
     configuration_path = "#{homepage_path}/_configuration"
 
-    delete_obj_by_path('/logo.png')
-    delete_obj_by_path('/')
+    destroy_obj_by_path('/logo.png')
+    destroy_obj_by_path('/')
 
     try_update_obj_class('Publication', is_active: false)
 
@@ -37,7 +37,7 @@ class CreateStructure < ::RailsConnector::Migration
     )
 
     try_update_obj(
-      Obj.find_by_path(homepage_path).id,
+      Obj.find_by_path(homepage_path),
       error_not_found_page: error_not_found_page['id'],
     )
   end
@@ -51,13 +51,13 @@ class CreateStructure < ::RailsConnector::Migration
   end
 
   def try_create_obj(attributes = {})
-    create_obj(attributes)
+    Obj.create(attributes)
   rescue RailsConnector::ClientError => error
     warning(error)
   end
 
-  def try_update_obj(id, attributes = {})
-    update_obj(id, attributes)
+  def try_update_obj(obj, attributes = {})
+    obj.update(attributes)
   rescue RailsConnector::ClientError => error
     warning(error)
   end
@@ -67,11 +67,11 @@ class CreateStructure < ::RailsConnector::Migration
     puts 'Some aspects of the Infopark Kickstarter may not work as expected.'
   end
 
-  def delete_obj_by_path(path)
+  def destroy_obj_by_path(path)
     obj = Obj.find_by_path(path)
 
     if obj
-      delete_obj(obj.id)
+      obj.destroy
     else
       puts "[delete obj] The object at '#{path}' does not exist."
     end

@@ -1,7 +1,5 @@
 class SliderWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path('<%= example_cms_path %>')
-
     urls = [
       'http://lorempixel.com/1170/400/abstract',
       'http://lorempixel.com/1170/400/sports',
@@ -9,14 +7,16 @@ class SliderWidgetExample < RailsConnector::Migration
     ]
 
     image_ids = urls.map do |url|
-      image = create_obj({
+      image = Obj.create({
         _obj_class: 'Image',
         _path: "_resources/#{SecureRandom.hex(8)}/example_image.jpg",
-        blob: upload_file(open(url)),
+        blob: File.new(open(url).path),
       })
 
       image['id']
     end
+
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
     add_widget(homepage, '<%= example_widget_attribute %>', {
       _obj_class: 'SliderWidget',

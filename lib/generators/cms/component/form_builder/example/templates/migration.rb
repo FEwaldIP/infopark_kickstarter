@@ -1,6 +1,6 @@
 class FormBuilderExample < ::RailsConnector::Migration
   def up
-    create_obj(
+    Obj.create(
       _path: '/en/feedback',
       _obj_class: 'FormBuilder',
       headline: 'Feedback',

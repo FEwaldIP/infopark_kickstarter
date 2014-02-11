@@ -1,6 +1,6 @@
 class ContactPageExample < ::RailsConnector::Migration
   def up
-    create_obj(
+    Obj.create(
       _path: '/en/contact',
       _obj_class: 'ContactPage',
       headline: 'Contact',

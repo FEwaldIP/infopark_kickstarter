@@ -2,7 +2,7 @@ class BlogExample < ::RailsConnector::Migration
   def up
     blog_path = '/en/blog'
 
-    create_obj(
+    Obj.create(
       _path: blog_path,
       _obj_class: 'Blog',
       headline: 'Blog',
@@ -11,7 +11,7 @@ class BlogExample < ::RailsConnector::Migration
 
     post_path = "#{blog_path}/post-example-1"
 
-    post = create_obj(
+    post = Obj.create(
       _path: post_path,
       _obj_class: 'BlogPost',
       headline: 'Nulla viverra metus vitae nunc iaculis dignissim',
@@ -34,7 +34,7 @@ class BlogExample < ::RailsConnector::Migration
 
     post_path = "#{blog_path}/post-example-2"
 
-    post = create_obj(
+    post = Obj.create(
       _path: post_path,
       _obj_class: 'BlogPost',
       headline: 'Excepteur sint occaecat cupidatat',

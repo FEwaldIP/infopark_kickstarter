@@ -1,16 +1,21 @@
 require 'open-uri'
 
+# Make sure to always create a tempfile, even for files smaller than 10kb.
+# See http://stackoverflow.com/questions/694115 for more details.
+OpenURI::Buffer.send :remove_const, 'StringMax'
+OpenURI::Buffer.const_set 'StringMax', 0
+
 class TextImageWidgetExample < RailsConnector::Migration
   def up
-    homepage = Obj.find_by_path('<%= example_cms_path %>')
-
     asset_url = 'http://lorempixel.com/400/120/abstract'
 
-    asset = create_obj({
+    asset = Obj.create({
       _obj_class: 'Image',
       _path: "_resources/#{SecureRandom.hex(8)}/example_image.jpg",
-      blob: upload_file(open(asset_url)),
+      blob: File.new(open(asset_url).path),
     })
+
+    homepage = Obj.find_by_path('<%= example_cms_path %>')
 
     add_widget(homepage, '<%= example_widget_attribute %>', {
       _obj_class: 'TextImageWidget',
