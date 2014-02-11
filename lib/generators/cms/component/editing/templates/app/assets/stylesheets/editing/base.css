@@ -1,0 +1,125 @@
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@-moz-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@-ms-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@-o-keyframes progress-bar-stripes {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40px 0;
+  }
+}
+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+/*
+  Nested widget styles
+
+  For nested widgets it is immportant that their corresponding edit markers are all visible and
+  accessible for the editor. A nested widget is identified, when the div of the outer structure
+  widget has a CMS widget attribute inside. If that is the case, the structure widget edit marker
+  is placed above the edit marker for the CMS widget attribute and gets a different color.
+*/
+
+body.ip_editing_active.ip_editable_workspace div[data-ip-private-widget-obj-class] {
+  min-height: 30px;
+}
+
+body.ip_editing_active.ip_editable_workspace div[data-ip-private-widget-obj-class] div[data-ip-field-type=widget] {
+  -webkit-transition: outline-color ease-in-out .8s;
+  -moz-transition: outline-color ease-in-out .8s;
+  -o-transition: outline-color ease-in-out .8s;
+  transition: outline-color ease-in-out .8s;
+  margin-top: 35px;
+  min-height: 30px;
+  outline: 2px dotted #74e000;
+  outline: 2px dotted rgba(116, 224, 0, 0.2);
+}
+
+body.ip_editing_active.ip_editable_workspace div[data-ip-private-widget-obj-class] div[data-ip-field-type=widget]:hover {
+  -webkit-transition: outline-color ease-in-out .3s;
+  -moz-transition: outline-color ease-in-out .3s;
+  -o-transition: outline-color ease-in-out .3s;
+  transition: outline-color ease-in-out .3s;
+  outline: 2px dotted #74e000;
+}
+
+body.ip_editing_active.ip_editable_workspace div[data-ip-private-widget-obj-class] div[data-ip-field-type=widget] > .ip_editing_marker {
+  border-color: #74e000;
+}
+
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=html],
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=string],
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=text],
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=reference],
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=date] {
+  -webkit-transition: outline-color ease-in-out .8s;
+  -moz-transition: outline-color ease-in-out .8s;
+  -o-transition: outline-color ease-in-out .8s;
+  transition: outline-color ease-in-out .8s;
+  min-height: 35px;
+  outline: 2px dotted #ffa500;
+  outline: 2px dotted rgba(255, 165, 0, 0.3);
+  text-shadow: none;
+}
+
+/*
+  Inplace editing CMS attributes styles
+
+  When CMS attributes are displayed on the page and edit mode is active, the attributes get
+  highlighted and indicate, that they can be edited via inplace editing.
+*/
+
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=html]:hover,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=string]:hover,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=text]:hover,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=reference]:hover,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=date]:hover,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=html]:focus,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=string]:focus,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=text]:focus,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=reference]:focus,
+body.ip_editing_active.ip_editable_workspace [data-ip-field-type=date]:focus {
+  -webkit-transition: outline-color ease-in-out .3s;
+  -moz-transition: outline-color ease-in-out .3s;
+  -o-transition: outline-color ease-in-out .3s;
+  transition: outline-color ease-in-out .3s;
+  outline: 2px dotted #ffa500;
+  text-shadow: none;
+}
