@@ -45,11 +45,6 @@ gem "active_attr"
 gem "haml-rails"
 gem "utf8-cleaner"
 gem "infopark_crm_connector"
-group :assets do
-  gem "therubyracer", :platforms => :ruby
-  gem "less-rails-bootstrap", "~> 3.0"
-end
-
 gem "jquery-ui-rails"
 group :test, :development do
   gem "pry-rails"

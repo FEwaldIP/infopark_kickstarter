@@ -34,11 +34,6 @@ module Cms
         gem('utf8-cleaner')
         gem('infopark_crm_connector')
 
-        gem_group(:assets) do
-          gem('therubyracer', platforms: :ruby)
-          gem('less-rails-bootstrap', '~> 3.0')
-        end
-
         Bundler.with_clean_env do
           run('bundle --quiet')
         end

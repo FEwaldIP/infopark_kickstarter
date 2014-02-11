@@ -24,7 +24,7 @@ describe Cms::Generators::Widget::ImageGenerator do
         directory 'assets' do
           directory 'stylesheets' do
             directory 'application' do
-              file 'image_widget.css.less'
+              file 'image_widget.css'
             end
           end
         end

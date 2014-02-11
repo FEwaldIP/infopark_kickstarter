@@ -19,7 +19,7 @@ describe Cms::Generators::Widget::Maps::GoogleMapsGenerator do
         directory 'assets' do
           directory 'stylesheets' do
             directory 'application' do
-              file 'google_maps_widget.css.less'
+              file 'google_maps_widget.css'
             end
           end
         end

@@ -17,6 +17,7 @@
       = javascript_include_tag('http://html5shim.googlecode.com/svn/trunk/html5.js')
 
     = stylesheet_link_tag('application', media: 'all')
+    = stylesheet_link_tag('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', media: 'all')
     = stylesheet_link_tag('editing', media: 'all') if inplace_editing_allowed?
 
     %link{href: '/favicon.ico', rel: 'shortcut icon'}
@@ -45,6 +46,7 @@
       = render('layouts/footer', page: @obj)
 
     = javascript_include_tag('application')
+    = javascript_include_tag('//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js')
 
     - if inplace_editing_allowed?
       = javascript_include_tag('editing')

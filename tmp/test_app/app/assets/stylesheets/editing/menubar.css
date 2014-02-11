@@ -1,0 +1,25 @@
+/*
+  Edit mode toggle styles
+*/
+
+a#edit-toggle {
+  color: #8094bb;
+  cursor: pointer;
+  margin: 10px 10px 0 0;
+  position: fixed;
+  right: 0;
+  text-decoration: none;
+  top: 0;
+}
+
+a#edit-toggle:hover {
+  color: #6e84a8;
+}
+
+body.ip_editing_active {
+  padding-top: 47px;
+}
+
+body.ip_editing_active #edit-toggle {
+  display: none;
+}

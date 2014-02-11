@@ -20,12 +20,12 @@ describe Cms::Generators::Widget::DiagramGenerator do
         directory 'assets' do
           directory 'stylesheets' do
             directory 'application' do
-              file 'diagram.css.less'
+              file 'diagram.css'
             end
 
             directory 'editing' do
               directory 'editors' do
-                file 'diagram_editor.css.less'
+                file 'diagram_editor.css'
               end
             end
           end

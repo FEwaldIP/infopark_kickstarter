@@ -37,7 +37,7 @@ describe Cms::Generators::Component::Editing::RedactorGenerator do
           directory 'stylesheets' do
             directory 'editing' do
               directory 'editors' do
-                file 'redactor.css.less'
+                file 'redactor.css.erb'
               end
             end
           end
