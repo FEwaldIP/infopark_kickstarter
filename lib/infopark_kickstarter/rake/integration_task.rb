@@ -27,7 +27,6 @@ module InfoparkKickstarter
           end
 
           task :app do
-            reset_cms
             create_application
             create_configuration_files
 

@@ -16,7 +16,12 @@ module InfoparkKickstarter
         @config ||= begin
           path = File.expand_path('../../../../config', __FILE__)
           file = File.join(path, 'rails_connector.yml')
-          YAML.load_file(file)['cms_api']
+
+          if File.exists?(file)
+            YAML.load_file(file)['cms_api']
+          else
+            {}
+          end
         end
       end
 
@@ -25,15 +30,15 @@ module InfoparkKickstarter
       end
 
       def url
-        config['url']
+        ENV['CMS_URL'] || config['url']
       end
 
       def login
-        config['login']
+        ENV['CMS_LOGIN'] || config['login']
       end
 
       def api_key
-        config['api_key']
+        ENV['CMS_API_KEY'] || config['api_key']
       end
 
       def revision_id
