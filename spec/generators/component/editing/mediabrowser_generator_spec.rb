@@ -28,7 +28,7 @@ describe Cms::Generators::Component::Editing::MediabrowserGenerator do
         directory 'assets' do
           directory 'stylesheets' do
             directory 'editing' do
-              file 'mediabrowser.css.less'
+              file 'mediabrowser.css'
             end
           end
 

@@ -53,19 +53,18 @@ describe Cms::Generators::Component::EditingGenerator do
 
           directory 'stylesheets' do
             directory 'editing' do
-              file 'base.css.less'
-              file 'mixins.less'
-              file 'icons.css.less'
-              file 'buttons.css.less'
-              file 'base.css.less'
-              file 'menubar.css.less'
+              file 'base.css'
+              file 'icons.css.erb'
+              file 'buttons.css'
+              file 'base.css'
+              file 'menubar.css'
 
               directory 'editors' do
-                file 'string_editor.css.less'
-                file 'text_editor.css.less'
-                file 'linklist_editor.css.less'
-                file 'reference_editor.css.less'
-                file 'referencelist_editor.css.less'
+                file 'string_editor.css'
+                file 'text_editor.css'
+                file 'linklist_editor.css'
+                file 'reference_editor.css'
+                file 'referencelist_editor.css'
               end
             end
 
