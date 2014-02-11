@@ -1,4 +1,5 @@
 # v5.1.0
+  * Remove dependency on `less` by using plain CSS and referencing bootstrap from a CDN.
   * Removed `bootstrap-datepicker-rails` dependency and went back to a simmple but effective input
     field for date attributes using the standard Infopark Cloud Connector `cms_tag` helper.
 
