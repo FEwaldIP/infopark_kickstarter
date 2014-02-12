@@ -39,3 +39,11 @@ end
 
 # Set cache path outside of the application directory.
 RailsConnector::Configuration.cache_path = "/tmp/cache/#{Rails.root.basename}"
+
+RailsConnector::Configuration.register_obj_format('mediabrowser') do |obj|
+  {
+    id: obj.id,
+    title: obj.title || obj.name,
+    preview: obj.body_data_url,
+  }
+end

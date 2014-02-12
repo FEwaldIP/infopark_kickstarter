@@ -3,30 +3,109 @@
   overlayBackgroundSelector: '.editing-overlay'
   loadingSelector: '.editing-mediabrowser-loading'
   thumbnailViewButtonSelector: '.editing-button-view'
+  filterSelector: '.editing-mediabrowser-filter'
   options: {}
 
   _setDefaults: ->
-    @query = ''
+    @query = undefined
     @objClass = undefined
     @thumbnailSize = 'normal'
     @_setSelected(@options.selection || [])
 
-  _highlightFilter: (filterItem) ->
-    filterItems = @modal.find('li.filter')
-    filterItems.removeClass('active')
+  _setQuery: (value) ->
+    @query = value
 
-    filterItem ||= filterItems.filter('.all')
-    $(filterItem).addClass('active')
+  _filterList: ->
+    @modal.find(@filterSelector)
+
+  _filterListTemplate: ->
+    list = $('<ul></ul>')
+      .addClass('editing-mediabrowser-filter-items')
+
+    filter = @_filter()
+
+    $.each filter, (index, options) =>
+      title = options.title
+      icon = options.icon
+      query = options.query
+
+      template = @_filterTemplate(title, icon, query)
+        .appendTo(list)
+
+    list
+
+  _loadFilter: ->
+    wrapper = @_filterList()
+
+    @_filterListTemplate()
+      .appendTo(wrapper)
+
+    @query = @_defaultFilter().data('query')
+
+  _filterItems: ->
+    @modal.find('li.filter')
+
+  _defaultFilter: ->
+    @_filterItems().first()
+
+  _activateFilter: (filter) ->
+    @_deactivateAllFilter()
+
+    filter ||= @_defaultFilter()
+    $(filter).addClass('active')
+
+    query = filter.data('query')
+    @_setQuery(query)
+
+  _deactivateAllFilter: ->
+    @_filterItems().removeClass('active')
 
   _onFilter: (event) ->
+    console.debug 'onFilter', event
+
     event.preventDefault()
 
-    target = $(event.currentTarget)
-    @objClass = target.data('obj-class')
-    @showSelection = target.hasClass('selected-items')
+    filter = $(event.currentTarget)
+    @showSelection = filter.hasClass('selected-items')
 
-    @_highlightFilter(target)
+    @_activateFilter(filter)
     @_renderPlaceholder()
+
+  _filterTemplate: (title, icon, query) ->
+    filter = $('<li></li>')
+      .addClass('filter')
+      .data('query', query)
+
+    icon = $('<span></span>')
+      .addClass('editing-icon')
+      .addClass(icon)
+      .appendTo(filter)
+
+    title = $('<span></span>')
+      .addClass('editing-mediabrowser-filter-name')
+      .html(title)
+      .appendTo(filter)
+
+    filter
+
+  _filter: ->
+    [
+      {
+        title: 'Images',
+        query: infopark.obj_where('_obj_class', 'equals', 'Image'),
+        icon: 'editing-icon-ok-box',
+      },
+      {
+        title: 'Blog Posts',
+        query: infopark.obj_where('_obj_class', 'equals', 'BlogPost'),
+        icon: 'editing-icon-ok-box',
+      },
+      {
+        title: 'Error Pages',
+        query: infopark.obj_where('_obj_class', 'equals', 'ErrorPage'),
+        icon: 'editing-icon-ok-box',
+      },
+    ]
 
   _save: ->
     (@options.onSave || $.noop)(@selected)
@@ -117,12 +196,12 @@
 
     [viewIndex, viewLimit]
 
-  _itemsPlaceholder: (containerTotal) ->
+  _itemsPlaceholder: (count) ->
     list = $('<ul></ul>')
       .addClass('items editing-mediabrowser-thumbnails')
       .addClass(@thumbnailSize)
 
-    content = for index in [0...containerTotal] by 1
+    content = for index in [0...count] by 1
       itemTemplate = @_itemPlaceholderTemplate(index)
       list.append(itemTemplate)
 
@@ -140,16 +219,21 @@
     $(item).html(loading)
 
   _updateViewport: ->
+    console.debug 'updateViewport'
+
     return unless @_getContainer().length
 
     [viewIndex, viewLimit] = @_calculateViewportValues()
 
     [alreadyLoaded, viewIndex] = @_getStartIndex(viewIndex, viewLimit)
 
+    console.debug '  alreadyLoaded', alreadyLoaded
+
     unless alreadyLoaded
       @_renderContents(viewIndex, viewLimit)
 
   _getStartIndex: (viewIndex, viewLimit) ->
+    console.debug 'getStartIndex', viewIndex, viewLimit
     maxIndex = viewIndex + viewLimit
 
     for index in [viewIndex...maxIndex] by 1
@@ -168,15 +252,15 @@
     selected_only: @showSelection
 
   _renderPlaceholder: ->
-    @_renderLoading()
-    query = @_queryOptions()
+    console.debug 'renderPlaceholder'
 
-    $.ajax
-      url: '/mediabrowser'
-      dataType: 'json'
-      data: query
-      success: (json) =>
-        total = json.meta.total
+    @_renderLoading()
+
+    console.debug 'query', @query
+
+    @query.size()
+      .then (total) =>
+        console.debug 'total', total
 
         if total > 0
           @_itemsPlaceholder(total)
@@ -185,26 +269,72 @@
           @_renderNoResults()
 
   _renderContents: (viewIndex, viewLimit) ->
-    query = @_queryOptions()
-    query['limit'] = viewLimit
-    query['offset'] = viewIndex
+    console.debug 'renderContents', viewIndex, viewLimit
 
-    $.ajax
-      url: '/mediabrowser'
-      dataType: 'json'
-      data: query
-      success: (json) =>
-        @_replacePlaceholder(json.objects, viewIndex)
+    @query
+      .offset(viewIndex)
+      .order('_last_changed')
+      .reverse_order()
+      .batch_size(viewLimit)
+      .format('mediabrowser')
+
+    @query.load_batch()
+      .then (result, next) =>
+        console.debug result, next
+
+        hits = result.hits
+        @_replacePlaceholder(hits, viewIndex)
 
   _findItemByIndex: (index) ->
     @modal.find("li.mediabrowser-item[data-index=#{index}]")
 
   _replacePlaceholder: (objects, viewIndex) ->
+    console.debug 'replacePlaceholder', objects
+
     $(objects).each (index, object) =>
       elementsViewIndex = index + viewIndex
-      element = @_findItemByIndex(elementsViewIndex)
-      element.html(object.content)
-      element.data('id', object.id)
+      template = @_itemTemplate(object)
+
+      @_findItemByIndex(elementsViewIndex)
+        .html(template)
+        .data('id', object.id)
+
+  _itemTemplate: (object) ->
+    console.debug 'itemTemplate', object
+
+    url = object.preview
+    title = object.title || object.name
+
+    wrapper = $('<div></div>')
+
+    preview = $('<div></div>')
+      .addClass('editing-mediabrowser-preview')
+      .appendTo(wrapper)
+
+    image = if url?
+      $('<img />')
+        .attr('src', url)
+    else
+      $('<span></span>')
+        .addClass('editing-icon')
+        .addClass('editing-icon-generic')
+
+    image.appendTo(preview)
+
+    meta = $('<div></div>')
+      .addClass('editing-mediabrowser-meta')
+      .appendTo(wrapper)
+
+    title = $('<span></span>')
+      .addClass('editing-mediabrowser-thumbnails-name')
+      .html(title)
+      .appendTo(meta)
+
+    select = $('<span></span>')
+      .addClass('editing-mediabrowser-thumbnails-select select-item')
+      .appendTo(title)
+
+    wrapper
 
   _setTimer: ->
     if @timer
@@ -215,7 +345,12 @@
     , 500
 
   _triggerSearch: ->
-    @query = @modal.find('input.search-field').val()
+    term = @modal.find('input.search-field').val()
+    query = infopark
+      .obj_where('*', 'contains_prefix', term)
+
+    @_setQuery(query)
+    @_deactivateAllFilter()
     @_renderPlaceholder()
 
   _initializeBindings: ->
@@ -302,8 +437,10 @@
       success: (json) =>
         @modal.html(json.content)
 
+        @_loadFilter()
+
         @_setDefaults()
-        @_highlightFilter()
+        @_activateFilter()
         @_renderPlaceholder()
 
         MediabrowserInspector.init(@modal)
