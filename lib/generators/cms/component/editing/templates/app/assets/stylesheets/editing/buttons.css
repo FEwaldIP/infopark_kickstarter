@@ -1,6 +1,8 @@
-// Defines various button styles used throughout the inplace editing GUI. Button styles are not
-// bound to one particular inplace editing feature, but are shared accross the menubar, the
-// mediabrowser or on edit views.
+/*
+  Defines various button styles used throughout the inplace editing GUI. Button styles are not
+  bound to one particular inplace editing feature, but are shared accross the menubar, the
+  mediabrowser or on edit views.
+*/
 
 .editing-button {
   border: 1px solid #bbb;
