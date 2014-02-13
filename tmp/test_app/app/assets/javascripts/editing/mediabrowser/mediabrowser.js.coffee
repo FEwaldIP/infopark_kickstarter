@@ -17,7 +17,7 @@
 
     $.each filter, (index, options) =>
       title = options.title
-      icon = options.icon
+      icon = options.icon || 'editing-icon-generic'
       query = @_prepareQuery(options.query)
 
       @_filterTemplate(title, icon, query)
