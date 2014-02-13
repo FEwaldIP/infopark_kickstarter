@@ -43,10 +43,15 @@
   _defaultQuery: ->
     @_getFilterQuery(@_defaultFilter())
 
+  _activeQuery: ->
+    filter = @_filterItems().filter('.active')
+    @_getFilterQuery(filter)
+
   _filterItems: ->
     @modal.find('li.filter')
 
   _deactivateAllFilter: ->
+    @_getSearch().val('')
     @_filterItems().removeClass('active')
 
   _triggerFilter: (filter) ->
@@ -245,13 +250,18 @@
 
     wrapper
 
-  _triggerSearch: ->
-    term = @modal.find('input.search-field').val()
-    query = infopark
-      .obj_where('*', 'contains_prefix', term)
-    @_prepareQuery(query)
+  _getSearch: ->
+    @modal.find('input.search-field')
 
-    @_deactivateAllFilter()
+  _triggerSearch: ->
+    term = @_getSearch().val()
+    params = $.extend(true, {}, @_activeQuery().query())
+    query = infopark.chainable_search.create_instance(params)
+
+    if term? && term.length > 0
+      query.and('*', 'contains_prefix', term)
+      @_prepareQuery(query)
+
     @_renderPlaceholder(query)
 
   _initializeBindings: ->
