@@ -25,7 +25,8 @@
 
     list
 
-  _loadFilter: (filter) ->
+  _loadFilter: () ->
+    filter = @options.filter || []
     wrapper = @modal.find('.editing-mediabrowser-filter')
 
     @_filterListTemplate(filter)
@@ -72,25 +73,6 @@
       .appendTo(filter)
 
     filter
-
-  _filter: ->
-    [
-      {
-        title: 'Images',
-        query: infopark.obj_where('_obj_class', 'equals', 'Image'),
-        icon: 'editing-icon-image',
-      },
-      {
-        title: 'Blog Posts',
-        query: infopark.obj_where('_obj_class', 'equals', 'BlogPost'),
-        icon: 'editing-icon-generic',
-      },
-      {
-        title: 'Error Pages',
-        query: infopark.obj_where('_obj_class', 'equals', 'ErrorPage'),
-        icon: 'editing-icon-generic',
-      },
-    ]
 
   _prepareQuery: (query) ->
     query
@@ -375,7 +357,7 @@
 
         @_loadModal(json.content)
         @_setSelected()
-        @_loadFilter(@_filter())
+        @_loadFilter()
         @_renderPlaceholder()
         @_changeThumbnailSize()
 
