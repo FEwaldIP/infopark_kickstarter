@@ -168,11 +168,13 @@
     $(item).html(loading)
 
   _renderPlaceholder: (query) ->
+    query ||= @_defaultQuery()
+
+    return unless query?
+
     @_getItems()
       .empty()
       .html(@_loadingTemplate())
-
-    query ||= @_defaultQuery()
 
     query.size()
       .then (total) =>
