@@ -49,4 +49,6 @@ RailsConnector::Configuration.register_obj_format('mediabrowser') do |obj|
   if obj.image?
     format[:preview] = obj.body_data_url
   end
+
+  format
 end
