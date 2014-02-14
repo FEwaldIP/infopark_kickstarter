@@ -21,6 +21,7 @@ module InfoparkKickstarter
                 call_generators
                 reset_cms
                 migrate
+                publish
                 run_tests
               end
             end
@@ -109,6 +110,10 @@ module InfoparkKickstarter
 
       def migrate
         sh('bundle exec rake cms:migrate')
+      end
+
+      def publish
+        sh('bundle exec rake cms:migrate:publish')
       end
 
       def run_tests
