@@ -11,11 +11,11 @@
   _setThumbnailSize: (value) ->
     @thumbnailSize = value
 
-  _filterListTemplate: (filter) ->
+  _filterListTemplate: (filters) ->
     list = $('<ul></ul>')
       .addClass('editing-mediabrowser-filter-items')
 
-    $.each filter, (index, options) =>
+    for name, options of filters
       title = options.title
       icon = options.icon || 'editing-icon-generic'
       query = @_prepareQuery(options.query)
@@ -26,13 +26,30 @@
     list
 
   _loadFilter: () ->
-    filter = @options.filter || []
+    filters = @_selectedFilters()
     wrapper = @modal.find('.editing-mediabrowser-filter')
 
-    @_filterListTemplate(filter)
+    @_filterListTemplate(filters)
       .appendTo(wrapper)
 
     @_defaultFilter().trigger('click')
+
+  _selectedFilters: ->
+    availableFilters = @filters()
+    selectedFilters = @options.filters
+    filters = availableFilters
+
+    if selectedFilters?
+      unless $.isArray(selectedFilters)
+        selectedFilters = new Array(selectedFilters)
+
+      filters = {}
+
+      for filterId, filter of availableFilters
+        if filterId in selectedFilters
+          filters[filterId] = filter
+
+    filters
 
   _defaultFilter: ->
     @_filterItems().first()
@@ -80,7 +97,8 @@
     filter
 
   _prepareQuery: (query) ->
-    query
+    params = $.extend(true, {}, query.query())
+    infopark.chainable_search.create_instance(params)
       .order('_last_changed')
       .reverse_order()
       .format('mediabrowser')
@@ -255,12 +273,10 @@
 
   _triggerSearch: ->
     term = @_getSearch().val()
-    params = $.extend(true, {}, @_activeQuery().query())
-    query = infopark.chainable_search.create_instance(params)
+    query = @_prepareQuery(@_activeQuery())
 
     if term? && term.length > 0
       query.and('*', 'contains_prefix', term)
-      @_prepareQuery(query)
 
     @_renderPlaceholder(query)
 
@@ -353,6 +369,9 @@
       .removeClass('active')
       .filter("[data-size='#{size}']")
       .addClass('active')
+
+  filters: ->
+    {}
 
   close: ->
     (@options.onClose || $.noop)()
