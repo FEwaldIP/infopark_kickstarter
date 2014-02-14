@@ -1,12 +1,12 @@
 %h4
   Source
 
-= cms_edit_reference(@widget, :source)
+= cms_edit_reference(@widget, :source, data: { filter: 'videos' })
 
 %h4
   Poster
 
-= cms_edit_reference(@widget, :poster)
+= cms_edit_reference(@widget, :poster, data: { filter: 'images' })
 
 %h4
   Width

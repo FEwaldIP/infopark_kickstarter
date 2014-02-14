@@ -64,6 +64,14 @@ module Cms
           insert_into_file(file, data, after: insert_point)
         end
 
+        def append_configuration
+          destination = File.join(destination_root, 'config', 'initializers', 'rails_connector.rb')
+
+          append_file(destination) do
+            File.read(find_in_source_paths('rails_connector.rb'))
+          end
+        end
+
         def run_generator_for_selected_editor
           Rails::Generators.invoke("cms:component:editing:#{editor}", [], behavior: behavior)
           Rails::Generators.invoke('cms:component:editing:mediabrowser', [], behavior: behavior)
