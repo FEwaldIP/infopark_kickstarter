@@ -56,8 +56,7 @@ describe Cms::Generators::Component::Editing::MediabrowserGenerator do
           end
 
           directory 'mediabrowser' do
-            file '_button_bar.html.haml'
-            file '_filter.html.haml'
+            file '_buttons.html.haml'
             file '_header.html.haml'
             file 'modal.html.haml'
 

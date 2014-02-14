@@ -28,17 +28,20 @@ describe Cms::Generators::Component::EditingGenerator do
     environments_path = "#{destination_root}/config/environments"
     layouts_path = "#{destination_root}/app/views/layouts"
     config_path = "#{destination_root}/config"
+    initializers_path = "#{destination_root}/config/initializers"
 
     mkdir_p(javascripts_path)
     mkdir_p(stylesheets_path)
     mkdir_p(environments_path)
     mkdir_p(layouts_path)
     mkdir_p(config_path)
+    mkdir_p(initializers_path)
 
     File.open("#{destination_root}/Gemfile", 'w')
     File.open("#{environments_path}/production.rb", 'a') { |f| f.write('Test::Application.configure do') }
     File.open("#{layouts_path}/application.html.haml", 'w') { |file| file.write("  %body{body_attributes(@obj)}\n") }
     File.open("#{config_path}/routes.rb", 'w') { |file| file.write('Dummy::Application.routes.draw do') }
+    File.open("#{initializers_path}/rails_connector.rb", 'w')
   end
 
   it 'creates files' do
@@ -109,6 +112,12 @@ describe Cms::Generators::Component::EditingGenerator do
       end
 
       directory 'config' do
+        directory 'initializers' do
+          file 'rails_connector.rb' do
+            contains "RailsConnector::Configuration.register_obj_format('mediabrowser')"
+          end
+        end
+
         directory 'environments' do
           file 'production.rb' do
             contains 'config.assets.precompile += %w(editing.css editing.js)'

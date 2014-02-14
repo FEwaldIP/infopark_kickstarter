@@ -3,7 +3,7 @@ class CreateImage < ::RailsConnector::Migration
     unless obj_class_exists?('Image')
       create_obj_class(
         name: 'Image',
-        type: 'generic',
+        type: 'image',
         title: 'Image',
         attributes: [
           {

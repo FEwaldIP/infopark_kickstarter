@@ -39,10 +39,12 @@ $ ->
     event.preventDefault()
 
     cmsField = getCmsField($(event.currentTarget))
+    filters = cmsField.data('filters') || cmsField.data('filter')
     ids = getIds(cmsField)
 
     Mediabrowser.open
       selection: ids
+      filters: filters
 
       onSave: (selection) =>
         save(selection, cmsField)

@@ -38,9 +38,12 @@ $ ->
     event.preventDefault()
 
     linkItem = $(event.currentTarget).closest('li')
+    cmsField = getCmsField(linkItem)
+    filters = cmsField.data('filters') || cmsField.data('filter')
 
     Mediabrowser.open
       selection: []
+      filters: filters
       onSave: (selection) =>
         onMediabrowserSaveLinkItem(selection, linkItem)
 

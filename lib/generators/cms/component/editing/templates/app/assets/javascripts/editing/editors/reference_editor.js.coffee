@@ -7,10 +7,12 @@ $ ->
 
       cmsField = $(event.currentTarget)
       selected = [cmsField.infopark('content')].filter (element) -> element
+      filters = cmsField.data('filters') || cmsField.data('filter')
 
       # Open mediabrowser with current reference selected and restrict selection to one reference.
       Mediabrowser.open
         selection: selected
+        filters: filters
 
         onSave: (selection) =>
           onMediabrowserSave(selection, cmsField)

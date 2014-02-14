@@ -15,10 +15,11 @@ module EditingHelper
   #
   # @param [Obj] object the cms object with a reference attribute
   # @param [String] attribute_name the name of the reference attribute
-  def cms_edit_reference(object, attribute_name)
+  # @param [Hash] options html options passed to the tag method
+  def cms_edit_reference(object, attribute_name, options = {})
     reference = object.send(attribute_name)
 
-    cms_tag(:div, object, attribute_name) do
+    cms_tag(:div, object, attribute_name, options) do
       if reference
         "#{reference.name} (#{reference.id})"
       end
@@ -30,10 +31,11 @@ module EditingHelper
   #
   # @param [Obj] object the cms object with a referencelist attribute
   # @param [String] attribute_name the name of the referencelist attribute
-  def cms_edit_referencelist(object, attribute_name)
+  # @param [Hash] options html options passed to the tag method
+  def cms_edit_referencelist(object, attribute_name, options = {})
     reference_list = object.send(attribute_name)
 
-    cms_tag(:div, object, attribute_name) do
+    cms_tag(:div, object, attribute_name, options) do
       out = ''.html_safe
 
       out << content_tag(:ul) do
@@ -56,10 +58,10 @@ module EditingHelper
     end
   end
 
-  def cms_edit_linklist(object, attribute_name)
+  def cms_edit_linklist(object, attribute_name, options = {})
     linklist = object.send(attribute_name)
 
-    cms_tag(:div, object, attribute_name) do
+    cms_tag(:div, object, attribute_name, options) do
       out = ''.html_safe
 
       out << content_tag(:ul) do
