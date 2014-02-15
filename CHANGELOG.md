@@ -1,5 +1,12 @@
 # v5.1.0
-  * Remove dependency on `less` by using plain CSS and referencing bootstrap from a CDN.
+  * We removed the `NullHomepage` concept that was displayed if no homepage was published yet.
+    Instead we recommend to publish right after running your generated migrations to have a homepage
+    and login page available in your project.
+  * Added customizable filters to the media browser. You can now define a set of available filters
+    that have a name, title, icon and a Infopark JavaScript search query. A list of filter names can
+    then be handed over to the media browser that looks up the filters and displays them in the left
+    filter column. This allows to restrict or display any kind of filter in the media browser.
+  * Removed dependency on `less` by using plain CSS and referencing bootstrap from a CDN.
   * Removed `bootstrap-datepicker-rails` dependency and went back to a simmple but effective input
     field for date attributes using the standard Infopark Cloud Connector `cms_tag` helper.
 
