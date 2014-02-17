@@ -32,11 +32,6 @@ class Obj < ::RailsConnector::BasicObj
     @homepages ||= parent.children.select { |obj| obj.is_a?(Homepage) }
   end
 
-  # Overriden method +slug+ from +RailsConnector::BasicObj+.
-  def slug
-    (self[:headline] || '').parameterize
-  end
-
   def locale
     (homepage && homepage[:locale]) || I18n.default_locale
   end
