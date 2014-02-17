@@ -2,6 +2,10 @@
   thumbnailViewButtonSelector: '.editing-button-view'
   options: {}
 
+  # The media browser supports operations like +delete+ and +edit+ of resources that require a page
+  # reload, so that all references of the resources get updated.
+  reload: false
+
   _getBatchSize: ->
     @batchSize ||= 20
 
@@ -111,11 +115,12 @@
   _delete: ->
     (@options.onDelete || $.noop)(@selected)
 
-    $.each @selected, (index, selected_id) =>
-      item = @_getItemContainer(selected_id)
+    $.each @selected, (index, id) =>
+      item = @_getItemContainer(id)
       @_itemLoading(item)
 
-      infopark.delete_obj(selected_id).then =>
+      infopark.delete_obj(id).then =>
+        @modal.trigger('resource_change.mediabrowser')
         item.remove()
 
     @_deselectAllItems()
@@ -320,6 +325,9 @@
       size = $(event.currentTarget).data('size')
       @_changeThumbnailSize(size)
 
+    @modal.on 'resource_change.mediabrowser', (event) =>
+      @reload = true
+
     $(document).on 'keyup.mediabrowser', (event) =>
       event.stopImmediatePropagation()
 
@@ -378,6 +386,9 @@
 
     @overlay.remove()
     @modal.remove()
+
+    if @reload
+      $('body').trigger('infopark_reload')
 
   open: (options) ->
     $.ajax

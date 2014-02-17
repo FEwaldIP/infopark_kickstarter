@@ -25,7 +25,7 @@ $ ->
 
       cmsField.infopark('save', value)
       .done ->
-        cmsField.trigger('infopark_reload');
+        cmsField.trigger('infopark_reload')
       .fail ->
         cmsField.removeClass('saving')
 
