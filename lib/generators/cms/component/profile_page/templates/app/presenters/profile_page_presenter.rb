@@ -1,30 +1,42 @@
 class ProfilePagePresenter
-  include ActiveAttr::Model
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  attr_reader :user
+  ATTRIBUTES = %w(
+    id
+    gender
+    first_name
+    last_name
+    email
+    language
+    want_email
+  )
 
-  attribute :id
-  attribute :gender
-  attribute :first_name
-  attribute :last_name
-  attribute :email
-  attribute :language
-  attribute :want_email
+  ATTRIBUTES.each do |attribute|
+    attr_accessor attribute
+  end
 
   validates :id, presence: true
   validates :last_name, presence: true
   validates :email, presence: true
 
-  def initialize(user, attributes)
-    @user = user
-    attributes ||= user.contact.attributes
-
-    super(attributes)
+  def initialize(attributes = {})
+    ATTRIBUTES.each do |attribute|
+      send("#{attribute}=", attributes[attribute])
+    end
   end
 
-  def save
-    if valid?
-      user.contact.update_attributes(attributes)
+  def attributes
+    ATTRIBUTES.inject({}) do |hash, attribute|
+      hash[attribute] = send(attribute)
+      hash
     end
+  end
+
+  private
+
+  def persisted?
+    false
   end
 end

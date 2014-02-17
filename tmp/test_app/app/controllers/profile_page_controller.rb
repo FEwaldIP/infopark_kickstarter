@@ -2,9 +2,14 @@ class ProfilePageController < CmsController
   include Authorization
 
   def index
-    @presenter = ProfilePagePresenter.new(current_user, params[:profile_page_presenter])
+    contact = current_user.contact
+    attributes = params[:profile_page_presenter] || contact.attributes
+    @profile = ProfilePagePresenter.new(attributes)
 
-    if request.post? && @presenter.save
+    if request.post? && @profile.valid?
+      # Store form attributes in the CRM.
+      contact.update_attributes(@profile.attributes)
+
       # Refresh the current user because of possible changes to its attributes.
       current_user.refresh
 

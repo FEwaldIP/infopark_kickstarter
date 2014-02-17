@@ -3,7 +3,7 @@
 
   = cms_tag(:div, @obj, :content)
 
-  = form_for(@presenter, url: cms_path(@obj), html: { class: 'form-horizontal' }) do |form|
+  = form_for(@profile, url: cms_path(@obj), html: { class: 'form-horizontal' }) do |form|
     %fieldset
       %legend
         User Details
