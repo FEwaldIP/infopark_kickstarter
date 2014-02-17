@@ -9,7 +9,7 @@ module Authentication
     user_id = session[:user]
 
     @current_user ||= if user_id
-      User.new(id: user_id)
+      User.new(user_id)
     else
       NullUser.new
     end
@@ -25,10 +25,7 @@ module Authentication
     user ||= NullUser.new
 
     @current_user = user
-    session[:user] = user.id
-  end
-
-  def discard_user
-    session.delete(:user)
+    session[:user] = user.user_id
+    EditModeDetection.editing_allowed(session, user.admin?)
   end
 end

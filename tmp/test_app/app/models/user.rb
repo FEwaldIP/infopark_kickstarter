@@ -1,10 +1,8 @@
 class User
-  include ActiveAttr::Model
+  attr_reader :user_id
 
-  attribute :id
-
-  def save
-    contact.update_attributes(attributes)
+  def initialize(user_id)
+    @user_id = user_id
   end
 
   def logged_in?
@@ -20,8 +18,8 @@ class User
   end
 
   def refresh
-    @contact = Rails.cache.fetch("contact.#{id}", expires_in: 24.hours, force: true) do
-      Infopark::Crm::Contact.find(id)
+    @contact = Rails.cache.fetch("contact.#{user_id}", expires_in: 24.hours, force: true) do
+      Infopark::Crm::Contact.find(user_id)
     end
   end
 

@@ -2,12 +2,12 @@ class LoginPageController < CmsController
   def index
     if request.post?
       contact = Infopark::Crm::Contact.authenticate(user_params[:login], user_params[:password])
-      self.current_user = User.new(id: contact.id)
+      self.current_user = User.new(contact.id)
 
       target = params[:return_to] || cms_path(@obj.homepage)
       redirect_to(target, notice: 'You logged in successfully.')
     elsif request.delete?
-      discard_user
+      self.current_user = nil
       redirect_to(cms_path(@obj.homepage), notice: 'You logged out successfully.')
     end
   rescue Infopark::Crm::Errors::AuthenticationFailed, ActiveResource::ResourceInvalid
