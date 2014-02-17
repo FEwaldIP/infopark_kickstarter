@@ -1,4 +1,10 @@
 # v5.1.0
+  * Bugfix: It is no longer the case that a resource is uploaded twice when dropped into the media
+    browser. (Thanks @gertimon)
+  * Bugfix: The page is now reloaded if a resource is deleted in the media browser to update all
+    references on the page. (Thanks @gertimon)
+  * The `slug` method is no longer overwritten by the generated Kickstarter code to allow full
+    customization by gems or the developer within the project.
   * We removed the `NullHomepage` concept that was displayed if no homepage was published yet.
     Instead we recommend to publish right after running your generated migrations to have a homepage
     and login page available in your project.
