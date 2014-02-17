@@ -16,24 +16,12 @@ describe Cms::Generators::Component::Monitoring::NewrelicGenerator do
   end
 
   def prepare_environments
-    config_path = "#{destination_root}/config"
-    initializers_path = "#{config_path}/initializers"
-
-    mkdir_p(initializers_path)
-
     File.open("#{destination_root}/Gemfile", 'w')
-    File.open("#{config_path}/custom_cloud.yml", 'w')
   end
 
   it 'creates files' do
     destination_root.should have_structure {
       directory 'config' do
-        file 'custom_cloud.yml' do
-          contains 'newrelic:'
-          contains "  api_key: ''"
-          contains "  deploy_key: ''"
-        end
-
         file 'newrelic.yml' do
           contains "license_key: ''"
           contains 'app_name: "Test Website"'

@@ -32,9 +32,6 @@ module InfoparkKickstarter
           'CMS_URL' => cms_config['url'],
           'CMS_LOGIN' => cms_config['login'],
           'CMS_API_KEY' => cms_config['api_key'],
-          'CRM_URL' => crm_config['url'],
-          'CRM_LOGIN' => crm_config['login'],
-          'CRM_API_KEY' => crm_config['api_key'],
         }
 
         contributor = %x(whoami).strip
@@ -57,10 +54,6 @@ module InfoparkKickstarter
 
       def cms_config
         YAML.load_file('config/rails_connector.yml')['cms_api']
-      end
-
-      def crm_config
-        YAML.load_file('config/custom_cloud.yml')['crm']
       end
     end
   end

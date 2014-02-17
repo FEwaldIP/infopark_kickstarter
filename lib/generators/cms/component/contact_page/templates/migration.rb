@@ -9,10 +9,6 @@ class ContactPage < ::RailsConnector::Migration
           name: 'headline',
           type: :string,
         },
-        {
-          name: 'crm_activity_type',
-          type: :string,
-        },
       ]
     )
   end

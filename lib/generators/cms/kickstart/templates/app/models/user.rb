@@ -1,8 +1,14 @@
 class User
-  attr_reader :user_id
+  def id
+    '1'
+  end
 
-  def initialize(user_id)
-    @user_id = user_id
+  def first_name
+    'root'
+  end
+
+  def email
+    'test@example.com'
   end
 
   def logged_in?
@@ -10,20 +16,6 @@ class User
   end
 
   def admin?
-    contact.role_names.include?('superuser')
-  end
-
-  def contact
-    @contact ||= refresh
-  end
-
-  def refresh
-    @contact = Rails.cache.fetch("contact.#{user_id}", expires_in: 24.hours, force: true) do
-      Infopark::Crm::Contact.find(user_id)
-    end
-  end
-
-  def full_name
-    [contact.first_name, contact.last_name].join(' ')
+    true
   end
 end

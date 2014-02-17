@@ -41,10 +41,8 @@ group :test, :development do
   gem "infopark_kickstarter", :path => "../../"
 end
 
-gem "active_attr"
 gem "haml-rails"
 gem "utf8-cleaner"
-gem "infopark_crm_connector"
 gem "jquery-ui-rails"
 group :test, :development do
   gem "pry-rails"

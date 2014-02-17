@@ -1,4 +1,8 @@
 # v5.1.0
+  * Removed all CRM related generators and related code like the profile page, the reset password
+    page, and the form builder. The user authentication is changed to fixed credentials "root" for
+    both login and password. The "custom_cloud.yml" file is no longer needed and the
+    "infopark_crm_connector" is no longer included.
   * Bugfix: It is no longer the case that a resource is uploaded twice when dropped into the media
     browser. (Thanks @gertimon)
   * Bugfix: The page is now reloaded if a resource is deleted in the media browser to update all

@@ -11,17 +11,5 @@ class LoginPage < ::RailsConnector::Migration
         },
       ]
     )
-
-    create_obj_class(
-      name: 'ResetPasswordPage',
-      type: 'publication',
-      title: 'ResetPassword',
-      attributes: [
-        {
-          name: 'headline',
-          type: :string,
-        },
-      ]
-    )
   end
 end

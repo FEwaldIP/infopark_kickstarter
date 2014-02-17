@@ -37,10 +37,6 @@ describe Cms::Generators::Component::ContactPageGenerator do
         directory 'presenters' do
           file 'contact_page_presenter.rb'
         end
-
-        directory 'services' do
-          file 'contact_activity_service.rb'
-        end
       end
 
       directory 'cms' do

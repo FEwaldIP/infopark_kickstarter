@@ -15,26 +15,15 @@ describe Cms::Generators::Component::ErrorTracking::AirbrakeGenerator do
   end
 
   def prepare_environments
-    config_path = "#{destination_root}/config"
-    initializers_path = "#{config_path}/initializers"
-
-    mkdir_p(initializers_path)
-
     File.open("#{destination_root}/Gemfile", 'w')
-    File.open("#{config_path}/custom_cloud.yml", 'w')
   end
 
   it 'creates initializer file' do
     destination_root.should have_structure {
       directory 'config' do
-        file 'custom_cloud.yml' do
-          contains 'airbrake:'
-          contains "  api_key: ''"
-        end
-
         directory 'initializers' do
           file 'airbrake.rb' do
-            contains "config.api_key = ENV['AIRBRAKE_API_KEY'] || airbrake_config['api_key']"
+            contains "config.api_key = ENV['AIRBRAKE_API_KEY'] || ''"
             contains 'config.secure = true'
           end
         end

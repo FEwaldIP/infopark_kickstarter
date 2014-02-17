@@ -9,10 +9,16 @@ class ContactPagePresenter
     message
   )
 
+  ATTRIBUTES.each do |attribute|
+    attr_accessor attribute
+  end
+
   validates :subject, presence: true
   validates :email, presence: true
 
-  def initialize(attributes = {})
+  def initialize(attributes)
+    attributes ||= {}
+
     ATTRIBUTES.each do |attribute|
       send("#{attribute}=", attributes[attribute])
     end

@@ -16,7 +16,6 @@ module InfoparkKickstarter
       def files
         %w(
           rails_connector.yml
-          custom_cloud.yml
         )
       end
 

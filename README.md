@@ -88,7 +88,6 @@ do so any time by following the steps below.
    copy them to your cloned Kickstarter gem `config` folder.
 
         config/rails_connector.yml
-        config/custom_cloud.yml
 
 
 4. Create the bundle and run all test to make sure everything is working before you add your own

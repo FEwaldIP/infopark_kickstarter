@@ -14,4 +14,3 @@
 /log/*.log
 /tmp
 config/rails_connector.yml
-config/custom_cloud.yml

@@ -27,7 +27,6 @@ class SitemapController < ActionController::Base
       Root
       ErrorPage
       LoginPage
-      ResetPasswordPage
     )
   end
 end

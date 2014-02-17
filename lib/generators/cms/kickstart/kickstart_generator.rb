@@ -31,7 +31,6 @@ module Cms
       def install_gems
         gem('haml-rails')
         gem('utf8-cleaner')
-        gem('infopark_crm_connector')
 
         Bundler.with_clean_env do
           run('bundle --quiet')
@@ -53,7 +52,6 @@ module Cms
 
       def extend_gitignore
         append_file('.gitignore', "config/rails_connector.yml\n")
-        append_file('.gitignore', "config/custom_cloud.yml\n")
       end
 
       def create_structure_migration_file

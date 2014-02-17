@@ -1,5 +1,7 @@
 class NullUser
-  attr_reader :user_id
+  def id
+    nil
+  end
 
   def logged_in?
     false

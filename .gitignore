@@ -11,7 +11,6 @@ doc/
 
 # Kickstarter configuration files
 config/rails_connector.yml
-config/custom_cloud.yml
 
 # Sublime editor files
 *.sublime-project

@@ -3,10 +3,7 @@ class ContactPageController < CmsController
     @contact_page_presenter = ContactPagePresenter.new(params[:contact_page_presenter])
 
     if request.post? && @contact_page_presenter.valid?
-      ContactActivityService.new(
-        @contact_page_presenter.attributes,
-        @obj.crm_activity_type
-      ).submit
+      ContactMailer.contact_email(@contact_page_presenter.attributes).deliver
 
       redirect_to(cms_path(@obj), notice: 'The contact form was sent successfully.')
     end

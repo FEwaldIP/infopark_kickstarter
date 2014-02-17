@@ -18,27 +18,16 @@ describe Cms::Generators::Component::LoginPageGenerator do
       directory 'app' do
         directory 'controllers' do
           file 'login_page_controller.rb'
-          file 'reset_password_page_controller.rb'
         end
 
         directory 'models' do
           file 'login_page.rb' do
             contains 'class LoginPage < Page'
           end
-
-          file 'reset_password_page.rb' do
-            contains 'class ResetPasswordPage < Page'
-          end
         end
 
         directory 'views' do
           directory 'login_page' do
-            file 'index.html.haml'
-            file 'edit.html.haml'
-            no_file 'thumbnail.html.haml'
-          end
-
-          directory 'reset_password_page' do
             file 'index.html.haml'
             file 'edit.html.haml'
             no_file 'thumbnail.html.haml'
