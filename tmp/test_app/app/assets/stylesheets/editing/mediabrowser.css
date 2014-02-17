@@ -479,7 +479,7 @@
   text-shadow: 0 0 0 #fff;
 }
 
-.editing-mediabrowser .editing-mediabrowser-body.uploader-drag-over .editing-mediabrowser-items {
+.editing-mediabrowser .editing-mediabrowser-items.uploader-drag-over {
   background-color: #5a8bd1;
   background-image: -moz-linear-gradient(top, #5a8bd1, #5a8bd1);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5a8bd1), to(#5a8bd1));
@@ -493,7 +493,7 @@
   box-shadow: 0 0 4px #333333 inset;
 }
 
-.editing-mediabrowser .editing-mediabrowser-body.uploader-drag-over .editing-mediabrowser-items:before {
+.editing-mediabrowser .editing-mediabrowser-items.uploader-drag-over:before {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -513,7 +513,7 @@
   width: 83%;
 }
 
-.editing-mediabrowser .editing-mediabrowser-body.uploader-drag-over .editing-mediabrowser-items ul.editing-mediabrowser-thumbnails {
+.editing-mediabrowser .editing-mediabrowser-items.uploader-drag-over ul.editing-mediabrowser-thumbnails {
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
