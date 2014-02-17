@@ -1,2 +1,0 @@
-class FormBuilder < Page
-end

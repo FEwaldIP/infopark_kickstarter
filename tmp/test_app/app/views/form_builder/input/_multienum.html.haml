@@ -1,6 +1,0 @@
-- name, title, mandatory, collection = attribute.attributes.slice('name', 'title', 'mandatory', 'valid_values').values
-
-.form-group
-  = form.label(name, title)
-
-  = form.select(name, collection, {}, class: 'form-control', required: mandatory, multiple: true)

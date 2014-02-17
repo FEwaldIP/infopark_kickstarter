@@ -75,8 +75,6 @@ module InfoparkKickstarter
           'cms:component:deployment --provider=opsworks',
           'cms:component:language_switch',
           'cms:component:language_switch:example',
-          'cms:component:form_builder',
-          'cms:component:form_builder:example',
           'cms:component:social_sharing',
           'cms:component:social_sharing:example',
           'cms:component:breadcrumbs',
