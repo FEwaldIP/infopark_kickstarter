@@ -1,10 +1,33 @@
 class ContactPagePresenter
-  include ActiveAttr::Model
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  attribute :email
-  attribute :subject
-  attribute :message
+  ATTRIBUTES = %w(
+    email
+    subject
+    message
+  )
 
   validates :subject, presence: true
   validates :email, presence: true
+
+  def initialize(attributes = {})
+    ATTRIBUTES.each do |attribute|
+      send("#{attribute}=", attributes[attribute])
+    end
+  end
+
+  def attributes
+    ATTRIBUTES.inject({}) do |hash, attribute|
+      hash[attribute] = send(attribute)
+      hash
+    end
+  end
+
+  private
+
+  def persisted?
+    false
+  end
 end
