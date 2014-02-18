@@ -1,0 +1,41 @@
+.alert.alert-warning
+  Please reload the page after inserting or updating a Flickr widget to display all changes.
+
+%h4
+  Display
+
+= cms_edit_enum(@widget, :display)
+
+%h4
+  Count
+
+= cms_edit_enum(@widget, :count)
+
+%h4
+  Size
+
+= cms_edit_enum(@widget, :size)
+
+%h4
+  Source
+
+= cms_edit_enum(@widget, :source)
+
+%h4
+  User
+
+%p.text-info
+  Please provide a user ID. Figure out the <a href="http://idgettr.com/">Flickr user ID</a> based on
+  a username. The ID is only relevant if you select <strong>user</strong> or
+  <strong>user_tag</strong> as a source.
+
+= cms_tag(:div, @widget, :user)
+
+%h4
+  Tags
+
+%p.text-info
+  Tags are a comma-separated list and only relevant if you select <strong>all_tag</strong> or
+  <strong>user_tag</strong> as a source.
+
+= cms_tag(:div, @widget, :tags)

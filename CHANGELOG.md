@@ -1,4 +1,6 @@
 # v5.1.0
+  * Added a Flickr widget that is based on the Flickr Badge API. It allows to display 1 to 10 images
+    and adds a whole set of customization options for the editor.
   * Removed all CRM related generators and related code like the profile page, the reset password
     page, and the form builder. The user authentication is changed to fixed credentials "root" for
     both login and password. The "custom_cloud.yml" file is no longer needed and the
